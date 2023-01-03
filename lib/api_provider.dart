@@ -6,7 +6,7 @@ class ApiProvider {
   late Dio _dio;
   String aToken = '';
 
-  final BaseOptions options = new BaseOptions(
+  final BaseOptions options = BaseOptions(
     baseUrl: 'http://admin.brikow.com/api/contractor/add_project',
     connectTimeout: 15000,
     receiveTimeout: 13000,
