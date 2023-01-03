@@ -14,7 +14,7 @@ Map mapResponse = <String, dynamic>{};
 Map mapRespo = <String, dynamic>{};
 
 class MyPhones extends StatefulWidget {
-  const MyPhones({Key? key}) : super(key: key);
+  const MyPhones({Key? key, required String title}) : super(key: key);
   static String verify = "";
 
   @override
@@ -37,121 +37,125 @@ class _MyPhonesState extends State<MyPhones> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        margin: EdgeInsets.only(left: 25, right: 25),
-        alignment: Alignment.center,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'images/Front.png',
-                width: double.infinity,
-                height: 300,
-              ),
-              SizedBox(
-                height: 35,
-              ),
-              Image.asset(
-                'images/logo.png',
-                width: 300,
-                height: 100,
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              Text(
-                "India's #1 Construction Billing and Property Management App",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.normal,
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Container(
-                width: 450,
-                height: 55,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: Colors.grey),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      width: 40,
-                      child: TextField(
-                        controller: countryController,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                      child: TextField(
-                        keyboardType: TextInputType.phone,
-                        onChanged: (value) {
-                          phone = value;
-                        },
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "Enter Mobile Number",
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                width: 450,
-                height: 45,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.red.shade200,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+      body: Column(
+        children: [
+          Image.asset(
+            'images/Front.png',
+            width: double.infinity,
+            height: 300,
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 25, right: 25),
+            alignment: Alignment.center,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 35,
+                  ),
+                  Image.asset(
+                    'images/logo2.png',
+                    width: 500,
+                    height: 150,
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Text(
+                    "India's #1 Construction Billing and Property Management App",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.normal,
                     ),
                   ),
-                  onPressed: () async {
-                    await FirebaseAuth.instance.verifyPhoneNumber(
-                      phoneNumber: '${countryController.text + phone}',
-                      verificationCompleted:
-                          (PhoneAuthCredential credential) {},
-                      verificationFailed: (FirebaseAuthException e) {},
-                      codeSent:
-                          (String verificationId, int? resendToken) async {
-                        MyPhone.verify = verificationId;
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((context) => MyVerify())));
+                  SizedBox(
+                    height: 30,
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                    width: 450,
+                    height: 55,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: Colors.grey),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 10,
+                        ),
+                        SizedBox(
+                          width: 40,
+                          child: TextField(
+                            controller: countryController,
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: TextField(
+                            keyboardType: TextInputType.phone,
+                            onChanged: (value) {
+                              phone = value;
+                            },
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Enter Mobile Number",
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    width: 450,
+                    height: 45,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.red.shade200,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      onPressed: () async {
+                        await FirebaseAuth.instance.verifyPhoneNumber(
+                          phoneNumber: '${countryController.text + phone}',
+                          verificationCompleted:
+                              (PhoneAuthCredential credential) {},
+                          verificationFailed: (FirebaseAuthException e) {},
+                          codeSent:
+                              (String verificationId, int? resendToken) async {
+                            MyPhone.verify = verificationId;
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: ((context) => MyVerify())));
+                          },
+                          codeAutoRetrievalTimeout: (String verificationId) {},
+                        );
+                        // Navigator.pushNamed(context, 'verify');
                       },
-                      codeAutoRetrievalTimeout: (String verificationId) {},
-                    );
-                    // Navigator.pushNamed(context, 'verify');
-                  },
-                  child: Text("Log In"),
-                ),
+                      child: Text("Log In"),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

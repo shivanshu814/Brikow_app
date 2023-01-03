@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_null_comparison, unnecessary_string_interpolations, deprecated_member_use
 import 'dart:convert';
+import 'dart:ffi';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:phone_otp_ui/verify.dart';
+import 'api_provider.dart';
 import 'main.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,7 +16,7 @@ Map mapResponse = <String, dynamic>{};
 Map mapRespo = <String, dynamic>{};
 
 class MyPhone extends StatefulWidget {
-  const MyPhone({Key? key}) : super(key: key);
+  const MyPhone({Key? key, required String title}) : super(key: key);
   static String verify = "";
 
   @override
@@ -37,12 +39,15 @@ class _MyPhoneState extends State<MyPhone> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
+          SizedBox(
+            height: 24,
+          ),
           Image.asset(
             'images/Front.png',
-            width: 650,
+            width: double.infinity,
             height: 300,
           ),
           Container(
@@ -52,19 +57,19 @@ class _MyPhoneState extends State<MyPhone> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 35,
-                  ),
+                  // SizedBox(
+                  //   height: 15,
+                  // ),
                   Image.asset(
-                    'images/logo.png',
+                    'images/logo2.png',
                     width: 500,
-                    height: 100,
+                    height: 200,
                   ),
                   SizedBox(
                     height: 25,
                   ),
                   Text(
-                    "India's #1 Construction Billing and Property Management App",
+                    "India's #1 Construction Billing and      Property Management App",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -161,6 +166,7 @@ class _MyPhoneState extends State<MyPhone> {
                             ),
                           ),
                           onPressed: () async {
+                            ApiProvider().getRestaurants().then((value) => {});
                             await FirebaseAuth.instance.verifyPhoneNumber(
                               phoneNumber: '${countryController.text + phone}',
                               verificationCompleted:

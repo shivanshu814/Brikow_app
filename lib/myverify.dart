@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, camel_case_types, duplicate_ignore, prefer_const_constructors
 
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:phone_otp_ui/main.dart';
 import 'package:phone_otp_ui/third.dart';
 
 class Verify extends StatefulWidget {
@@ -10,6 +13,13 @@ class Verify extends StatefulWidget {
 }
 
 class _VerifyState extends State<Verify> {
+  List items = [];
+  @override
+  void initState() {
+    super.initState();
+    // fetchdata();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

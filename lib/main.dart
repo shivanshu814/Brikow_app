@@ -1,17 +1,17 @@
 // ignore_for_file: unused_import
 
 import 'dart:convert';
-
+import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:phone_otp_ui/fifth.dart';
 import 'package:phone_otp_ui/fourth.dart';
-
 import 'package:phone_otp_ui/myverify.dart';
 import 'package:phone_otp_ui/phone.dart';
 import 'package:phone_otp_ui/phones.dart';
 import 'package:phone_otp_ui/sign_up.dart';
 import 'package:phone_otp_ui/sixth.dart';
+import 'package:phone_otp_ui/start.dart';
 import 'package:phone_otp_ui/third.dart';
 // ignore: depend_on_referenced_packages
 import 'package:phone_otp_ui/verify.dart';
@@ -25,17 +25,23 @@ void main() async {
   await Firebase.initializeApp();
   runApp(
     MaterialApp(
-      initialRoute: 'phone',
+      initialRoute: 'start',
       debugShowCheckedModeBanner: false,
       routes: {
-        'phone': (context) => const MyPhone(),
-        'phones': (context) => const MyPhones(),
+        'phone': (context) => const MyPhone(
+              title: 'phone',
+            ),
+        'phones': (context) => const MyPhones(
+              title: '',
+            ),
         'verify': (context) => const MyVerify(),
         'third': (context) => third(),
         'fourth': (context) => fourth(),
         'fifth': (context) => fifth(),
+        // ignore: prefer_const_constructors
         'sixth': (context) => sixth(),
-        'myverify': (context) => Verify()
+        'myverify': (context) => Verify(),
+        'start': (context) => SplashScreenPage()
       },
     ),
   );
