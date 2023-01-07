@@ -1,14 +1,9 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_null_comparison, unnecessary_string_interpolations, deprecated_member_use
-import 'dart:convert';
-import 'dart:ffi';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:phone_otp_ui/verify.dart';
 import 'api_provider.dart';
 import 'main.dart';
-
-import 'package:shared_preferences/shared_preferences.dart';
 
 String stringResponse = "";
 String stringRespo = "";
@@ -92,16 +87,14 @@ class _MyPhoneState extends State<MyPhone> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
-                          width: 10,
+                          width: 20,
                         ),
                         SizedBox(
-                          width: 40,
-                          child: TextField(
-                            controller: countryController,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                            ),
+                          width: 30,
+                          child: Text(
+                            "+91",
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
                           ),
                         ),
                         SizedBox(
@@ -168,7 +161,7 @@ class _MyPhoneState extends State<MyPhone> {
                           onPressed: () async {
                             ApiProvider().getRestaurants().then((value) => {});
                             await FirebaseAuth.instance.verifyPhoneNumber(
-                              phoneNumber: '${countryController.text + phone}',
+                              phoneNumber: '${'+91' + phone}',
                               verificationCompleted:
                                   (PhoneAuthCredential credential) {},
                               verificationFailed: (FirebaseAuthException e) {},

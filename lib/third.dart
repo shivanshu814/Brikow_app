@@ -8,11 +8,11 @@ import 'fourth.dart';
 
 // ignore: camel_case_types
 class third extends StatelessWidget {
-  String answer = "Yes";
+  String answer = 'Yes';
   TextEditingController ProjectNameController = TextEditingController();
   TextEditingController LocationController = TextEditingController();
   TextEditingController StartDateController = TextEditingController();
-  // TextEditingController MaterialsController = TextEditingController();
+  TextEditingController MaterialsController = TextEditingController();
   TextEditingController ItemController = TextEditingController();
   TextEditingController RateController = TextEditingController();
   TextEditingController UnitController = TextEditingController();
@@ -157,9 +157,14 @@ class third extends StatelessWidget {
                             style: TextStyle(fontSize: 15),
                           ),
                           Radio(
-                            value: 1,
-                            groupValue: 'Yes',
-                            onChanged: (index) {},
+                            value: "Yes",
+                            groupValue: answer,
+                            onChanged: (value) {
+                              // print(value);
+                              setState(() {
+                                answer = value.toString();
+                              });
+                            },
                           ),
                           Expanded(
                             child: Text('Yes'),
@@ -173,9 +178,14 @@ class third extends StatelessWidget {
                       child: Row(
                         children: [
                           Radio(
-                            value: 1,
-                            groupValue: 'No',
-                            onChanged: (index) {},
+                            value: "No",
+                            groupValue: answer,
+                            onChanged: (value) {
+                              // print(value);
+                              setState(() {
+                                answer = value.toString();
+                              });
+                            },
                           ),
                           Expanded(
                             child: Text('No'),

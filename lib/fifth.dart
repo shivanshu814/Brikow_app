@@ -39,9 +39,12 @@ class fifth extends StatelessWidget {
                       width: 10,
                     ),
                     Icon(Icons.engineering_outlined),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Expanded(
                       child: TextField(
-                        keyboardType: TextInputType.phone,
+                        keyboardType: TextInputType.name,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "   Title",
@@ -78,9 +81,12 @@ class fifth extends StatelessWidget {
                       width: 10,
                     ),
                     Icon(Icons.description),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Expanded(
                       child: TextField(
-                        keyboardType: TextInputType.phone,
+                        keyboardType: TextInputType.name,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "   Description",
@@ -106,9 +112,12 @@ class fifth extends StatelessWidget {
                       width: 10,
                     ),
                     Icon(Icons.contact_page_outlined),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Expanded(
                       child: TextField(
-                        keyboardType: TextInputType.phone,
+                        keyboardType: TextInputType.multiline,
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "   Brief",
@@ -135,6 +144,13 @@ class fifth extends StatelessWidget {
                         SizedBox(
                           width: 1,
                         ),
+                        Icon(
+                          Icons.contact_page_outlined,
+                          size: 0,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
                         Expanded(
                           child: TextField(
                             style: TextStyle(fontSize: 12),
@@ -158,6 +174,13 @@ class fifth extends StatelessWidget {
                       children: [
                         SizedBox(
                           width: 1,
+                        ),
+                        Icon(
+                          Icons.contact_page_outlined,
+                          size: 0,
+                        ),
+                        SizedBox(
+                          width: 10,
                         ),
                         Expanded(
                           child: TextField(
@@ -183,6 +206,13 @@ class fifth extends StatelessWidget {
                         SizedBox(
                           width: 2,
                         ),
+                        Icon(
+                          Icons.contact_page_outlined,
+                          size: 0,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
                         Expanded(
                           child: TextField(
                             style: TextStyle(fontSize: 12),
@@ -206,6 +236,13 @@ class fifth extends StatelessWidget {
                       children: [
                         SizedBox(
                           width: 2,
+                        ),
+                        Icon(
+                          Icons.contact_page_outlined,
+                          size: 0,
+                        ),
+                        SizedBox(
+                          width: 10,
                         ),
                         Expanded(
                           child: TextField(
@@ -232,6 +269,9 @@ class fifth extends StatelessWidget {
                           width: 2,
                         ),
                         Icon(Icons.arrow_drop_down_sharp),
+                        SizedBox(
+                          width: 10,
+                        ),
                         Expanded(
                           child: TextField(
                             style: TextStyle(fontSize: 12),
@@ -286,7 +326,8 @@ class fifth extends StatelessWidget {
                       icon: Icon(
                         Icons.add_outlined,
                         color: Colors.white,
-                      ), //icon data for elevated button
+                      ),
+                      //icon data for elevated button
                       label: Text(
                         "Add Details",
                         style: TextStyle(color: Colors.white, fontSize: 15),

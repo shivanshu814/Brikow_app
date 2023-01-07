@@ -28,7 +28,6 @@ class ApiProvider {
     final request = {
       "phonenumber": "1234567890",
       "otp": "123456",
-      "token": "123456"
     };
     final response = await _dio.post(
         'http://admin.brikow.com/api/contractor/add_project',
