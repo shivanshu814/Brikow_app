@@ -1,14 +1,13 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_null_comparison, unnecessary_string_interpolations, deprecated_member_use
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:phone_otp_ui/verify.dart';
 import 'api_provider.dart';
 import 'main.dart';
-
-String stringResponse = "";
-String stringRespo = "";
-Map mapResponse = <String, dynamic>{};
-Map mapRespo = <String, dynamic>{};
+import 'package:http/http.dart' as http;
 
 class MyPhone extends StatefulWidget {
   const MyPhone({Key? key, required String title}) : super(key: key);
@@ -19,16 +18,40 @@ class MyPhone extends StatefulWidget {
 }
 
 class _MyPhoneState extends State<MyPhone> {
-  TextEditingController countryController = TextEditingController();
+  var Phone = '';
+  // TextEditingController countryController = TextEditingController();
+  TextEditingController PhoneController = TextEditingController();
   var phone = "";
   @override
   void initState() {
-    apicall();
     // ignore: todo
     // TODO: implement initState
-    countryController.text = "+91";
+    // countryController.text = "+91";
     Colors.black;
     super.initState();
+  }
+
+  // ignore: non_constant_identifier_names
+  signup() async {
+    var headers = {
+      'Content-Type': 'application/json',
+      'Cookie':
+          'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkxODM3NWU3MjE4ZTc1ODIwMmY2MyIsImlhdCI6MTY3MzA3NDg4OCwiZXhwIjoxNjc1NjY2ODg4fQ.lSDOvNG2hyFEzzznQvw8d2vHsRxhf6yaY-MIsWjrpIM'
+    };
+    var request =
+        http.Request('POST', Uri.parse('http://admin.brikow.com/api/getOTP'));
+    request.body = json.encode({"phone_no": "$Phone"});
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+      print("otp sent succesfully");
+    } else {
+      print(response.reasonPhrase);
+      print("failed");
+    }
   }
 
   @override
@@ -52,9 +75,9 @@ class _MyPhoneState extends State<MyPhone> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // SizedBox(
-                  //   height: 15,
-                  // ),
+                  SizedBox(
+                    height: 15,
+                  ),
                   Image.asset(
                     'images/logo2.png',
                     width: 500,
@@ -64,7 +87,18 @@ class _MyPhoneState extends State<MyPhone> {
                     height: 25,
                   ),
                   Text(
-                    "India's #1 Construction Billing and      Property Management App",
+                    "India's #1 Construction Billing and",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.normal,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "Property Management App",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -73,6 +107,13 @@ class _MyPhoneState extends State<MyPhone> {
                   ),
                   SizedBox(
                     height: 30,
+                  ),
+                  Text(
+                    "Log in or Sign up",
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.grey.shade900,
+                    ),
                   ),
                   SizedBox(
                     height: 30,
@@ -89,12 +130,11 @@ class _MyPhoneState extends State<MyPhone> {
                         SizedBox(
                           width: 20,
                         ),
-                        SizedBox(
-                          width: 30,
-                          child: Text(
-                            "+91",
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
+                        Text(
+                          "+91",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.grey.shade900,
                           ),
                         ),
                         SizedBox(
@@ -102,9 +142,10 @@ class _MyPhoneState extends State<MyPhone> {
                         ),
                         Expanded(
                           child: TextField(
+                            controller: PhoneController,
                             keyboardType: TextInputType.phone,
                             onChanged: (value) {
-                              phone = value;
+                              Phone = value;
                             },
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -118,71 +159,23 @@ class _MyPhoneState extends State<MyPhone> {
                   SizedBox(
                     height: 20,
                   ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 50,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, 'verify');
+                      signup();
+                    },
+                    child: Container(
+                      width: 230,
+                      height: 45,
+                      decoration: BoxDecoration(
+                        color: Colors.red.shade200,
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      SizedBox(
-                        width: 100,
-                        height: 45,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.red.shade200,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          onPressed: () {
-                            Navigator.pushNamedAndRemoveUntil(
-                                context,
-                                "phones",
-                                (route) =>
-                                    false); // Navigator.pushNamed(context, 'verify');
-                          },
-                          child: Text(
-                            "Log In",
-                          ),
-                        ),
+                      child: Center(
+                        child: Text("Continue"),
                       ),
-                      SizedBox(
-                        width: 40,
-                      ),
-                      SizedBox(
-                        width: 100,
-                        height: 45,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.red.shade200,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          onPressed: () async {
-                            ApiProvider().getRestaurants().then((value) => {});
-                            await FirebaseAuth.instance.verifyPhoneNumber(
-                              phoneNumber: '${'+91' + phone}',
-                              verificationCompleted:
-                                  (PhoneAuthCredential credential) {},
-                              verificationFailed: (FirebaseAuthException e) {},
-                              codeSent: (String verificationId,
-                                  int? resendToken) async {
-                                MyPhone.verify = verificationId;
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: ((context) => MyVerify())));
-                              },
-                              codeAutoRetrievalTimeout:
-                                  (String verificationId) {},
-                            );
-                            // Navigator.pushNamed(context, 'verify');
-                          },
-                          child: Text("Sign Up"),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  )
                 ],
               ),
             ),
