@@ -34,7 +34,9 @@ void main() async {
         'phones': (context) => const MyPhones(
               title: '',
             ),
-        'verify': (context) => const MyVerify(),
+        'verify': (context) => const MyVerify(
+              Phone: '',
+            ),
         'third': (context) => third(),
         'fourth': (context) => fourth(),
         'fifth': (context) => fifth(),

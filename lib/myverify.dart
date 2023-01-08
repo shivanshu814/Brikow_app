@@ -15,161 +15,165 @@ class Verify extends StatefulWidget {
 class _VerifyState extends State<Verify> {
   List items = [];
   @override
-  void initState() {
-    super.initState();
-    // fetchdata();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.red.shade100,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle_outlined),
-              label: 'Account',
-            ),
-          ],
-        ),
-        backgroundColor: Colors.white,
-        body: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                height: 60,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                "Projects                             ",
-                style: TextStyle(fontSize: 30),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              const Text(
-                "Your Projects                                         ",
-                style: TextStyle(fontSize: 20),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Card(
-                elevation: 5, // the size of the shadow
-                shadowColor: Colors.black, // shadow color
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                color: Colors.red.shade100,
-                margin: const EdgeInsets.symmetric(
-                  vertical: 10.0,
-                  horizontal: 25.0,
-                ),
-                child: const ListTile(
-                  title: Text(
-                    'Project Name       13-12-2022\n\n',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.0,
-                        fontSize: 18.0),
-                  ),
-                  trailing: Icon(
-                    Icons.location_on_outlined,
-                    color: Colors.black,
-                  ),
-                  subtitle: Text(
-                    'Location',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.0,
-                        fontSize: 15.0),
-                  ),
-                ),
-              ),
-              Card(
-                elevation: 5, // the size of the shadow
-                shadowColor: Colors.black, // shadow color
+    // TODO: implement build
+    throw UnimplementedError();
+  }
+}
 
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                color: Colors.red.shade100,
-                margin: const EdgeInsets.symmetric(
-                  vertical: 10.0,
-                  horizontal: 25.0,
-                ),
-                child: const ListTile(
-                  title: Text(
-                    'Project Name       13-12-2022\n\n',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.0,
-                        fontSize: 18.0),
-                  ),
-                  trailing: Icon(
-                    Icons.location_on_outlined,
-                    color: Colors.black,
-                  ),
-                  subtitle: Text(
-                    'Location',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.0,
-                        fontSize: 15.0),
-                  ),
-                ),
-              ),
-              Card(
-                elevation: 5, // the size of the shadow
-                shadowColor: Colors.black, // shadow color
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                color: Colors.red.shade100,
-                margin: const EdgeInsets.symmetric(
-                  vertical: 10.0,
-                  horizontal: 25.0,
-                ),
-                child: const ListTile(
-                  title: Text(
-                    'Project Name       13-12-2022\n\n',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.0,
-                        fontSize: 18.0),
-                  ),
-                  trailing: Icon(
-                    Icons.location_on_outlined,
-                    color: Colors.black,
-                  ),
-                  subtitle: Text(
-                    'Location',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.0,
-                        fontSize: 15.0),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              SizedBox(
+@override
+Widget build(BuildContext context) {
+  return MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.red.shade100,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle_outlined),
+            label: 'Account',
+          ),
+        ],
+      ),
+      backgroundColor: Colors.white,
+      body: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              height: 60,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text(
+              "Projects                                 ",
+              style: TextStyle(fontSize: 30),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            const Text(
+              "Your Projects                                                ",
+              style: TextStyle(fontSize: 20),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            // Card(
+            //   elevation: 5, // the size of the shadow
+            //   shadowColor: Colors.black, // shadow color
+            //   shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(15),
+            //   ),
+            //   color: Colors.red.shade100,
+            //   margin: const EdgeInsets.symmetric(
+            //     vertical: 10.0,
+            //     horizontal: 25.0,
+            //   ),
+            //   child: const ListTile(
+            //     title: Text(
+            //       'Project Name       13-12-2022\n\n',
+            //       style: TextStyle(
+            //           color: Colors.black,
+            //           fontWeight: FontWeight.bold,
+            //           letterSpacing: 1.0,
+            //           fontSize: 18.0),
+            //     ),
+            //     trailing: Icon(
+            //       Icons.location_on_outlined,
+            //       color: Colors.black,
+            //     ),
+            //     subtitle: Text(
+            //       'Location',
+            //       style: TextStyle(
+            //           color: Colors.black,
+            //           fontWeight: FontWeight.bold,
+            //           letterSpacing: 1.0,
+            //           fontSize: 15.0),
+            //     ),
+            //   ),
+            // ),
+            // Card(
+            //   elevation: 5, // the size of the shadow
+            //   shadowColor: Colors.black, // shadow color
+
+            //   shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(15),
+            //   ),
+            //   color: Colors.red.shade100,
+            //   margin: const EdgeInsets.symmetric(
+            //     vertical: 10.0,
+            //     horizontal: 25.0,
+            //   ),
+            //   child: const ListTile(
+            //     title: Text(
+            //       'Project Name       13-12-2022\n\n',
+            //       style: TextStyle(
+            //           color: Colors.black,
+            //           fontWeight: FontWeight.bold,
+            //           letterSpacing: 1.0,
+            //           fontSize: 18.0),
+            //     ),
+            //     trailing: Icon(
+            //       Icons.location_on_outlined,
+            //       color: Colors.black,
+            //     ),
+            //     subtitle: Text(
+            //       'Location',
+            //       style: TextStyle(
+            //           color: Colors.black,
+            //           fontWeight: FontWeight.bold,
+            //           letterSpacing: 1.0,
+            //           fontSize: 15.0),
+            //     ),
+            //   ),
+            // ),
+            // Card(
+            //   elevation: 5, // the size of the shadow
+            //   shadowColor: Colors.black, // shadow color
+            //   shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(15),
+            //   ),
+            //   color: Colors.red.shade100,
+            //   margin: const EdgeInsets.symmetric(
+            //     vertical: 10.0,
+            //     horizontal: 25.0,
+            //   ),
+            //   child: const ListTile(
+            //     title: Text(
+            //       'Project Name       13-12-2022\n\n',
+            //       style: TextStyle(
+            //           color: Colors.black,
+            //           fontWeight: FontWeight.bold,
+            //           letterSpacing: 1.0,
+            //           fontSize: 18.0),
+            //     ),
+            //     trailing: Icon(
+            //       Icons.location_on_outlined,
+            //       color: Colors.black,
+            //     ),
+            //     subtitle: Text(
+            //       'Location',
+            //       style: TextStyle(
+            //           color: Colors.black,
+            //           fontWeight: FontWeight.bold,
+            //           letterSpacing: 1.0,
+            //           fontSize: 15.0),
+            //     ),
+            //   ),
+            // ),
+            const SizedBox(
+              width: 20,
+              height: 40,
+            ),
+            Center(
+              child: SizedBox(
                 width: 320,
                 height: 55,
                 child: ElevatedButton.icon(
@@ -198,10 +202,10 @@ class _VerifyState extends State<Verify> {
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
-    );
-  }
+    ),
+  );
 }

@@ -7,20 +7,42 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // ignore: unused_import
 import 'package:http/http.dart';
+import 'package:phone_otp_ui/myverify.dart';
 import 'package:phone_otp_ui/phone.dart';
 import 'package:pinput/pinput.dart';
+import 'package:http/http.dart' as http;
 
 class MyVerify extends StatefulWidget {
-  const MyVerify({Key? key}) : super(key: key);
+  const MyVerify({Key? key, required String Phone}) : super(key: key);
 
   @override
   State<MyVerify> createState() => _MyVerifyState();
 }
 
 class _MyVerifyState extends State<MyVerify> {
-  final FirebaseAuth auth = FirebaseAuth.instance;
-
+  var code = "";
+  TextEditingController CodeController = TextEditingController();
   @override
+  verified() async {
+    var headers = {
+      'Content-Type': 'application/json',
+      'Cookie':
+          'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkxODM3NWU3MjE4ZTc1ODIwMmY2MyIsImlhdCI6MTY3MzA3NDg4OCwiZXhwIjoxNjc1NjY2ODg4fQ.lSDOvNG2hyFEzzznQvw8d2vHsRxhf6yaY-MIsWjrpIM'
+    };
+    var request = http.Request(
+        'POST', Uri.parse('http://admin.brikow.com/api/loginVerifyOTP'));
+    request.body = json.encode({"phone_no": "$MyPhone.phone", "otp": '$code'});
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
@@ -46,7 +68,7 @@ class _MyVerifyState extends State<MyVerify> {
         color: Color.fromRGBO(234, 239, 243, 1),
       ),
     );
-    var code = "";
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -108,28 +130,21 @@ class _MyVerifyState extends State<MyVerify> {
               SizedBox(
                 height: 20,
               ),
-              SizedBox(
-                width: double.infinity,
-                height: 45,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.red.shade200,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10))),
-                  onPressed: () async {
-                    try {
-                      PhoneAuthCredential credential =
-                          PhoneAuthProvider.credential(
-                              verificationId: MyPhone.verify, smsCode: code);
-
-                      // Sign the user in (or link) with the credential
-                      await auth.signInWithCredential(credential);
-                      // ignore: use_build_context_synchronously
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, "myverify", (route) => false);
-                    } catch (e) {}
-                  },
-                  child: Text("Verify Phone Number"),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, 'myverify');
+                  verified();
+                },
+                child: Container(
+                  width: 230,
+                  height: 45,
+                  decoration: BoxDecoration(
+                    color: Colors.red.shade200,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Center(
+                    child: Text("Verify Phone Number"),
+                  ),
                 ),
               ),
               Row(

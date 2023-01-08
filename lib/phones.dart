@@ -142,7 +142,9 @@ class _MyPhonesState extends State<MyPhones> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: ((context) => MyVerify())));
+                                    builder: ((context) => const MyVerify(
+                                          Phone: '',
+                                        ))));
                           },
                           codeAutoRetrievalTimeout: (String verificationId) {},
                         );

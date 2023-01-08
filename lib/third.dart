@@ -134,7 +134,7 @@ class third extends StatelessWidget {
                         hintText: "Start Date",
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -150,49 +150,14 @@ class third extends StatelessWidget {
                       width: 20,
                     ),
                     Expanded(
-                      child: Row(
-                        children: [
-                          const Text(
-                            "With Materials",
-                            style: TextStyle(fontSize: 15),
-                          ),
-                          Radio(
-                            value: "Yes",
-                            groupValue: answer,
-                            onChanged: (value) {
-                              // print(value);
-                              setState(() {
-                                answer = value.toString();
-                              });
-                            },
-                          ),
-                          Expanded(
-                            child: Text('Yes'),
-                          )
-                        ],
+                      child: TextField(
+                        controller: MaterialsController,
+                        keyboardType: TextInputType.name,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: "With Materials",
+                        ),
                       ),
-                      // flex: 1,
-                    ),
-                    Expanded(
-                      // ignore: sort_child_properties_last
-                      child: Row(
-                        children: [
-                          Radio(
-                            value: "No",
-                            groupValue: answer,
-                            onChanged: (value) {
-                              // print(value);
-                              setState(() {
-                                answer = value.toString();
-                              });
-                            },
-                          ),
-                          Expanded(
-                            child: Text('No'),
-                          )
-                        ],
-                      ),
-                      flex: 1,
                     ),
                   ],
                 ),
@@ -213,389 +178,6 @@ class third extends StatelessWidget {
             ),
             Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      color: Colors.grey.shade300,
-                      width: 120.0,
-                      height: 35,
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          SizedBox(
-                            width: 1,
-                          ),
-                          Icon(
-                            Icons.add_chart_rounded,
-                            size: 0,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: TextField(
-                              controller: ItemController,
-                              keyboardType: TextInputType.name,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "\tItem Name",
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      color: Colors.grey.shade300,
-                      width: 120.0,
-                      height: 35,
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          SizedBox(
-                            width: 1,
-                          ),
-                          Icon(
-                            Icons.add_chart_rounded,
-                            size: 0,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: TextField(
-                              controller: RateController,
-                              keyboardType: TextInputType.phone,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "  Rate/Unit",
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: 80.0,
-                      height: 35,
-                      color: Colors.grey.shade300,
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          SizedBox(
-                            width: 1,
-                          ),
-                          Icon(Icons.arrow_drop_down_sharp),
-                          Expanded(
-                            child: TextField(
-                              controller: UnitController,
-                              keyboardType: TextInputType.phone,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "  Unit",
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      width: 120.0,
-                      height: 35,
-                      color: Colors.grey.shade300,
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          SizedBox(
-                            width: 1,
-                          ),
-                          Icon(
-                            Icons.add_chart_rounded,
-                            size: 0,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: TextField(
-                              controller: ItemController,
-                              keyboardType: TextInputType.name,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "\tItem Name",
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: 120.0,
-                      height: 35,
-                      color: Colors.grey.shade300,
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          SizedBox(
-                            width: 1,
-                          ),
-                          Icon(
-                            Icons.add_chart_rounded,
-                            size: 0,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: TextField(
-                              controller: RateController,
-                              keyboardType: TextInputType.phone,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "  Rate/Unit",
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: 80.0,
-                      height: 35,
-                      color: Colors.grey.shade300,
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          SizedBox(
-                            width: 1,
-                          ),
-                          Icon(Icons.arrow_drop_down_sharp),
-                          Expanded(
-                            child: TextField(
-                              controller: UnitController,
-                              keyboardType: TextInputType.phone,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "  Unit",
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      width: 120.0,
-                      height: 35,
-                      color: Colors.grey.shade300,
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          SizedBox(
-                            width: 1,
-                          ),
-                          Icon(
-                            Icons.add_chart_rounded,
-                            size: 0,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: TextField(
-                              controller: ItemController,
-                              keyboardType: TextInputType.name,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "\tItem Name",
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: 120.0,
-                      height: 35,
-                      color: Colors.grey.shade300,
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          SizedBox(
-                            width: 1,
-                          ),
-                          Icon(
-                            Icons.add_chart_rounded,
-                            size: 0,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: TextField(
-                              controller: RateController,
-                              keyboardType: TextInputType.phone,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "  Rate/Unit",
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: 80.0,
-                      height: 35,
-                      color: Colors.grey.shade300,
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          SizedBox(
-                            width: 1,
-                          ),
-                          Icon(Icons.arrow_drop_down_sharp),
-                          Expanded(
-                            child: TextField(
-                              controller: UnitController,
-                              keyboardType: TextInputType.phone,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "  Unit",
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      width: 120.0,
-                      height: 35,
-                      color: Colors.grey.shade300,
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          SizedBox(
-                            width: 1,
-                          ),
-                          Icon(
-                            Icons.add_chart_rounded,
-                            size: 0,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: TextField(
-                              controller: ItemController,
-                              keyboardType: TextInputType.name,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "\tItem Name",
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: 120.0,
-                      height: 35,
-                      color: Colors.grey.shade300,
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          SizedBox(
-                            width: 1,
-                          ),
-                          Icon(
-                            Icons.add_chart_rounded,
-                            size: 0,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: TextField(
-                              controller: RateController,
-                              keyboardType: TextInputType.phone,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "  Rate/Unit",
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      width: 80.0,
-                      height: 35,
-                      color: Colors.grey.shade300,
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          SizedBox(
-                            width: 1,
-                          ),
-                          Icon(Icons.arrow_drop_down_sharp),
-                          Expanded(
-                            child: TextField(
-                              controller: UnitController,
-                              keyboardType: TextInputType.phone,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "  Unit",
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 5,
-                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -701,7 +283,6 @@ class third extends StatelessWidget {
                   height: 35,
                   child: ElevatedButton.icon(
                     onPressed: () {
-                      adddata();
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -727,6 +308,12 @@ class third extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
+                ElevatedButton(
+                  onPressed: () {
+                    adddata();
+                  },
+                  child: Text('Save'),
+                ),
               ],
             ),
           ],
@@ -745,46 +332,39 @@ class third extends StatelessWidget {
     );
   }
 
-  Future<void> adddata() async {
-    final ProjectName = ProjectNameController.text;
-    final Location = LocationController.text;
-    final Start = StartDateController.text;
-    final ItemName = ItemController.text;
-    final Rate = RateController.text;
-    final Unit = UnitController.text;
-    final body = {
-      "projectname": ProjectName,
-      "location": Location,
-      "start": Start,
-      "itemname": ItemName,
-      "rate": Rate,
-      "unit": Unit,
-      "is_completed": false,
+  void adddata() async {
+    var headers = {
+      'Content-Type': 'application/json',
+      'Cookie':
+          'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkxODM3NWU3MjE4ZTc1ODIwMmY2MyIsImlhdCI6MTY3MzA3NDg4OCwiZXhwIjoxNjc1NjY2ODg4fQ.lSDOvNG2hyFEzzznQvw8d2vHsRxhf6yaY-MIsWjrpIM'
     };
-    final url = "http://admin.brikow.com/api/contractor/add_project";
-    final uri = Uri.parse(url);
-    final response = await http.post(
-      uri,
-      body: jsonEncode(body),
-      headers: {'Content-Type': 'application/json'},
+    var request = http.Request('POST',
+        Uri.parse('http://admin.brikow.com/api/contractor/add_project'));
+    request.body = json.encode(
+      {
+        "Name": ProjectNameController,
+        "Location": LocationController,
+        "withMaterial": MaterialsController,
+        "work": {
+          ItemController: {"rate": RateController, "unit": UnitController},
+        }
+      },
     );
-    if (response.statusCode == 201) {
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
       ProjectNameController.text = '';
       LocationController.text = '';
-      StartDateController.text = '';
+      MaterialsController.text = '';
       ItemController.text = '';
       RateController.text = '';
       UnitController.text = '';
-
-      print("Success");
-      // showsucess("Success Fully Created Project");
+      print(await response.stream.bytesToString());
     } else {
-      // showfailure("Failed in Project Creation");
-      print("Failure");
+      print(response.reasonPhrase);
     }
-
-    print(response.statusCode);
-    print(response.body);
   }
 
   void setState(Null Function() param0) {}

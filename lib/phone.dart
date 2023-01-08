@@ -21,7 +21,7 @@ class _MyPhoneState extends State<MyPhone> {
   var Phone = '';
   // TextEditingController countryController = TextEditingController();
   TextEditingController PhoneController = TextEditingController();
-  var phone = "";
+  String phone = "";
   @override
   void initState() {
     // ignore: todo
@@ -175,7 +175,7 @@ class _MyPhoneState extends State<MyPhone> {
                         child: Text("Continue"),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
