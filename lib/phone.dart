@@ -4,6 +4,8 @@ import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:http/http.dart';
 import 'package:phone_otp_ui/verify.dart';
 import 'api_provider.dart';
 import 'main.dart';
@@ -18,6 +20,8 @@ class MyPhone extends StatefulWidget {
 }
 
 class _MyPhoneState extends State<MyPhone> {
+
+  late Box box1;
   var Phone = '';
   // TextEditingController countryController = TextEditingController();
   TextEditingController PhoneController = TextEditingController();
@@ -29,6 +33,11 @@ class _MyPhoneState extends State<MyPhone> {
     // countryController.text = "+91";
     Colors.black;
     super.initState();
+    createBox();
+  }
+
+  void createBox()async{
+    box1 = await Hive.openBox('logindata');
   }
 
   // ignore: non_constant_identifier_names
@@ -40,19 +49,27 @@ class _MyPhoneState extends State<MyPhone> {
     };
     var request =
         http.Request('POST', Uri.parse('http://admin.brikow.com/api/getOTP'));
+
     request.body = json.encode({"phone_no": "$Phone"});
+    //request.body = json.encode({"phone_no": "8839100911"});
+
     request.headers.addAll(headers);
+    print("req"+request.toString());
+    print("body"+request.body);
+    print("headers"+request.headers.toString());
 
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
       print("otp sent succesfully");
+      box1.put('phone', Phone);
     } else {
       print(response.reasonPhrase);
       print("failed");
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +83,7 @@ class _MyPhoneState extends State<MyPhone> {
           Image.asset(
             'images/Front.png',
             width: double.infinity,
-            height: 300,
+            height: 250,
           ),
           Container(
             margin: EdgeInsets.only(left: 25, right: 25),
@@ -76,16 +93,14 @@ class _MyPhoneState extends State<MyPhone> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: 15,
+                    height: 0,
                   ),
                   Image.asset(
                     'images/logo2.png',
                     width: 500,
                     height: 200,
                   ),
-                  SizedBox(
-                    height: 25,
-                  ),
+
                   Text(
                     "India's #1 Construction Billing and",
                     style: TextStyle(
@@ -106,7 +121,7 @@ class _MyPhoneState extends State<MyPhone> {
                     ),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 50,
                   ),
                   Text(
                     "Log in or Sign up",
@@ -146,6 +161,7 @@ class _MyPhoneState extends State<MyPhone> {
                             keyboardType: TextInputType.phone,
                             onChanged: (value) {
                               Phone = value;
+
                             },
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -163,6 +179,7 @@ class _MyPhoneState extends State<MyPhone> {
                     onTap: () {
                       Navigator.pushNamed(context, 'verify');
                       signup();
+
                     },
                     child: Container(
                       width: 230,

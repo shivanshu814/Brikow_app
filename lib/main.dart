@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:phone_otp_ui/fifth.dart';
 import 'package:phone_otp_ui/fourth.dart';
 import 'package:phone_otp_ui/myverify.dart';
@@ -19,7 +20,12 @@ import 'package:phone_otp_ui/verify.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main() async {
+import 'package:hive_flutter/adapters.dart';
+late Box box1;
+
+Future<void> main() async {
+  await Hive.initFlutter();
+  box1 = await Hive.openBox('logindata');
   apicall();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

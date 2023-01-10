@@ -5,6 +5,7 @@ import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 // ignore: unused_import
 import 'package:http/http.dart';
 import 'package:phone_otp_ui/myverify.dart';
@@ -22,6 +23,18 @@ class MyVerify extends StatefulWidget {
 class _MyVerifyState extends State<MyVerify> {
   var code = "";
   TextEditingController CodeController = TextEditingController();
+  late Box box1;
+
+  @override
+  void initState() {
+    super.initState();
+    createBox();
+  }
+
+  void createBox()async{
+    box1 = await Hive.openBox('logindata');
+  }
+
   @override
   verified() async {
     var headers = {
@@ -31,15 +44,25 @@ class _MyVerifyState extends State<MyVerify> {
     };
     var request = http.Request(
         'POST', Uri.parse('http://admin.brikow.com/api/loginVerifyOTP'));
-    request.body = json.encode({"phone_no": "$MyPhone.phone", "otp": '$code'});
+    request.body = json.encode({"phone_no": box1.get('phone'), "otp": '$code'});
     request.headers.addAll(headers);
+
+    print("phone no: "+"$MyPhone.phone");
+    print("verify req:"+request.toString());
+    print("verify body:"+request.body);
+    print("verify head:"+request.headers.toString());
 
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
+      Navigator.pushNamed(context, 'myverify');
     } else {
       print(response.reasonPhrase);
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => _buildPopupDialog(context),
+      );
     }
   }
 
@@ -132,7 +155,7 @@ class _MyVerifyState extends State<MyVerify> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, 'myverify');
+
                   verified();
                 },
                 child: Container(
@@ -170,4 +193,27 @@ class _MyVerifyState extends State<MyVerify> {
       ),
     );
   }
+
+  Widget _buildPopupDialog(BuildContext context) {
+    return new AlertDialog(
+      title: const Text('Incorrect Code', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),),
+      content: new Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[Center(child:
+        Text("Please enter code sent in your mobile number"),)
+
+        ],
+      ),
+      actions: <Widget>[
+        new TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('Close'),
+        ),
+      ],
+    );
+  }
+
 }
