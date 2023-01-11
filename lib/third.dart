@@ -13,7 +13,7 @@ class third extends StatelessWidget {
   String dropdownvalue = 'SQM';
   var items = [
     'SQM',
-    'MTR',
+    'SFT',
   ];
 
   @override
