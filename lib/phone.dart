@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
 import 'package:phone_otp_ui/verify.dart';
-import 'api_provider.dart';
 import 'main.dart';
 import 'package:http/http.dart' as http;
 
@@ -20,7 +19,6 @@ class MyPhone extends StatefulWidget {
 }
 
 class _MyPhoneState extends State<MyPhone> {
-
   late Box box1;
   var Phone = '';
   // TextEditingController countryController = TextEditingController();
@@ -36,7 +34,7 @@ class _MyPhoneState extends State<MyPhone> {
     createBox();
   }
 
-  void createBox()async{
+  void createBox() async {
     box1 = await Hive.openBox('logindata');
   }
 
@@ -54,9 +52,9 @@ class _MyPhoneState extends State<MyPhone> {
     //request.body = json.encode({"phone_no": "8839100911"});
 
     request.headers.addAll(headers);
-    print("req"+request.toString());
-    print("body"+request.body);
-    print("headers"+request.headers.toString());
+    print("req" + request.toString());
+    print("body" + request.body);
+    print("headers" + request.headers.toString());
 
     http.StreamedResponse response = await request.send();
 
@@ -69,7 +67,6 @@ class _MyPhoneState extends State<MyPhone> {
       print("failed");
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +97,6 @@ class _MyPhoneState extends State<MyPhone> {
                     width: 500,
                     height: 200,
                   ),
-
                   Text(
                     "India's #1 Construction Billing and",
                     style: TextStyle(
@@ -148,7 +144,7 @@ class _MyPhoneState extends State<MyPhone> {
                         Text(
                           "+91",
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 18,
                             color: Colors.grey.shade900,
                           ),
                         ),
@@ -161,7 +157,6 @@ class _MyPhoneState extends State<MyPhone> {
                             keyboardType: TextInputType.phone,
                             onChanged: (value) {
                               Phone = value;
-
                             },
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -179,7 +174,6 @@ class _MyPhoneState extends State<MyPhone> {
                     onTap: () {
                       Navigator.pushNamed(context, 'verify');
                       signup();
-
                     },
                     child: Container(
                       width: 230,
@@ -189,7 +183,7 @@ class _MyPhoneState extends State<MyPhone> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Center(
-                        child: Text("Continue"),
+                        child: Text("Send OTP"),
                       ),
                     ),
                   ),

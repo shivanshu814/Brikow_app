@@ -31,7 +31,7 @@ class _MyVerifyState extends State<MyVerify> {
     createBox();
   }
 
-  void createBox()async{
+  void createBox() async {
     box1 = await Hive.openBox('logindata');
   }
 
@@ -47,10 +47,10 @@ class _MyVerifyState extends State<MyVerify> {
     request.body = json.encode({"phone_no": box1.get('phone'), "otp": '$code'});
     request.headers.addAll(headers);
 
-    print("phone no: "+"$MyPhone.phone");
-    print("verify req:"+request.toString());
-    print("verify body:"+request.body);
-    print("verify head:"+request.headers.toString());
+    print("phone no: " + "$MyPhone.phone");
+    print("verify req:" + request.toString());
+    print("verify body:" + request.body);
+    print("verify head:" + request.headers.toString());
 
     http.StreamedResponse response = await request.send();
 
@@ -155,7 +155,6 @@ class _MyVerifyState extends State<MyVerify> {
               ),
               GestureDetector(
                 onTap: () {
-
                   verified();
                 },
                 child: Container(
@@ -196,13 +195,17 @@ class _MyVerifyState extends State<MyVerify> {
 
   Widget _buildPopupDialog(BuildContext context) {
     return new AlertDialog(
-      title: const Text('Incorrect Code', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),),
+      title: const Text(
+        'Incorrect Code',
+        style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+      ),
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[Center(child:
-        Text("Please enter code sent in your mobile number"),)
-
+        children: <Widget>[
+          Center(
+            child: Text("Please enter code sent in your mobile number"),
+          )
         ],
       ),
       actions: <Widget>[
@@ -215,5 +218,4 @@ class _MyVerifyState extends State<MyVerify> {
       ],
     );
   }
-
 }
