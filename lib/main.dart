@@ -9,7 +9,6 @@ import 'package:phone_otp_ui/fifth.dart';
 import 'package:phone_otp_ui/fourth.dart';
 import 'package:phone_otp_ui/myverify.dart';
 import 'package:phone_otp_ui/phone.dart';
-import 'package:phone_otp_ui/phones.dart';
 import 'package:phone_otp_ui/sign_up.dart';
 import 'package:phone_otp_ui/sixth.dart';
 import 'package:phone_otp_ui/start.dart';
@@ -21,6 +20,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:hive_flutter/adapters.dart';
+
 late Box box1;
 
 Future<void> main() async {
@@ -37,9 +37,7 @@ Future<void> main() async {
         'phone': (context) => const MyPhone(
               title: 'phone',
             ),
-        'phones': (context) => const MyPhones(
-              title: '',
-            ),
+
         'verify': (context) => const MyVerify(
               Phone: '',
             ),
