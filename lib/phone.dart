@@ -77,10 +77,11 @@ class _MyPhoneState extends State<MyPhone> {
           SizedBox(
             height: 24,
           ),
-          Image.asset(
-            'images/Front.png',
-            width: double.infinity,
-            height: 250,
+          FittedBox(
+            child: Image.asset(
+              'images/Front.png',
+            ),
+            fit: BoxFit.fitWidth,
           ),
           Container(
             margin: EdgeInsets.only(left: 25, right: 25),
