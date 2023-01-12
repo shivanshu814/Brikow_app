@@ -44,8 +44,8 @@ class _MyPhoneState extends State<MyPhone> {
   signup() async {
     var headers = {
       'Content-Type': 'application/json',
-      'Cookie':
-          'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkxODM3NWU3MjE4ZTc1ODIwMmY2MyIsImlhdCI6MTY3MzA3NDg4OCwiZXhwIjoxNjc1NjY2ODg4fQ.lSDOvNG2hyFEzzznQvw8d2vHsRxhf6yaY-MIsWjrpIM'
+      // 'Cookie':
+      //     'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkxODM3NWU3MjE4ZTc1ODIwMmY2MyIsImlhdCI6MTY3MzA3NDg4OCwiZXhwIjoxNjc1NjY2ODg4fQ.lSDOvNG2hyFEzzznQvw8d2vHsRxhf6yaY-MIsWjrpIM'
     };
     var request =
         http.Request('POST', Uri.parse('http://admin.brikow.com/api/getOTP'));
@@ -177,7 +177,8 @@ class _MyPhoneState extends State<MyPhone> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, 'verify');
+                      //Navigator.pushNamed(context, 'verify');
+                      Navigator.pushReplacementNamed(context, 'verify');
                       signup();
 
                     },

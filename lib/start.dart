@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:phone_otp_ui/myverify.dart';
 import 'package:phone_otp_ui/phone.dart';
 
 import 'phone.dart';
@@ -13,10 +15,18 @@ class SplashScreenPage extends StatefulWidget {
 }
 
 class _SplashScreenPageState extends State<SplashScreenPage> {
+
+  late Box box2;
+
   @override
   void initState() {
     super.initState();
     startSplashScreen();
+    getData();
+  }
+
+  void getData() async{
+    box2 = await Hive.openBox('logindata');
   }
 
   startSplashScreen() async {
@@ -24,13 +34,20 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     return Timer(
       duration,
       () {
+
+        print("splash"+box2.get('isLogged',defaultValue: false).toString());
+        print(box2.get("isLogged"));
+
+        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>
+        // box2.get('isLogged',defaultValue: false)?MyPhone(title: "phone"):Verify()
+        //   ,),);
+
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (_) {
-              return MyPhone(
-                title: 'phone',
-              );
-            },
+            builder: (_)
+              =>
+              box2.get('isLogged',defaultValue: false)?MyPhone(title: "phone"):Verify(),
+
           ),
         );
       },

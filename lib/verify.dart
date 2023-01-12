@@ -39,8 +39,8 @@ class _MyVerifyState extends State<MyVerify> {
   verified() async {
     var headers = {
       'Content-Type': 'application/json',
-      'Cookie':
-          'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkxODM3NWU3MjE4ZTc1ODIwMmY2MyIsImlhdCI6MTY3MzA3NDg4OCwiZXhwIjoxNjc1NjY2ODg4fQ.lSDOvNG2hyFEzzznQvw8d2vHsRxhf6yaY-MIsWjrpIM'
+      // 'Cookie':
+      //     'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkxODM3NWU3MjE4ZTc1ODIwMmY2MyIsImlhdCI6MTY3MzA3NDg4OCwiZXhwIjoxNjc1NjY2ODg4fQ.lSDOvNG2hyFEzzznQvw8d2vHsRxhf6yaY-MIsWjrpIM'
     };
     var request = http.Request(
         'POST', Uri.parse('http://admin.brikow.com/api/loginVerifyOTP'));
@@ -56,7 +56,8 @@ class _MyVerifyState extends State<MyVerify> {
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
-      Navigator.pushNamed(context, 'myverify');
+     // Navigator.pushNamed(context, 'myverify');
+      Navigator.pushReplacementNamed(context, 'myverify');
     } else {
       print(response.reasonPhrase);
       showDialog(

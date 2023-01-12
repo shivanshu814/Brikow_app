@@ -65,15 +65,18 @@ void apicall() {
     );
 
     if (response.statusCode == 200) {
-      setState(
-        () {
-          mapResponse = jsonDecode(response.body);
-        },
-      );
+      setState(){
+        mapResponse = jsonDecode(response.body);
+      }
+      // setState(
+      //   () {
+      //     mapResponse = jsonDecode(response.body);
+      //   },
+      // );
     } else {
       return null;
     }
   }
 }
 
-void setState(Null Function() param0) {}
+//void setState(Null Function() param0) {}
