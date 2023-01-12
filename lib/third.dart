@@ -15,18 +15,17 @@ class third extends StatefulWidget {
 
 class _thirdState extends State<third> {
   bool _checkbox = false;
-
   bool _checkbox2 = false;
-
   bool _checkbox3 = false;
-
   bool _checkbox4 = false;
-
   bool _checkbox5 = false;
-
   bool _checkbox6 = false;
-
   String dropdownvalue = 'SQM';
+  String dropdownvalue2 = 'SQM';
+  String dropdownvalue3 = 'SQM';
+  String dropdownvalue4 = 'SQM';
+  String dropdownvalue5 = 'SQM';
+  String dropdownvalue6 = 'SQM';
 
   var items = [
     'SQM',
@@ -36,6 +35,7 @@ class _thirdState extends State<third> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.grey,
         title: Text('Add Project'),
@@ -192,7 +192,7 @@ class _thirdState extends State<third> {
                     border: Border.all(color: Colors.grey.shade600),
                   ),
                   child: DropdownButton(
-                    value: dropdownvalue,
+                    value: dropdownvalue2,
                     icon: const Icon(Icons.keyboard_arrow_down),
                     items: items.map(
                       (String items) {
@@ -205,7 +205,7 @@ class _thirdState extends State<third> {
                     onChanged: (String? newValue) {
                       setState(
                         () {
-                          dropdownvalue = newValue!;
+                          dropdownvalue2 = newValue!;
                         },
                       );
                     },
@@ -277,7 +277,7 @@ class _thirdState extends State<third> {
                     border: Border.all(color: Colors.grey.shade600),
                   ),
                   child: DropdownButton(
-                    value: dropdownvalue,
+                    value: dropdownvalue3,
                     icon: const Icon(Icons.keyboard_arrow_down),
                     items: items.map(
                       (String items) {
@@ -290,7 +290,7 @@ class _thirdState extends State<third> {
                     onChanged: (String? newValue) {
                       setState(
                         () {
-                          dropdownvalue = newValue!;
+                          dropdownvalue3 = newValue!;
                         },
                       );
                     },
@@ -362,7 +362,7 @@ class _thirdState extends State<third> {
                     border: Border.all(color: Colors.grey.shade600),
                   ),
                   child: DropdownButton(
-                    value: dropdownvalue,
+                    value: dropdownvalue4,
                     icon: const Icon(Icons.keyboard_arrow_down),
                     items: items.map(
                       (String items) {
@@ -375,7 +375,7 @@ class _thirdState extends State<third> {
                     onChanged: (String? newValue) {
                       setState(
                         () {
-                          dropdownvalue = newValue!;
+                          dropdownvalue4 = newValue!;
                         },
                       );
                     },
@@ -447,7 +447,7 @@ class _thirdState extends State<third> {
                     border: Border.all(color: Colors.grey.shade600),
                   ),
                   child: DropdownButton(
-                    value: dropdownvalue,
+                    value: dropdownvalue5,
                     icon: const Icon(Icons.keyboard_arrow_down),
                     items: items.map(
                       (String items) {
@@ -460,7 +460,7 @@ class _thirdState extends State<third> {
                     onChanged: (String? newValue) {
                       setState(
                         () {
-                          dropdownvalue = newValue!;
+                          dropdownvalue5 = newValue!;
                         },
                       );
                     },
@@ -532,7 +532,7 @@ class _thirdState extends State<third> {
                     border: Border.all(color: Colors.grey.shade600),
                   ),
                   child: DropdownButton(
-                    value: dropdownvalue,
+                    value: dropdownvalue6,
                     icon: const Icon(Icons.keyboard_arrow_down),
                     items: items.map(
                       (String items) {
@@ -545,7 +545,7 @@ class _thirdState extends State<third> {
                     onChanged: (String? newValue) {
                       setState(
                         () {
-                          dropdownvalue = newValue!;
+                          dropdownvalue6 = newValue!;
                         },
                       );
                     },
