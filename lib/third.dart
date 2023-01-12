@@ -10,6 +10,11 @@ import 'main.dart';
 // ignore: camel_case_types
 class third extends StatelessWidget {
   bool _checkbox = false;
+  bool _checkbox2 = false;
+  bool _checkbox3 = false;
+  bool _checkbox4 = false;
+  bool _checkbox5 = false;
+  bool _checkbox6 = false;
   String dropdownvalue = 'SQM';
   var items = [
     'SQM',
@@ -82,11 +87,11 @@ class third extends StatelessWidget {
                   width: 50,
                 ),
                 Container(
-                  height: 40,
+                  height: 35,
                   width: 120,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.horizontal(),
+                    borderRadius: BorderRadius.circular(5),
                     border: Border.all(color: Colors.grey.shade600),
                   ),
                   child: DropdownButton(
@@ -117,11 +122,11 @@ class third extends StatelessWidget {
             Row(
               children: [
                 Checkbox(
-                  value: _checkbox,
+                  value: _checkbox2,
                   onChanged: (value) {
                     setState(
                       () {
-                        _checkbox = !_checkbox;
+                        _checkbox2 = !_checkbox2;
                       },
                     );
                   },
@@ -167,11 +172,11 @@ class third extends StatelessWidget {
                   width: 50,
                 ),
                 Container(
-                  height: 40,
+                  height: 35,
                   width: 120,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.horizontal(),
+                    borderRadius: BorderRadius.circular(5),
                     border: Border.all(color: Colors.grey.shade600),
                   ),
                   child: DropdownButton(
@@ -202,11 +207,11 @@ class third extends StatelessWidget {
             Row(
               children: [
                 Checkbox(
-                  value: _checkbox,
+                  value: _checkbox3,
                   onChanged: (value) {
                     setState(
                       () {
-                        _checkbox = !_checkbox;
+                        _checkbox3 = !_checkbox3;
                       },
                     );
                   },
@@ -252,11 +257,11 @@ class third extends StatelessWidget {
                   width: 50,
                 ),
                 Container(
-                  height: 40,
+                  height: 35,
                   width: 120,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.horizontal(),
+                    borderRadius: BorderRadius.circular(5),
                     border: Border.all(color: Colors.grey.shade600),
                   ),
                   child: DropdownButton(
@@ -287,11 +292,11 @@ class third extends StatelessWidget {
             Row(
               children: [
                 Checkbox(
-                  value: _checkbox,
+                  value: _checkbox4,
                   onChanged: (value) {
                     setState(
                       () {
-                        _checkbox = !_checkbox;
+                        _checkbox4 = !_checkbox4;
                       },
                     );
                   },
@@ -337,11 +342,11 @@ class third extends StatelessWidget {
                   width: 50,
                 ),
                 Container(
-                  height: 40,
+                  height: 35,
                   width: 120,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.horizontal(),
+                    borderRadius: BorderRadius.circular(5),
                     border: Border.all(color: Colors.grey.shade600),
                   ),
                   child: DropdownButton(
@@ -372,11 +377,11 @@ class third extends StatelessWidget {
             Row(
               children: [
                 Checkbox(
-                  value: _checkbox,
+                  value: _checkbox5,
                   onChanged: (value) {
                     setState(
                       () {
-                        _checkbox = !_checkbox;
+                        _checkbox5 = !_checkbox5;
                       },
                     );
                   },
@@ -422,11 +427,11 @@ class third extends StatelessWidget {
                   width: 50,
                 ),
                 Container(
-                  height: 40,
+                  height: 35,
                   width: 120,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.horizontal(),
+                    borderRadius: BorderRadius.circular(5),
                     border: Border.all(color: Colors.grey.shade600),
                   ),
                   child: DropdownButton(
@@ -457,11 +462,11 @@ class third extends StatelessWidget {
             Row(
               children: [
                 Checkbox(
-                  value: _checkbox,
+                  value: _checkbox6,
                   onChanged: (value) {
                     setState(
                       () {
-                        _checkbox = !_checkbox;
+                        _checkbox6 = !_checkbox6;
                       },
                     );
                   },
@@ -507,11 +512,11 @@ class third extends StatelessWidget {
                   width: 50,
                 ),
                 Container(
-                  height: 40,
+                  height: 35,
                   width: 120,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.horizontal(),
+                    borderRadius: BorderRadius.circular(5),
                     border: Border.all(color: Colors.grey.shade600),
                   ),
                   child: DropdownButton(
