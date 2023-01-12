@@ -8,14 +8,26 @@ import 'fourth.dart';
 import 'main.dart';
 
 // ignore: camel_case_types
-class third extends StatelessWidget {
+class third extends StatefulWidget {
+  @override
+  State<third> createState() => _thirdState();
+}
+
+class _thirdState extends State<third> {
   bool _checkbox = false;
+
   bool _checkbox2 = false;
+
   bool _checkbox3 = false;
+
   bool _checkbox4 = false;
+
   bool _checkbox5 = false;
+
   bool _checkbox6 = false;
+
   String dropdownvalue = 'SQM';
+
   var items = [
     'SQM',
     'SFT',
