@@ -5,281 +5,550 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'fourth.dart';
+import 'main.dart';
 
 // ignore: camel_case_types
 class third extends StatelessWidget {
-  String answer = 'Yes';
-  TextEditingController ProjectNameController = TextEditingController();
-  TextEditingController LocationController = TextEditingController();
-  TextEditingController StartDateController = TextEditingController();
-  TextEditingController MaterialsController = TextEditingController();
-  TextEditingController ItemController = TextEditingController();
-  TextEditingController RateController = TextEditingController();
-  TextEditingController UnitController = TextEditingController();
-
-  BuildContext? get context => null;
-
-  // const third({super.key});
+  bool _checkbox = false;
+  bool _checkbox2 = false;
+  bool _checkbox3 = false;
+  bool _checkbox4 = false;
+  bool _checkbox5 = false;
+  bool _checkbox6 = false;
+  String dropdownvalue = 'SQM';
+  var items = [
+    'SQM',
+    'SFT',
+  ];
 
   @override
   Widget build(BuildContext context) {
-    var items;
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Column(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.grey,
+        title: Text('Add Project'),
+      ),
+      body: Center(
+        child: Column(
           children: [
             SizedBox(
-              height: 60,
+              height: 15,
             ),
-            Text(
-              "Add Project                                                  ",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.normal,
-              ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Row(
               children: [
+                Checkbox(
+                  value: _checkbox,
+                  onChanged: (value) {
+                    setState(
+                      () {
+                        _checkbox = !_checkbox;
+                      },
+                    );
+                  },
+                ),
+                Text(
+                  'Excavation',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 50,
+                ),
                 Container(
-                  width: 360.0,
-                  height: 55,
-                  color: Colors.grey.shade300,
+                  alignment: Alignment.center,
+                  width: 120.0,
+                  height: 35,
+                  color: Colors.white,
                   child: Row(
-                    // mainAxisAlignment: MainAxisAlignment.center,
-                    // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Icon(Icons.home_work_outlined),
-                      SizedBox(
-                        width: 10,
-                      ),
                       Expanded(
                         child: TextField(
-                          controller: ProjectNameController,
-                          keyboardType: TextInputType.name,
+                          textAlignVertical: TextAlignVertical.center,
+                          textAlign: TextAlign.left,
+                          maxLines: 1,
+                          keyboardType: TextInputType.phone,
                           decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Project Name",
+                            contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Colors.grey.shade600), //<-- SEE HERE
+                            ),
+                            hintText: "Rate",
                           ),
                         ),
                       ),
                     ],
                   ),
                 ),
+                SizedBox(
+                  width: 50,
+                ),
+                Container(
+                  height: 35,
+                  width: 120,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Colors.grey.shade600),
+                  ),
+                  child: DropdownButton(
+                    value: dropdownvalue,
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    items: items.map(
+                      (String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(items),
+                        );
+                      },
+                    ).toList(),
+                    onChanged: (String? newValue) {
+                      setState(
+                        () {
+                          dropdownvalue = newValue!;
+                        },
+                      );
+                    },
+                  ),
+                ),
               ],
             ),
             SizedBox(
-              height: 20,
+              height: 14,
             ),
-            Container(
-              width: 360.0,
-              height: 55,
-              color: Colors.grey.shade300,
-              child: Row(
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Icon(Icons.location_on),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: TextField(
-                      controller: LocationController,
-                      keyboardType: TextInputType.streetAddress,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Location",
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              width: 360.0,
-              height: 55,
-              color: Colors.grey.shade300,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Icon(Icons.calendar_month_outlined),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: TextField(
-                      controller: StartDateController,
-                      keyboardType: TextInputType.datetime,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: "Start Date",
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Column(
+            Row(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                      child: TextField(
-                        controller: MaterialsController,
-                        keyboardType: TextInputType.name,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "With Materials",
+                Checkbox(
+                  value: _checkbox2,
+                  onChanged: (value) {
+                    setState(
+                      () {
+                        _checkbox2 = !_checkbox2;
+                      },
+                    );
+                  },
+                ),
+                Text(
+                  'PCC',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 50,
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  width: 120.0,
+                  height: 35,
+                  color: Colors.white,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          textAlignVertical: TextAlignVertical.center,
+                          textAlign: TextAlign.left,
+                          maxLines: 1,
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Colors.grey.shade600), //<-- SEE HERE
+                            ),
+                            hintText: "Rate",
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 50,
+                ),
+                Container(
+                  height: 35,
+                  width: 120,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Colors.grey.shade600),
+                  ),
+                  child: DropdownButton(
+                    value: dropdownvalue,
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    items: items.map(
+                      (String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(items),
+                        );
+                      },
+                    ).toList(),
+                    onChanged: (String? newValue) {
+                      setState(
+                        () {
+                          dropdownvalue = newValue!;
+                        },
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
             SizedBox(
-              height: 10,
+              height: 14,
             ),
-            const Text(
-              "Items                                                                     ",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Column(
+            Row(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      width: 120.0,
-                      height: 35,
-                      color: Colors.grey.shade300,
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          SizedBox(
-                            width: 1,
-                          ),
-                          Icon(
-                            Icons.add_chart_rounded,
-                            size: 0,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: TextField(
-                              controller: ItemController,
-                              keyboardType: TextInputType.name,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "\tItem Name",
-                              ),
+                Checkbox(
+                  value: _checkbox3,
+                  onChanged: (value) {
+                    setState(
+                      () {
+                        _checkbox3 = !_checkbox3;
+                      },
+                    );
+                  },
+                ),
+                Text(
+                  'Reinforcement With Tools',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 50,
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  width: 120.0,
+                  height: 35,
+                  color: Colors.white,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          textAlignVertical: TextAlignVertical.center,
+                          textAlign: TextAlign.left,
+                          maxLines: 1,
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Colors.grey.shade600), //<-- SEE HERE
                             ),
+                            hintText: "Rate",
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-                    Container(
-                      width: 120.0,
-                      height: 35,
-                      color: Colors.grey.shade300,
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          SizedBox(
-                            width: 1,
-                          ),
-                          Icon(
-                            Icons.add_chart_rounded,
-                            size: 0,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: TextField(
-                              controller: RateController,
-                              keyboardType: TextInputType.phone,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "  Rate/Unit",
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      color: Colors.grey.shade300,
-                      width: 80.0,
-                      height: 35,
-                      child: Row(
-                        // mainAxisAlignment: MainAxisAlignment.center,
-                        // ignore: prefer_const_literals_to_create_immutables
-                        children: [
-                          SizedBox(
-                            width: 1,
-                          ),
-                          Icon(Icons.arrow_drop_down_sharp),
-                          Expanded(
-                            child: TextField(
-                              controller: UnitController,
-                              keyboardType: TextInputType.phone,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "  Unit",
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 50,
+                ),
+                Container(
+                  height: 35,
+                  width: 120,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Colors.grey.shade600),
+                  ),
+                  child: DropdownButton(
+                    value: dropdownvalue,
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    items: items.map(
+                      (String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(items),
+                        );
+                      },
+                    ).toList(),
+                    onChanged: (String? newValue) {
+                      setState(
+                        () {
+                          dropdownvalue = newValue!;
+                        },
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
             SizedBox(
-              height: 15,
+              height: 14,
+            ),
+            Row(
+              children: [
+                Checkbox(
+                  value: _checkbox4,
+                  onChanged: (value) {
+                    setState(
+                      () {
+                        _checkbox4 = !_checkbox4;
+                      },
+                    );
+                  },
+                ),
+                Text(
+                  'Shuttering',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 50,
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  width: 120.0,
+                  height: 35,
+                  color: Colors.white,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          textAlignVertical: TextAlignVertical.center,
+                          textAlign: TextAlign.left,
+                          maxLines: 1,
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Colors.grey.shade600), //<-- SEE HERE
+                            ),
+                            hintText: "Rate",
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 50,
+                ),
+                Container(
+                  height: 35,
+                  width: 120,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Colors.grey.shade600),
+                  ),
+                  child: DropdownButton(
+                    value: dropdownvalue,
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    items: items.map(
+                      (String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(items),
+                        );
+                      },
+                    ).toList(),
+                    onChanged: (String? newValue) {
+                      setState(
+                        () {
+                          dropdownvalue = newValue!;
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 14,
+            ),
+            Row(
+              children: [
+                Checkbox(
+                  value: _checkbox5,
+                  onChanged: (value) {
+                    setState(
+                      () {
+                        _checkbox5 = !_checkbox5;
+                      },
+                    );
+                  },
+                ),
+                Text(
+                  'RCC Casting',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 50,
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  width: 120.0,
+                  height: 35,
+                  color: Colors.white,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          textAlignVertical: TextAlignVertical.center,
+                          textAlign: TextAlign.left,
+                          maxLines: 1,
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Colors.grey.shade600), //<-- SEE HERE
+                            ),
+                            hintText: "Rate",
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 50,
+                ),
+                Container(
+                  height: 35,
+                  width: 120,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Colors.grey.shade600),
+                  ),
+                  child: DropdownButton(
+                    value: dropdownvalue,
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    items: items.map(
+                      (String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(items),
+                        );
+                      },
+                    ).toList(),
+                    onChanged: (String? newValue) {
+                      setState(
+                        () {
+                          dropdownvalue = newValue!;
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 14,
+            ),
+            Row(
+              children: [
+                Checkbox(
+                  value: _checkbox6,
+                  onChanged: (value) {
+                    setState(
+                      () {
+                        _checkbox6 = !_checkbox6;
+                      },
+                    );
+                  },
+                ),
+                Text(
+                  'Brick Work',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 50,
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  width: 120.0,
+                  height: 35,
+                  color: Colors.white,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          textAlignVertical: TextAlignVertical.center,
+                          textAlign: TextAlign.left,
+                          maxLines: 1,
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Colors.grey.shade600), //<-- SEE HERE
+                            ),
+                            hintText: "Rate",
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  width: 50,
+                ),
+                Container(
+                  height: 35,
+                  width: 120,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Colors.grey.shade600),
+                  ),
+                  child: DropdownButton(
+                    value: dropdownvalue,
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    items: items.map(
+                      (String items) {
+                        return DropdownMenuItem(
+                          value: items,
+                          child: Text(items),
+                        );
+                      },
+                    ).toList(),
+                    onChanged: (String? newValue) {
+                      setState(
+                        () {
+                          dropdownvalue = newValue!;
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 35,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 SizedBox(
-                  width: 100,
+                  width: 250,
                   height: 35,
                   child: ElevatedButton.icon(
                     onPressed: () {
@@ -291,81 +560,29 @@ class third extends StatelessWidget {
                       );
                     },
                     icon: Icon(
-                      Icons.add_outlined,
-                      color: Colors.redAccent,
+                      Icons.save,
+                      color: Colors.red.shade200,
                     ), //icon data for elevated button
                     label: Text(
-                      "Add",
-                      style: TextStyle(color: Colors.red, fontSize: 18),
+                      "Save and Next",
+                      style:
+                          TextStyle(color: Colors.red.shade200, fontSize: 18),
                     ), //label text
                     style: ElevatedButton.styleFrom(
-                        side: BorderSide(width: 2, color: Colors.redAccent),
+                        side: BorderSide(width: 2, color: Colors.red.shade200),
                         // ignore: deprecated_member_use
                         primary: Colors.white //elevated btton background color
                         ),
                   ),
                 ),
                 SizedBox(
-                  width: 10,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    adddata();
-                  },
-                  child: Text('Save'),
+                  width: 70,
                 ),
               ],
             ),
           ],
         ),
-        // body: ListView.builder(
-        //   itemCount: items.length,
-        //   itemBuilder: (context, index) {
-        //     final item = items[index] as Map;
-        //     return ListTile(
-        //       title: Text(item['Project Name']),
-        //       subtitle: Text(item['location']),
-        //     );
-        //   },
-        // ),
       ),
     );
   }
-
-  void adddata() async {
-    var headers = {
-      'Content-Type': 'application/json',
-      'Cookie':
-          'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkxODM3NWU3MjE4ZTc1ODIwMmY2MyIsImlhdCI6MTY3MzA3NDg4OCwiZXhwIjoxNjc1NjY2ODg4fQ.lSDOvNG2hyFEzzznQvw8d2vHsRxhf6yaY-MIsWjrpIM'
-    };
-    var request = http.Request('POST',
-        Uri.parse('http://admin.brikow.com/api/contractor/add_project'));
-    request.body = json.encode(
-      {
-        "Name": ProjectNameController,
-        "Location": LocationController,
-        "withMaterial": MaterialsController,
-        "work": {
-          ItemController: {"rate": RateController, "unit": UnitController},
-        }
-      },
-    );
-    request.headers.addAll(headers);
-
-    http.StreamedResponse response = await request.send();
-
-    if (response.statusCode == 200) {
-      ProjectNameController.text = '';
-      LocationController.text = '';
-      MaterialsController.text = '';
-      ItemController.text = '';
-      RateController.text = '';
-      UnitController.text = '';
-      print(await response.stream.bytesToString());
-    } else {
-      print(response.reasonPhrase);
-    }
-  }
-
-  void setState(Null Function() param0) {}
 }
