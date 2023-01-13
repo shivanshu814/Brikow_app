@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phone_otp_ui/sixth.dart';
 
 class Fifth extends StatefulWidget {
 
@@ -20,6 +21,8 @@ class FifthState extends State<Fifth> {
   List<TextField> _wthFields = [];
   List<TextEditingController> _qtyControllers = [];
   List<TextField> _qtyFields = [];
+
+  List<Container> _conFields = [];
 
   @override
   void dispose() {
@@ -51,7 +54,7 @@ class FifthState extends State<Fifth> {
       child: Column(
         children: [
           Container(
-            width: 345.0,
+            width: 355.0,
             height: 55,
             color: Color.fromRGBO(255, 239, 244, 1),
             child: Row(
@@ -82,7 +85,7 @@ class FifthState extends State<Fifth> {
             height: 25,
           ),
           Text(
-            "Details                                                          ",
+            "Details                                                           ",
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -93,7 +96,7 @@ class FifthState extends State<Fifth> {
             height: 12,
           ),
           Container(
-            width: 345.0,
+            width: 355.0,
             height: 55,
             color: Colors.grey.shade300,
             child: Row(
@@ -123,7 +126,7 @@ class FifthState extends State<Fifth> {
             height: 20,
           ),
           Container(
-            width: 345.0,
+            width: 355.0,
             height: 55,
             margin: EdgeInsets.only(bottom: 0),
             color: Colors.grey.shade300,
@@ -216,39 +219,108 @@ class FifthState extends State<Fifth> {
 
   Widget _addTile() {
     return ListTile(
-      title: Icon(Icons.add),
+      title: SizedBox(
+          width: 100,
+          child: Container(
+              margin: EdgeInsets.only(left: 100, right: 100, bottom: 10),
+              child: TextButton.icon(
+
+        onPressed: () {
+          final brief = TextEditingController();
+          final nos = TextEditingController();
+          final hgt = TextEditingController();
+          final len = TextEditingController();
+          final wth = TextEditingController();
+          final qty = TextEditingController();
+
+          final briefField = _generateBriefTextField(brief, "Brief");
+
+          final nosField = _generateTextFieldBr2(nos,'Nos');
+          final hgtField = _generateTextFieldBr2(hgt,'Hgt');
+          final lenField = _generateTextFieldBr2(len,'Len');
+          final wthField = _generateTextFieldBr2(wth,'Wth');
+          final qtyField = _generateTextFieldBr2(qty,'Qty');
+
+          final con = _generateBreifContainer(nosField, hgtField, lenField, wthField, qtyField);
+
+          // final nosField = _generateTextField(nos, "nos");
+          // final hgtField = _generateTextField(hgt, "hgt");
+          // final lenField = _generateTextField(len, "len");
+          // final wthField = _generateTextField(wth, "wth");
+          // final qtyField = _generateTextField(qty, "qty");
+
+
+          setState(() {
+            _briefControllers.add(brief);
+            _nosControllers.add(nos);
+            _hgtControllers.add(hgt);
+            _lenControllers.add(len);
+            _wthControllers.add(wth);
+            _qtyControllers.add(qty);
+
+
+            _briefFields.add(briefField);
+            _nosFields.add(nosField);
+            _hgtFields.add(hgtField);
+            _lenFields.add(lenField);
+            _wthFields.add(wthField);
+            _qtyFields.add(qtyField);
+
+            _conFields.add(con);
+          });
+        },
+        style: TextButton.styleFrom(
+            fixedSize: const Size(100, 50),
+            foregroundColor: Colors.red,
+            elevation: 2,
+            backgroundColor: Colors.white),
+        icon: Icon(Icons.add),
+        label: Text('Add Brief'),
+      ))),
+      //title: Icon(Icons.add),
       onTap: () {
-        final brief = TextEditingController();
-        final nos = TextEditingController();
-        final hgt = TextEditingController();
-        final len = TextEditingController();
-        final wth = TextEditingController();
-        final qty = TextEditingController();
-
-        final briefField = _generateBriefTextField(brief, "brief");
-        final nosField = _generateTextField(nos, "nos");
-        final hgtField = _generateTextField(hgt, "hgt");
-        final lenField = _generateTextField(len, "len");
-        final wthField = _generateTextField(wth, "wth");
-        final qtyField = _generateTextField(qty, "qty");
-
-
-        setState(() {
-          _briefControllers.add(brief);
-          _nosControllers.add(nos);
-          _hgtControllers.add(hgt);
-          _lenControllers.add(len);
-          _wthControllers.add(wth);
-          _qtyControllers.add(qty);
-
-
-          _briefFields.add(briefField);
-          _nosFields.add(nosField);
-          _hgtFields.add(hgtField);
-          _lenFields.add(lenField);
-          _wthFields.add(wthField);
-          _qtyFields.add(qtyField);
-        });
+        // final brief = TextEditingController();
+        // final nos = TextEditingController();
+        // final hgt = TextEditingController();
+        // final len = TextEditingController();
+        // final wth = TextEditingController();
+        // final qty = TextEditingController();
+        //
+        // final briefField = _generateBriefTextField(brief, "Brief");
+        //
+        // final nosField = _generateTextFieldBr2(nos,'Nos');
+        // final hgtField = _generateTextFieldBr2(hgt,'Hgt');
+        // final lenField = _generateTextFieldBr2(len,'Len');
+        // final wthField = _generateTextFieldBr2(wth,'Wth');
+        // final qtyField = _generateTextFieldBr2(qty,'Qty');
+        //
+        // final con = _generateBreifContainer(nosField, hgtField, lenField, wthField, qtyField);
+        //
+        // // final nosField = _generateTextField(nos, "nos");
+        // // final hgtField = _generateTextField(hgt, "hgt");
+        // // final lenField = _generateTextField(len, "len");
+        // // final wthField = _generateTextField(wth, "wth");
+        // // final qtyField = _generateTextField(qty, "qty");
+        //
+        //
+        // setState(() {
+        //   _briefControllers.add(brief);
+        //   _nosControllers.add(nos);
+        //   _hgtControllers.add(hgt);
+        //   _lenControllers.add(len);
+        //   _wthControllers.add(wth);
+        //   _qtyControllers.add(qty);
+        //
+        //
+        //   _briefFields.add(briefField);
+        //   _nosFields.add(nosField);
+        //   _hgtFields.add(hgtField);
+        //   _lenFields.add(lenField);
+        //   _wthFields.add(wthField);
+        //   _qtyFields.add(qtyField);
+        //
+        //   _conFields.add(con);
+        // });
       },
     );
   }
@@ -267,15 +339,61 @@ class FifthState extends State<Fifth> {
     return  TextField(
       controller: controller,
       decoration: InputDecoration(
+          prefixIcon: Icon(Icons.contact_page_outlined),
+          prefixIconColor: Colors.black,
+          contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
         hintText: hint,
           filled: true,
-          fillColor: Colors.black26,
+          fillColor: Colors.grey.shade300,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(0),
             borderSide: BorderSide.none,
           )
       ),
     );
+  }
+
+  TextField _generateTextFieldBr2(TextEditingController controller, String hint) {
+    return TextField(
+      controller: controller,
+      textAlign: TextAlign.center,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(),
+        hintText: hint,
+      ),
+    );
+  }
+
+
+  Container _generateBreifContainer(TextField Nos, TextField Hgt, TextField Len, TextField Wth, TextField Qty){
+
+    return Container(
+        margin: EdgeInsets.only(top: 0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly, // use whichever suits your need
+          children: <Widget>[
+            Expanded(child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+              child: Nos
+            )),
+            Expanded(child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+              child: Hgt,
+            )),
+            Expanded(child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+              child: Len,
+            )),
+            Expanded(child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+              child: Wth,
+            )),
+            Expanded(child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+              child: Qty,
+            )),
+          ],
+        ));
   }
 
 
@@ -283,23 +401,21 @@ class FifthState extends State<Fifth> {
     final children = [
       for (var i = 0; i < _briefControllers.length; i++)
         Container(
-          margin: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
+          margin: EdgeInsets.only(left: 25, right: 25),
           child: InputDecorator(
             child: Column(
               children: [
                 _briefFields[i],
-                _nosFields[i],
-                _hgtFields[i],
-                _lenFields[i],
-                _wthFields[i],
-                _qtyFields[i],
+                // _nosFields[i],
+                // _hgtFields[i],
+                // _lenFields[i],
+                // _wthFields[i],
+                // _qtyFields[i],
+                _conFields[i]
               ],
             ),
             decoration: InputDecoration(
-
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
+              border: InputBorder.none,
             ),
           ),
         )
@@ -313,6 +429,75 @@ class FifthState extends State<Fifth> {
 
 
   final _okController = TextEditingController();
+
+  Widget _okButton1(BuildContext context){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        SizedBox(
+          width: 110,
+          height: 45,
+          child: ElevatedButton.icon(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => sixth(),
+                ),
+              );
+            },
+            icon: Icon(
+              Icons.format_align_justify_sharp,
+              color: Colors.redAccent,
+            ), //icon data for elevated button
+            label: Text(
+              "Finish",
+              style: TextStyle(color: Colors.red, fontSize: 15),
+            ), //label text
+            style: ElevatedButton.styleFrom(
+                side: BorderSide(width: 2, color: Colors.redAccent),
+                primary:
+                Colors.white //elevated btton background color
+            ),
+          ),
+        ),
+        SizedBox(
+          width: 10,
+        ),
+        SizedBox(
+          width: 250,
+          height: 45,
+          child: ElevatedButton.icon(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => sixth(),
+                ),
+              );
+            },
+            icon: Icon(
+              Icons.save,
+              color: Colors.redAccent,
+            ), //icon data for elevated button
+            label: Text(
+              "Save and Create new Title",
+              style: TextStyle(color: Colors.red, fontSize: 15),
+            ), //label text
+            style: ElevatedButton.styleFrom(
+                side: BorderSide(width: 2, color: Colors.redAccent),
+                primary:
+                Colors.white //elevated btton background color
+            ),
+          ),
+        ),
+        SizedBox(
+          width: 10,
+        ),
+      ],
+    );
+  }
+
   Widget _okButton(BuildContext context) {
     final textField = TextField(
       controller: _okController,
@@ -363,9 +548,9 @@ class FifthState extends State<Fifth> {
             children: [
               SizedBox(height: 20,),
               _firstTitle(),
-              _addTile(),
               Expanded(child: _listView()),
-              _okButton(context),
+              _addTile(),
+              _okButton1(context),
             ],
           )),
     );
