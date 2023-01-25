@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, must_be_immutable
-
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'fourth.dart';
@@ -31,29 +29,104 @@ class _thirdState extends State<third> {
     'SQM',
     'SFT',
   ];
+  TextEditingController name = TextEditingController();
+  TextEditingController location = TextEditingController();
+  TextEditingController withMaterial = TextEditingController();
+  TextEditingController work = TextEditingController();
+  TextEditingController Layout = TextEditingController();
+  TextEditingController rate = TextEditingController();
+  TextEditingController rates = TextEditingController();
+  TextEditingController unit = TextEditingController();
+  TextEditingController units = TextEditingController();
+  TextEditingController Excavation = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: Colors.grey,
-        title: Text('Add Project'),
+        backgroundColor: Color.fromRGBO(224, 234, 242, 1),
+        title: Text(
+          'Add Project',
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: Center(
-        child: Column(
+        child: ListView(
           children: [
+            SizedBox(
+              height: 15,
+            ),
+            Container(
+              width: 345.0,
+              height: 55,
+              color: Colors.grey.shade300,
+              child: Row(
+                // mainAxisAlignment: MainAxisAlignment.center,
+                // ignore: prefer_const_literals_to_create_immutables
+                children: [
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Icon(Icons.tips_and_updates_outlined),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: TextField(
+                      controller: name,
+                      keyboardType: TextInputType.name,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: " Project Title",
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Container(
+              width: 345.0,
+              height: 55,
+              color: Colors.grey.shade300,
+              child: Row(
+                // mainAxisAlignment: MainAxisAlignment.center,
+                // ignore: prefer_const_literals_to_create_immutables
+                children: [
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Icon(Icons.location_on_outlined),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: TextField(
+                      controller: location,
+                      keyboardType: TextInputType.name,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: " Location",
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             SizedBox(
               height: 15,
             ),
             Row(
               children: [
                 Checkbox(
-                  value: _checkbox,
+                  value: this._checkbox,
                   onChanged: (value) {
                     setState(
                       () {
-                        _checkbox = !_checkbox;
+                        this._checkbox = !_checkbox;
                       },
                     );
                   },
@@ -78,6 +151,7 @@ class _thirdState extends State<third> {
                     children: [
                       Expanded(
                         child: TextField(
+                          controller: rate,
                           textAlignVertical: TextAlignVertical.center,
                           textAlign: TextAlign.left,
                           maxLines: 1,
@@ -134,11 +208,11 @@ class _thirdState extends State<third> {
             Row(
               children: [
                 Checkbox(
-                  value: _checkbox2,
+                  value: this._checkbox2,
                   onChanged: (value) {
                     setState(
                       () {
-                        _checkbox2 = !_checkbox2;
+                        this._checkbox2 = !_checkbox2;
                       },
                     );
                   },
@@ -163,6 +237,7 @@ class _thirdState extends State<third> {
                     children: [
                       Expanded(
                         child: TextField(
+                          controller: rates,
                           textAlignVertical: TextAlignVertical.center,
                           textAlign: TextAlign.left,
                           maxLines: 1,
@@ -219,11 +294,11 @@ class _thirdState extends State<third> {
             Row(
               children: [
                 Checkbox(
-                  value: _checkbox3,
+                  value: this._checkbox3,
                   onChanged: (value) {
                     setState(
                       () {
-                        _checkbox3 = !_checkbox3;
+                        this._checkbox3 = !_checkbox3;
                       },
                     );
                   },
@@ -304,11 +379,11 @@ class _thirdState extends State<third> {
             Row(
               children: [
                 Checkbox(
-                  value: _checkbox4,
+                  value: this._checkbox4,
                   onChanged: (value) {
                     setState(
                       () {
-                        _checkbox4 = !_checkbox4;
+                        this._checkbox4 = !_checkbox4;
                       },
                     );
                   },
@@ -389,11 +464,11 @@ class _thirdState extends State<third> {
             Row(
               children: [
                 Checkbox(
-                  value: _checkbox5,
+                  value: this._checkbox5,
                   onChanged: (value) {
                     setState(
                       () {
-                        _checkbox5 = !_checkbox5;
+                        this._checkbox5 = !_checkbox5;
                       },
                     );
                   },
@@ -474,11 +549,11 @@ class _thirdState extends State<third> {
             Row(
               children: [
                 Checkbox(
-                  value: _checkbox6,
+                  value: this._checkbox6,
                   onChanged: (value) {
                     setState(
                       () {
-                        _checkbox6 = !_checkbox6;
+                        this._checkbox6 = !_checkbox6;
                       },
                     );
                   },
@@ -589,6 +664,9 @@ class _thirdState extends State<third> {
                 ),
                 SizedBox(
                   width: 70,
+                ),
+                SizedBox(
+                  height: 14,
                 ),
               ],
             ),

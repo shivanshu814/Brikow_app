@@ -21,6 +21,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:hive_flutter/adapters.dart';
 
+import 'landing.dart';
+
 late Box box1;
 
 Future<void> main() async {
@@ -47,6 +49,7 @@ Future<void> main() async {
         // ignore: prefer_const_constructors
         'sixth': (context) => sixth(),
         'myverify': (context) => Verify(),
+        'landing': (context) => Landing(),
         'start': (context) => SplashScreenPage()
       },
     ),
@@ -63,7 +66,7 @@ void apicall() {
     );
 
     if (response.statusCode == 200) {
-      setState(){
+      setState() {
         mapResponse = jsonDecode(response.body);
       }
       // setState(

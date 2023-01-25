@@ -56,8 +56,8 @@ class _MyVerifyState extends State<MyVerify> {
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
-     // Navigator.pushNamed(context, 'myverify');
-      Navigator.pushReplacementNamed(context, 'myverify');
+      // Navigator.pushNamed(context, 'myverify');
+      Navigator.pushReplacementNamed(context, 'landing');
     } else {
       print(response.reasonPhrase);
       showDialog(
