@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'api.dart';
 import 'fourth.dart';
 import 'main.dart';
 
@@ -39,6 +40,23 @@ class _thirdState extends State<third> {
   TextEditingController unit = TextEditingController();
   TextEditingController units = TextEditingController();
   TextEditingController Excavation = TextEditingController();
+
+  _savedata() {
+    var data = {
+      name: name.text,
+      location: location.text,
+      withMaterial: withMaterial.text,
+      work: work.text,
+      Layout: Layout.text,
+      rate: rate.text,
+      unit: unit.text,
+      Excavation: Excavation.text,
+      rate: rates.text,
+      unit: units.text
+    };
+    var res = CallApi().postData(data, 'add_project');
+    var body = json.decode(res.body);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -645,6 +663,7 @@ class _thirdState extends State<third> {
                           builder: (context) => fourth(),
                         ),
                       );
+                      _savedata();
                     },
                     icon: Icon(
                       Icons.save,
