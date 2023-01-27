@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, must_be_immutable
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'api.dart';
 import 'fourth.dart';
@@ -33,29 +34,68 @@ class _thirdState extends State<third> {
   TextEditingController name = TextEditingController();
   TextEditingController location = TextEditingController();
   TextEditingController withMaterial = TextEditingController();
-  TextEditingController work = TextEditingController();
-  TextEditingController Layout = TextEditingController();
   TextEditingController rate = TextEditingController();
-  TextEditingController rates = TextEditingController();
   TextEditingController unit = TextEditingController();
-  TextEditingController units = TextEditingController();
-  TextEditingController Excavation = TextEditingController();
 
-  _savedata() {
-    var data = {
-      name: name.text,
-      location: location.text,
-      withMaterial: withMaterial.text,
-      work: work.text,
-      Layout: Layout.text,
-      rate: rate.text,
-      unit: unit.text,
-      Excavation: Excavation.text,
-      rate: rates.text,
-      unit: units.text
+  // _savedata() {
+  //   var data = {
+  //     name: name.text,
+  //     location: location.text,
+  //     withMaterial: withMaterial.text,
+  //     work: work.text,
+  //     Layout: Layout.text,
+  //     rate: rate.text,
+  //     unit: unit.text,
+  //     Excavation: Excavation.text,
+  //     rate: rates.text,
+  //     unit: units.text
+  //   };
+  //   var res = CallApi().postData(data, 'add_project');
+  //   var body = json.decode(res.body);
+  // }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  _savedata() async {
+    var headers = {
+      'Content-Type': 'application/json',
+      // 'Cookie':
+      //     'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkxODM3NWU3MjE4ZTc1ODIwMmY2MyIsImlhdCI6MTY3MzA3NDg4OCwiZXhwIjoxNjc1NjY2ODg4fQ.lSDOvNG2hyFEzzznQvw8d2vHsRxhf6yaY-MIsWjrpIM'
     };
-    var res = CallApi().postData(data, 'add_project');
-    var body = json.decode(res.body);
+    var request = http.Request('POST',
+        Uri.parse('http://admin.brikow.com/api/contractor/add_project'));
+    request.body = json.encode({
+      "Name": name,
+      "Location": location,
+      'withMaterial': withMaterial,
+      'work': {
+        'Layout': {'rate': rate, 'unit': unit},
+        'Excavation': {'rate': rate, 'unit': unit}
+      }
+    });
+    request.headers.addAll(headers);
+
+    print("verify req:" + request.toString());
+    print("verify body:" + request.body);
+    print("verify head:" + request.headers.toString());
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+      // Navigator.pushNamed(context, 'myverify');
+      Navigator.pushReplacementNamed(context, 'fourth');
+      print("data posted");
+    } else {
+      // Navigator.pushReplacementNamed(context, 'fourth');
+      print(response.reasonPhrase);
+      print("failed");
+    }
+    print(response.statusCode);
   }
 
   @override
@@ -228,11 +268,12 @@ class _thirdState extends State<third> {
                 Checkbox(
                   value: this._checkbox2,
                   onChanged: (value) {
-                    setState(
-                      () {
-                        this._checkbox2 = !_checkbox2;
-                      },
-                    );
+                    this._checkbox2 = !_checkbox2;
+                    // setState(
+                    //   () {
+
+                    //   },
+                    // );
                   },
                 ),
                 Text(
@@ -255,7 +296,7 @@ class _thirdState extends State<third> {
                     children: [
                       Expanded(
                         child: TextField(
-                          controller: rates,
+                          controller: rate,
                           textAlignVertical: TextAlignVertical.center,
                           textAlign: TextAlign.left,
                           maxLines: 1,
@@ -657,13 +698,13 @@ class _thirdState extends State<third> {
                   height: 35,
                   child: ElevatedButton.icon(
                     onPressed: () {
+                      _savedata();
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => fourth(),
                         ),
                       );
-                      _savedata();
                     },
                     icon: Icon(
                       Icons.save,
@@ -695,3 +736,25 @@ class _thirdState extends State<third> {
     );
   }
 }
+
+
+
+
+
+// GestureDetector(
+                //   onTap: () {
+                //     _savedata();
+                //   },
+                //   child: Container(
+                //     width: 230,
+                //     height: 45,
+                //     decoration: BoxDecoration(
+                //       color: Colors.red.shade200,
+                //       borderRadius: BorderRadius.circular(10),
+                //     ),
+                //     child: Center(
+                //       child: Text("Save and Next"),
+                //     ),
+                //   ),
+                // ),
+                
