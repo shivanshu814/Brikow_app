@@ -14,6 +14,16 @@ class third extends StatefulWidget {
 }
 
 class _thirdState extends State<third> {
+  late Box box2;
+  void initState() {
+    super.initState();
+    createBox();
+  }
+
+  void createBox() async {
+    box1 = await Hive.openBox('logindata');
+  }
+
   bool _checkbox = false;
   bool _checkbox2 = false;
   bool _checkbox3 = false;
@@ -55,16 +65,16 @@ class _thirdState extends State<third> {
   // }
 
   @override
-  void initState() {
-    super.initState();
-  }
+  // void initState() {
+  //   super.initState();
+  // }
 
   @override
   _savedata() async {
     var headers = {
       'Content-Type': 'application/json',
-      // 'Cookie':
-      //     'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkxODM3NWU3MjE4ZTc1ODIwMmY2MyIsImlhdCI6MTY3MzA3NDg4OCwiZXhwIjoxNjc1NjY2ODg4fQ.lSDOvNG2hyFEzzznQvw8d2vHsRxhf6yaY-MIsWjrpIM'
+      'Cookie':
+          'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkxODM3NWU3MjE4ZTc1ODIwMmY2MyIsImlhdCI6MTY3MzA3NDg4OCwiZXhwIjoxNjc1NjY2ODg4fQ.lSDOvNG2hyFEzzznQvw8d2vHsRxhf6yaY-MIsWjrpIM'
     };
     var request = http.Request('POST',
         Uri.parse('http://admin.brikow.com/api/contractor/add_project'));

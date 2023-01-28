@@ -3,26 +3,23 @@ import 'package:hive/hive.dart';
 import 'package:phone_otp_ui/fifth.dart';
 import 'package:phone_otp_ui/fourth.dart';
 import 'package:phone_otp_ui/invoice.dart';
+import 'package:phone_otp_ui/page/pdf_page.dart';
 import 'package:phone_otp_ui/sixth.dart';
 
 class Fifth extends StatefulWidget {
-
   @override
   FifthState createState() => FifthState();
 }
 
 class FifthState extends State<Fifth> {
-
   late Box box1;
-
 
   Map<TextField, List> controllerMap = {};
   Map<TextField, List> controllerMapInvoice = {};
-  Map<String, Map> titleMap  = {};
+  Map<String, Map> titleMap = {};
   Map<TextField, List> fieldMap = {};
 
   TextEditingController _titleController = TextEditingController();
-
 
   List<TextEditingController> _descriptionControllers = [];
   List<TextField> _descriptionFields = [];
@@ -49,7 +46,6 @@ class FifthState extends State<Fifth> {
     super.initState();
 
     createBox();
-
 
     List<TextEditingController> _descriptionControllers = [];
     List<TextField> _descriptionFields = [];
@@ -81,13 +77,14 @@ class FifthState extends State<Fifth> {
     final wth = TextEditingController();
     final qty = TextEditingController();
 
-    final nosField = _generateTextFieldBr2(nos,'Nos');
-    final hgtField = _generateTextFieldBr2(hgt,'Hgt');
-    final lenField = _generateTextFieldBr2(len,'Len');
-    final wthField = _generateTextFieldBr2(wth,'Wth');
-    final qtyField = _generateTextFieldBr2(qty,'Qty');
+    final nosField = _generateTextFieldBr2(nos, 'Nos');
+    final hgtField = _generateTextFieldBr2(hgt, 'Hgt');
+    final lenField = _generateTextFieldBr2(len, 'Len');
+    final wthField = _generateTextFieldBr2(wth, 'Wth');
+    final qtyField = _generateTextFieldBr2(qty, 'Qty');
 
-    final con = _generateBreifContainer(nosField, hgtField, lenField, wthField, qtyField);
+    final con = _generateBreifContainer(
+        nosField, hgtField, lenField, wthField, qtyField);
 
     _descriptionControllers.add(desc);
     _briefControllers.add(brief);
@@ -107,12 +104,27 @@ class FifthState extends State<Fifth> {
 
     _conFields.add(con);
 
-    controllerMap[descField] = [desc,_briefControllers, _nosControllers,_hgtControllers, _lenControllers, _wthControllers, _qtyControllers];
-    fieldMap[descField] = [_briefFields, _nosFields, _hgtFields, _lenFields, _wthFields, _qtyFields, _conFields];
-
+    controllerMap[descField] = [
+      desc,
+      _briefControllers,
+      _nosControllers,
+      _hgtControllers,
+      _lenControllers,
+      _wthControllers,
+      _qtyControllers
+    ];
+    fieldMap[descField] = [
+      _briefFields,
+      _nosFields,
+      _hgtFields,
+      _lenFields,
+      _wthFields,
+      _qtyFields,
+      _conFields
+    ];
   }
 
-  void createBox()async{
+  void createBox() async {
     box1 = await Hive.openBox('bill');
   }
 
@@ -143,9 +155,7 @@ class FifthState extends State<Fifth> {
     super.dispose();
   }
 
-
-
-  Container _firstTitleCon(){
+  Container _firstTitleCon() {
     return Container(
       child: Column(
         children: [
@@ -220,13 +230,14 @@ class FifthState extends State<Fifth> {
               ],
             ),
           ),
-
           Container(
               margin: EdgeInsets.only(left: 25, right: 25, top: 0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly, // use whichever suits your need
+                mainAxisAlignment: MainAxisAlignment
+                    .spaceEvenly, // use whichever suits your need
                 children: <Widget>[
-                  Expanded(child: Padding(
+                  Expanded(
+                      child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
                     child: TextField(
                       textAlign: TextAlign.center,
@@ -236,7 +247,8 @@ class FifthState extends State<Fifth> {
                       ),
                     ),
                   )),
-                  Expanded(child: Padding(
+                  Expanded(
+                      child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
                     child: TextField(
                       textAlign: TextAlign.center,
@@ -246,7 +258,8 @@ class FifthState extends State<Fifth> {
                       ),
                     ),
                   )),
-                  Expanded(child: Padding(
+                  Expanded(
+                      child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
                     child: TextField(
                       textAlign: TextAlign.center,
@@ -256,7 +269,8 @@ class FifthState extends State<Fifth> {
                       ),
                     ),
                   )),
-                  Expanded(child: Padding(
+                  Expanded(
+                      child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
                     child: TextField(
                       textAlign: TextAlign.center,
@@ -266,7 +280,8 @@ class FifthState extends State<Fifth> {
                       ),
                     ),
                   )),
-                  Expanded(child: Padding(
+                  Expanded(
+                      child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
                     child: TextField(
                       textAlign: TextAlign.center,
@@ -284,7 +299,7 @@ class FifthState extends State<Fifth> {
     );
   }
 
-  Widget _firstTitle(){
+  Widget _firstTitle() {
     return Container(
       child: Column(
         children: [
@@ -330,139 +345,128 @@ class FifthState extends State<Fifth> {
           SizedBox(
             height: 12,
           ),
-
-
-
-
         ],
       ),
     );
   }
 
-
   Widget _addTile() {
     return ListTile(
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-      Container(
-        width: 150,
-              margin: EdgeInsets.only(bottom: 10),
-              child: TextButton.icon(
+      title: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+        Container(
+            width: 150,
+            margin: EdgeInsets.only(bottom: 10),
+            child: TextButton.icon(
+              onPressed: () {
+                final brief = TextEditingController();
+                final nos = TextEditingController();
+                final hgt = TextEditingController();
+                final len = TextEditingController();
+                final wth = TextEditingController();
+                final qty = TextEditingController();
 
-        onPressed: () {
+                final briefField = _generateBriefTextField(brief, "Brief");
 
-          final brief = TextEditingController();
-          final nos = TextEditingController();
-          final hgt = TextEditingController();
-          final len = TextEditingController();
-          final wth = TextEditingController();
-          final qty = TextEditingController();
+                final nosField = _generateTextFieldBr2(nos, 'Nos');
+                final hgtField = _generateTextFieldBr2(hgt, 'Hgt');
+                final lenField = _generateTextFieldBr2(len, 'Len');
+                final wthField = _generateTextFieldBr2(wth, 'Wth');
+                final qtyField = _generateTextFieldBr2(qty, 'Qty');
 
-          final briefField = _generateBriefTextField(brief, "Brief");
+                final con = _generateBreifContainer(
+                    nosField, hgtField, lenField, wthField, qtyField);
 
-          final nosField = _generateTextFieldBr2(nos,'Nos');
-          final hgtField = _generateTextFieldBr2(hgt,'Hgt');
-          final lenField = _generateTextFieldBr2(len,'Len');
-          final wthField = _generateTextFieldBr2(wth,'Wth');
-          final qtyField = _generateTextFieldBr2(qty,'Qty');
+                // final nosField = _generateTextField(nos, "nos");
+                // final hgtField = _generateTextField(hgt, "hgt");
+                // final lenField = _generateTextField(len, "len");
+                // final wthField = _generateTextField(wth, "wth");
+                // final qtyField = _generateTextField(qty, "qty");
 
-          final con = _generateBreifContainer(nosField, hgtField, lenField, wthField, qtyField);
+                setState(() {
+                  _briefControllers.add(brief);
+                  _nosControllers.add(nos);
+                  _hgtControllers.add(hgt);
+                  _lenControllers.add(len);
+                  _wthControllers.add(wth);
+                  _qtyControllers.add(qty);
 
-          // final nosField = _generateTextField(nos, "nos");
-          // final hgtField = _generateTextField(hgt, "hgt");
-          // final lenField = _generateTextField(len, "len");
-          // final wthField = _generateTextField(wth, "wth");
-          // final qtyField = _generateTextField(qty, "qty");
+                  _briefFields.add(briefField);
+                  _nosFields.add(nosField);
+                  _hgtFields.add(hgtField);
+                  _lenFields.add(lenField);
+                  _wthFields.add(wthField);
+                  _qtyFields.add(qtyField);
 
-
-          setState(() {
-            _briefControllers.add(brief);
-            _nosControllers.add(nos);
-            _hgtControllers.add(hgt);
-            _lenControllers.add(len);
-            _wthControllers.add(wth);
-            _qtyControllers.add(qty);
-
-
-            _briefFields.add(briefField);
-            _nosFields.add(nosField);
-            _hgtFields.add(hgtField);
-            _lenFields.add(lenField);
-            _wthFields.add(wthField);
-            _qtyFields.add(qtyField);
-
-            _conFields.add(con);
-
-          });
-        },
-        style: TextButton.styleFrom(
-            fixedSize: const Size(100, 50),
-            foregroundColor: Colors.red,
-            elevation: 2,
-            backgroundColor: Colors.white),
-        icon: Icon(Icons.add),
-        label: Text('Add Brief'),
-      )),
-
-          Container(
-              width: 150,
-              margin: EdgeInsets.only(bottom: 10),
-              child: TextButton.icon(
-
-                onPressed: () {
-
-                  //_firstTitle();
-                  // final brief = TextEditingController();
-                  // final nos = TextEditingController();
-                  // final hgt = TextEditingController();
-                  // final len = TextEditingController();
-                  // final wth = TextEditingController();
-                  // final qty = TextEditingController();
-                  //
-                  // final briefField = _generateBriefTextField(brief, "Brief");
-                  //
-                  // final nosField = _generateTextFieldBr2(nos,'Nos');
-                  // final hgtField = _generateTextFieldBr2(hgt,'Hgt');
-                  // final lenField = _generateTextFieldBr2(len,'Len');
-                  // final wthField = _generateTextFieldBr2(wth,'Wth');
-                  // final qtyField = _generateTextFieldBr2(qty,'Qty');
-                  //
-                  final con = _firstTitleCon();
-                  //
-                  // // final nosField = _generateTextField(nos, "nos");
-                  // // final hgtField = _generateTextField(hgt, "hgt");
-                  // // final lenField = _generateTextField(len, "len");
-                  // // final wthField = _generateTextField(wth, "wth");
-                  // // final qtyField = _generateTextField(qty, "qty");
-                  //
-                  //
-                  setState(() {
-                    _conFields1.add(con);
-                  });
-                },
-                style: TextButton.styleFrom(
-                    fixedSize: const Size(100, 50),
-                    foregroundColor: Colors.red,
-                    elevation: 2,
-                    backgroundColor: Colors.white),
-                icon: Icon(Icons.add),
-                label: Text('Add Details'),
-              ))
+                  _conFields.add(con);
+                });
+              },
+              style: TextButton.styleFrom(
+                  fixedSize: const Size(100, 50),
+                  foregroundColor: Colors.red,
+                  elevation: 2,
+                  backgroundColor: Colors.white),
+              icon: Icon(Icons.add),
+              label: Text('Add Brief'),
+            )),
+        Container(
+            width: 150,
+            margin: EdgeInsets.only(bottom: 10),
+            child: TextButton.icon(
+              onPressed: () {
+                //_firstTitle();
+                // final brief = TextEditingController();
+                // final nos = TextEditingController();
+                // final hgt = TextEditingController();
+                // final len = TextEditingController();
+                // final wth = TextEditingController();
+                // final qty = TextEditingController();
+                //
+                // final briefField = _generateBriefTextField(brief, "Brief");
+                //
+                // final nosField = _generateTextFieldBr2(nos,'Nos');
+                // final hgtField = _generateTextFieldBr2(hgt,'Hgt');
+                // final lenField = _generateTextFieldBr2(len,'Len');
+                // final wthField = _generateTextFieldBr2(wth,'Wth');
+                // final qtyField = _generateTextFieldBr2(qty,'Qty');
+                //
+                final con = _firstTitleCon();
+                //
+                // // final nosField = _generateTextField(nos, "nos");
+                // // final hgtField = _generateTextField(hgt, "hgt");
+                // // final lenField = _generateTextField(len, "len");
+                // // final wthField = _generateTextField(wth, "wth");
+                // // final qtyField = _generateTextField(qty, "qty");
+                //
+                //
+                setState(() {
+                  _conFields1.add(con);
+                });
+              },
+              style: TextButton.styleFrom(
+                  fixedSize: const Size(100, 50),
+                  foregroundColor: Colors.red,
+                  elevation: 2,
+                  backgroundColor: Colors.white),
+              icon: Icon(Icons.add),
+              label: Text('Add Details'),
+            ))
       ]),
       //title: Icon(Icons.add),
-      onTap: () {
-      },
+      onTap: () {},
     );
   }
 
-  Widget _deleteBrief1(TextField tf, int i){
-    return IconButton(icon: Icon(Icons.delete, color: Colors.white,), 
-        style: IconButton.styleFrom(backgroundColor: Colors.red.shade300), 
-        onPressed: (){
+  Widget _deleteBrief1(TextField tf, int i) {
+    return IconButton(
+        icon: Icon(
+          Icons.delete,
+          color: Colors.white,
+        ),
+        style: IconButton.styleFrom(backgroundColor: Colors.red.shade300),
+        onPressed: () {
           setState(() {
-            fieldMap.forEach((k,v){
-              if(k==tf){
+            fieldMap.forEach((k, v) {
+              if (k == tf) {
                 print("found");
                 print(v[0]);
                 v[0].removeAt(i);
@@ -475,8 +479,8 @@ class FifthState extends State<Fifth> {
               }
             });
 
-            controllerMap.forEach((k,v){
-              if(k==tf){
+            controllerMap.forEach((k, v) {
+              if (k == tf) {
                 print("found");
                 print(v[0]);
                 v[1].removeAt(i);
@@ -492,21 +496,18 @@ class FifthState extends State<Fifth> {
   }
 
   Widget _deleteBrief(TextField tf, int i) {
-
     return ListTile(
       title: Row(
           //mainAxisAlignment: MainAxisAlignment.end,
           children: [
-
             Container(
                 width: 50,
                 //margin: EdgeInsets.only(bottom: 10),
                 child: TextButton.icon(
-
                   onPressed: () {
                     setState(() {
-                      fieldMap.forEach((k,v){
-                        if(k==tf){
+                      fieldMap.forEach((k, v) {
+                        if (k == tf) {
                           print("found");
                           print(v[0]);
                           v[0].removeAt(i);
@@ -519,7 +520,6 @@ class FifthState extends State<Fifth> {
                         }
                       });
                     });
-
                   },
                   style: TextButton.styleFrom(
                       foregroundColor: Colors.white,
@@ -530,238 +530,232 @@ class FifthState extends State<Fifth> {
                 ))
           ]),
       //title: Icon(Icons.add),
-      onTap: () {
-      },
+      onTap: () {},
     );
   }
 
-
   Widget _deleteDetail(TextField tf) {
-
-    return
-            Container(
-                width: 150,
-                margin: EdgeInsets.only(bottom: 10),
-                child: TextButton.icon(
-
-                  onPressed: () {
-                    setState(() {
-                      fieldMap.remove(tf);
-                      controllerMap.remove(tf);
-                    });
-
-                  },
-                  style: TextButton.styleFrom(
-                      fixedSize: const Size(100, 50),
-                      foregroundColor: Colors.white,
-                      elevation: 2,
-                      backgroundColor: Colors.blueGrey),
-                  icon: Icon(Icons.remove),
-                  label: Text('Delete Detail'),
-                ));
+    return Container(
+        width: 150,
+        margin: EdgeInsets.only(bottom: 10),
+        child: TextButton.icon(
+          onPressed: () {
+            setState(() {
+              fieldMap.remove(tf);
+              controllerMap.remove(tf);
+            });
+          },
+          style: TextButton.styleFrom(
+              fixedSize: const Size(100, 50),
+              foregroundColor: Colors.white,
+              elevation: 2,
+              backgroundColor: Colors.blueGrey),
+          icon: Icon(Icons.remove),
+          label: Text('Delete Detail'),
+        ));
   }
 
-
   Widget _addBrief(TextField tf, int i) {
-
     return Container(
-                width: 150,
-                margin: EdgeInsets.only(bottom: 10),
-                child: TextButton.icon(
+        width: 150,
+        margin: EdgeInsets.only(bottom: 10),
+        child: TextButton.icon(
+          onPressed: () {
+            List<TextEditingController> _briefControllers = [];
+            List<TextField> _briefFields = [];
+            List<TextEditingController> _nosControllers = [];
+            List<TextField> _nosFields = [];
+            List<TextEditingController> _hgtControllers = [];
+            List<TextField> _hgtFields = [];
+            List<TextEditingController> _lenControllers = [];
+            List<TextField> _lenFields = [];
+            List<TextEditingController> _wthControllers = [];
+            List<TextField> _wthFields = [];
+            List<TextEditingController> _qtyControllers = [];
+            List<TextField> _qtyFields = [];
 
-                  onPressed: () {
+            List<Container> _conFields = [];
+            List<Container> _conFields1 = [];
 
-                    List<TextEditingController> _briefControllers = [];
-                    List<TextField> _briefFields = [];
-                    List<TextEditingController> _nosControllers = [];
-                    List<TextField> _nosFields = [];
-                    List<TextEditingController> _hgtControllers = [];
-                    List<TextField> _hgtFields = [];
-                    List<TextEditingController> _lenControllers = [];
-                    List<TextField> _lenFields = [];
-                    List<TextEditingController> _wthControllers = [];
-                    List<TextField> _wthFields = [];
-                    List<TextEditingController> _qtyControllers = [];
-                    List<TextField> _qtyFields = [];
+            final brief = new TextEditingController();
+            final briefField = _generateBriefTextField(brief, "Brief");
 
-                    List<Container> _conFields = [];
-                    List<Container> _conFields1 = [];
+            final nos = TextEditingController();
+            final hgt = TextEditingController();
+            final len = TextEditingController();
+            final wth = TextEditingController();
+            final qty = TextEditingController();
 
+            final nosField = _generateTextFieldBr2(nos, 'Nos');
+            final hgtField = _generateTextFieldBr2(hgt, 'Hgt');
+            final lenField = _generateTextFieldBr2(len, 'Len');
+            final wthField = _generateTextFieldBr2(wth, 'Wth');
+            final qtyField = _generateTextFieldBr2(qty, 'Qty');
 
-                    final brief = new TextEditingController();
-                    final briefField = _generateBriefTextField(brief, "Brief");
+            final con = _generateBreifContainer(
+                nosField, hgtField, lenField, wthField, qtyField);
 
-                    final nos = TextEditingController();
-                    final hgt = TextEditingController();
-                    final len = TextEditingController();
-                    final wth = TextEditingController();
-                    final qty = TextEditingController();
+            setState(() {
+              fieldMap.forEach((k, v) {
+                if (k == tf) {
+                  print("found");
+                  print(v[0]);
+                  v[0].add(briefField);
+                  v[1].add(nosField);
+                  v[2].add(hgtField);
+                  v[3].add(lenField);
+                  v[4].add(wthField);
+                  v[5].add(qtyField);
+                  v[6].add(con);
+                }
+              });
 
-                    final nosField = _generateTextFieldBr2(nos,'Nos');
-                    final hgtField = _generateTextFieldBr2(hgt,'Hgt');
-                    final lenField = _generateTextFieldBr2(len,'Len');
-                    final wthField = _generateTextFieldBr2(wth,'Wth');
-                    final qtyField = _generateTextFieldBr2(qty,'Qty');
+              controllerMap.forEach((key, v) {
+                if (key == tf) {
+                  v[1].add(brief);
+                  v[2].add(nos);
+                  v[3].add(hgt);
+                  v[4].add(len);
+                  v[5].add(wth);
+                  v[6].add(qty);
+                }
+              });
 
-                    final con = _generateBreifContainer(nosField, hgtField, lenField, wthField, qtyField);
+              // _briefControllers.add(brief);
+              // _nosControllers.add(nos);
+              // _hgtControllers.add(hgt);
+              // _lenControllers.add(len);
+              // _wthControllers.add(wth);
+              // _qtyControllers.add(qty);
 
+              // _briefFields.add(briefField);
+              // _nosFields.add(nosField);
+              // _hgtFields.add(hgtField);
+              // _lenFields.add(lenField);
+              // _wthFields.add(wthField);
+              // _qtyFields.add(qtyField);
 
+              print(briefField);
+              print(_briefFields);
+              print("====");
+              print(_briefFields);
 
-                    setState(() {
-                      fieldMap.forEach((k,v){
-                        if(k==tf){
-                          print("found");
-                          print(v[0]);
-                          v[0].add(briefField);
-                          v[1].add(nosField);
-                          v[2].add(hgtField);
-                          v[3].add(lenField);
-                          v[4].add(wthField);
-                          v[5].add(qtyField);
-                          v[6].add(con);
-                        }
-                      });
+              _conFields.add(con);
 
-                      controllerMap.forEach((key, v) {
-                        if(key==tf){
-                          v[1].add(brief);
-                          v[2].add(nos);
-                          v[3].add(hgt);
-                          v[4].add(len);
-                          v[5].add(wth);
-                          v[6].add(qty);
-                        }
-                      });
+              //fieldMap[tf] = [_briefFields, _nosFields, _hgtFields, _lenFields, _wthFields, _qtyFields, _conFields];
+            });
 
-                      // _briefControllers.add(brief);
-                      // _nosControllers.add(nos);
-                      // _hgtControllers.add(hgt);
-                      // _lenControllers.add(len);
-                      // _wthControllers.add(wth);
-                      // _qtyControllers.add(qty);
-
-                      // _briefFields.add(briefField);
-                      // _nosFields.add(nosField);
-                      // _hgtFields.add(hgtField);
-                      // _lenFields.add(lenField);
-                      // _wthFields.add(wthField);
-                      // _qtyFields.add(qtyField);
-
-                      print(briefField);
-                      print(_briefFields);
-                      print("====");
-                      print(_briefFields);
-
-                      _conFields.add(con);
-
-                      //fieldMap[tf] = [_briefFields, _nosFields, _hgtFields, _lenFields, _wthFields, _qtyFields, _conFields];
-                    });
-
-
-                    print(fieldMap[tf]);
-                    //controllerMap[_descriptionControllers[0]] = [_briefControllers, _nosControllers,_hgtControllers, _lenControllers, _wthControllers, _qtyControllers];
-
-                  },
-                  style: TextButton.styleFrom(
-                      fixedSize: const Size(100, 50),
-                      foregroundColor: Colors.red,
-                      elevation: 2,
-                      backgroundColor: Colors.white),
-                  icon: Icon(Icons.add),
-                  label: Text('Add Brief'),
-                ));
+            print(fieldMap[tf]);
+            //controllerMap[_descriptionControllers[0]] = [_briefControllers, _nosControllers,_hgtControllers, _lenControllers, _wthControllers, _qtyControllers];
+          },
+          style: TextButton.styleFrom(
+              fixedSize: const Size(100, 50),
+              foregroundColor: Colors.red,
+              elevation: 2,
+              backgroundColor: Colors.white),
+          icon: Icon(Icons.add),
+          label: Text('Add Brief'),
+        ));
   }
 
   Widget _addDetails() {
     return ListTile(
-      title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
+      title: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+        Container(
+            width: 150,
+            margin: EdgeInsets.only(bottom: 10),
+            child: TextButton.icon(
+              onPressed: () {
+                List<TextEditingController> _descriptionControllers = [];
+                List<TextField> _descriptionFields = [];
 
-            Container(
-                width: 150,
-                margin: EdgeInsets.only(bottom: 10),
-                child: TextButton.icon(
+                List<TextEditingController> _briefControllers = [];
+                List<TextField> _briefFields = [];
+                List<TextEditingController> _nosControllers = [];
+                List<TextField> _nosFields = [];
+                List<TextEditingController> _hgtControllers = [];
+                List<TextField> _hgtFields = [];
+                List<TextEditingController> _lenControllers = [];
+                List<TextField> _lenFields = [];
+                List<TextEditingController> _wthControllers = [];
+                List<TextField> _wthFields = [];
+                List<TextEditingController> _qtyControllers = [];
+                List<TextField> _qtyFields = [];
 
-                  onPressed: () {
+                List<Container> _conFields = [];
+                List<Container> _conFields1 = [];
 
+                final desc = TextEditingController();
+                final descField = _generateBriefTextField(desc, "Description");
 
-                    List<TextEditingController> _descriptionControllers = [];
-                    List<TextField> _descriptionFields = [];
+                final brief = TextEditingController();
+                final briefField = _generateBriefTextField(brief, "Brief");
 
-                    List<TextEditingController> _briefControllers = [];
-                    List<TextField> _briefFields = [];
-                    List<TextEditingController> _nosControllers = [];
-                    List<TextField> _nosFields = [];
-                    List<TextEditingController> _hgtControllers = [];
-                    List<TextField> _hgtFields = [];
-                    List<TextEditingController> _lenControllers = [];
-                    List<TextField> _lenFields = [];
-                    List<TextEditingController> _wthControllers = [];
-                    List<TextField> _wthFields = [];
-                    List<TextEditingController> _qtyControllers = [];
-                    List<TextField> _qtyFields = [];
+                final nos = TextEditingController();
+                final hgt = TextEditingController();
+                final len = TextEditingController();
+                final wth = TextEditingController();
+                final qty = TextEditingController();
 
-                    List<Container> _conFields = [];
-                    List<Container> _conFields1 = [];
+                final nosField = _generateTextFieldBr2(nos, 'Nos');
+                final hgtField = _generateTextFieldBr2(hgt, 'Hgt');
+                final lenField = _generateTextFieldBr2(len, 'Len');
+                final wthField = _generateTextFieldBr2(wth, 'Wth');
+                final qtyField = _generateTextFieldBr2(qty, 'Qty');
 
-                    final desc = TextEditingController();
-                    final descField = _generateBriefTextField(desc, "Description");
+                final con = _generateBreifContainer(
+                    nosField, hgtField, lenField, wthField, qtyField);
 
-                    final brief = TextEditingController();
-                    final briefField = _generateBriefTextField(brief, "Brief");
+                setState(() {
+                  _descriptionControllers.add(desc);
+                  _briefControllers.add(brief);
+                  _nosControllers.add(nos);
+                  _hgtControllers.add(hgt);
+                  _lenControllers.add(len);
+                  _wthControllers.add(wth);
+                  _qtyControllers.add(qty);
 
-                    final nos = TextEditingController();
-                    final hgt = TextEditingController();
-                    final len = TextEditingController();
-                    final wth = TextEditingController();
-                    final qty = TextEditingController();
+                  _descriptionFields.add(descField);
+                  _briefFields.add(briefField);
+                  _nosFields.add(nosField);
+                  _hgtFields.add(hgtField);
+                  _lenFields.add(lenField);
+                  _wthFields.add(wthField);
+                  _qtyFields.add(qtyField);
 
-                    final nosField = _generateTextFieldBr2(nos,'Nos');
-                    final hgtField = _generateTextFieldBr2(hgt,'Hgt');
-                    final lenField = _generateTextFieldBr2(len,'Len');
-                    final wthField = _generateTextFieldBr2(wth,'Wth');
-                    final qtyField = _generateTextFieldBr2(qty,'Qty');
+                  _conFields.add(con);
+                });
 
-                    final con = _generateBreifContainer(nosField, hgtField, lenField, wthField, qtyField);
-
-                    setState(() {
-                      _descriptionControllers.add(desc);
-                      _briefControllers.add(brief);
-                      _nosControllers.add(nos);
-                      _hgtControllers.add(hgt);
-                      _lenControllers.add(len);
-                      _wthControllers.add(wth);
-                      _qtyControllers.add(qty);
-
-                      _descriptionFields.add(descField);
-                      _briefFields.add(briefField);
-                      _nosFields.add(nosField);
-                      _hgtFields.add(hgtField);
-                      _lenFields.add(lenField);
-                      _wthFields.add(wthField);
-                      _qtyFields.add(qtyField);
-
-                      _conFields.add(con);
-
-                    });
-
-
-                    controllerMap[descField] = [desc,_briefControllers, _nosControllers,_hgtControllers, _lenControllers, _wthControllers, _qtyControllers];
-                    fieldMap[descField] = [_briefFields, _nosFields, _hgtFields, _lenFields, _wthFields, _qtyFields, _conFields];
-                  },
-                  style: TextButton.styleFrom(
-                      fixedSize: const Size(100, 50),
-                      foregroundColor: Colors.red,
-                      elevation: 2,
-                      backgroundColor: Colors.white),
-                  icon: Icon(Icons.add),
-                  label: Text('Add Details'),
-                ))
-          ]),
+                controllerMap[descField] = [
+                  desc,
+                  _briefControllers,
+                  _nosControllers,
+                  _hgtControllers,
+                  _lenControllers,
+                  _wthControllers,
+                  _qtyControllers
+                ];
+                fieldMap[descField] = [
+                  _briefFields,
+                  _nosFields,
+                  _hgtFields,
+                  _lenFields,
+                  _wthFields,
+                  _qtyFields,
+                  _conFields
+                ];
+              },
+              style: TextButton.styleFrom(
+                  fixedSize: const Size(100, 50),
+                  foregroundColor: Colors.red,
+                  elevation: 2,
+                  backgroundColor: Colors.white),
+              icon: Icon(Icons.add),
+              label: Text('Add Details'),
+            ))
+      ]),
       //title: Icon(Icons.add),
-      onTap: () {
-      },
+      onTap: () {},
     );
   }
 
@@ -775,8 +769,9 @@ class FifthState extends State<Fifth> {
     );
   }
 
-  TextField _generateBriefTextField(TextEditingController controller, String hint) {
-    return  TextField(
+  TextField _generateBriefTextField(
+      TextEditingController controller, String hint) {
+    return TextField(
       controller: controller,
       decoration: InputDecoration(
           prefixIcon: Icon(Icons.contact_page_outlined),
@@ -788,13 +783,12 @@ class FifthState extends State<Fifth> {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(0),
             borderSide: BorderSide.none,
-          )
-      ),
+          )),
     );
   }
 
-
-  TextField _generateTextFieldBr2(TextEditingController controller, String hint) {
+  TextField _generateTextFieldBr2(
+      TextEditingController controller, String hint) {
     return TextField(
       controller: controller,
       textAlign: TextAlign.center,
@@ -805,7 +799,8 @@ class FifthState extends State<Fifth> {
     );
   }
 
-  TextField _generateTextFieldDesc(TextEditingController controller, String hint) {
+  TextField _generateTextFieldDesc(
+      TextEditingController controller, String hint) {
     return TextField(
       controller: controller,
       textAlign: TextAlign.center,
@@ -816,37 +811,41 @@ class FifthState extends State<Fifth> {
     );
   }
 
-  Container _generateBreifContainer(TextField Nos, TextField Hgt, TextField Len, TextField Wth, TextField Qty){
-
+  Container _generateBreifContainer(TextField Nos, TextField Hgt, TextField Len,
+      TextField Wth, TextField Qty) {
     return Container(
         margin: EdgeInsets.only(top: 0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly, // use whichever suits your need
+          mainAxisAlignment:
+              MainAxisAlignment.spaceEvenly, // use whichever suits your need
           children: <Widget>[
-            Expanded(child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-              child: Nos
-            )),
-            Expanded(child: Padding(
+            Expanded(
+                child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+                    child: Nos)),
+            Expanded(
+                child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
               child: Hgt,
             )),
-            Expanded(child: Padding(
+            Expanded(
+                child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
               child: Len,
             )),
-            Expanded(child: Padding(
+            Expanded(
+                child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
               child: Wth,
             )),
-            Expanded(child: Padding(
+            Expanded(
+                child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
               child: Qty,
             )),
           ],
         ));
   }
-
 
   Widget _listView() {
     final children = [
@@ -879,48 +878,49 @@ class FifthState extends State<Fifth> {
     );
   }
 
-
   Widget _listViewfinal() {
-
-    fieldMap.forEach((k,v) => print(v[0].length));
+    fieldMap.forEach((k, v) => print(v[0].length));
 
     List<Widget> list = <Widget>[];
-    fieldMap.forEach((k,v) {
-
+    fieldMap.forEach((k, v) {
       list.add(Container(
         margin: EdgeInsets.only(left: 25, right: 25),
         child: InputDecorator(
           child: Column(
             children: [
               k,
-              SizedBox(height: 3,),
-              for(var i = 0; i < v[0].length; i++)
-                Column(children: [
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                          child:v[0][i],
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              color: Colors.red.shade300,
-                              borderRadius: BorderRadius.only(topRight: Radius.circular(2), bottomRight: Radius.circular(2))
-                          ),
-                          child: _deleteBrief1(k, i),
-                        )
-                      ],
-                    ),
-                  v[6][i],
-              ]
+              SizedBox(
+                height: 3,
               ),
+              for (var i = 0; i < v[0].length; i++)
+                Column(children: [
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: v[0][i],
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.red.shade300,
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(2),
+                                bottomRight: Radius.circular(2))),
+                        child: _deleteBrief1(k, i),
+                      )
+                    ],
+                  ),
+                  v[6][i],
+                ]),
               // _addBrief(k, v[0].length+1),
               //   //_conFields[i]
               // _deleteDetail(k),
 
               Row(
                 children: <Widget>[
-                  Expanded(child:_addBrief(k, v[0].length+1)),
-                  SizedBox(width: 50,),
+                  Expanded(child: _addBrief(k, v[0].length + 1)),
+                  SizedBox(
+                    width: 50,
+                  ),
                   Expanded(child: _deleteDetail(k)),
                 ],
               ),
@@ -931,10 +931,7 @@ class FifthState extends State<Fifth> {
           ),
         ),
       ));
-
     });
-
-
 
     final children = [
       // fieldMap.forEach((k,v) =>
@@ -967,9 +964,9 @@ class FifthState extends State<Fifth> {
     // ));
     return SingleChildScrollView(
         child: ListView(
-        physics: NeverScrollableScrollPhysics(),
-    shrinkWrap: true, // Only if you have layout issue
-    children: list,
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true, // Only if you have layout issue
+      children: list,
     ));
   }
 
@@ -980,9 +977,7 @@ class FifthState extends State<Fifth> {
           margin: EdgeInsets.only(left: 25, right: 25),
           child: InputDecorator(
             child: Column(
-              children: [
-                _conFields1[i]
-              ],
+              children: [_conFields1[i]],
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
@@ -997,10 +992,9 @@ class FifthState extends State<Fifth> {
     );
   }
 
-
   final _okController = TextEditingController();
 
-  Widget _okButton1(BuildContext context){
+  Widget _okButton1(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -1009,13 +1003,11 @@ class FifthState extends State<Fifth> {
           height: 45,
           child: ElevatedButton.icon(
             onPressed: () {
-
-
               String desc = "";
-              List a = [],b = [],c = [],d = [],e = [],f = [];
+              List a = [], b = [], c = [], d = [], e = [], f = [];
 
               controllerMap.forEach((key, v) {
-                for (int i = 0; i<v[1].length;i++){
+                for (int i = 0; i < v[1].length; i++) {
                   print("=======");
                   print(i);
                   print(v[0].text);
@@ -1045,16 +1037,15 @@ class FifthState extends State<Fifth> {
                 controllerMapInvoice[key] = [desc, a, b, c, e, f];
               });
 
-
               titleMap[_titleController.text] = controllerMapInvoice;
 
               box1.put("billvalue", titleMap);
 
               showDialog(
                 context: context,
-                builder: (BuildContext context) =>  _buildPopupDialogCreated(context),
+                builder: (BuildContext context) =>
+                    _buildPopupDialogCreated(context),
               );
-
             },
             icon: Icon(
               Icons.format_align_justify_sharp,
@@ -1066,9 +1057,8 @@ class FifthState extends State<Fifth> {
             ), //label text
             style: ElevatedButton.styleFrom(
                 side: BorderSide(width: 2, color: Colors.redAccent),
-                primary:
-                Colors.white //elevated btton background color
-            ),
+                primary: Colors.white //elevated btton background color
+                ),
           ),
         ),
         SizedBox(
@@ -1079,12 +1069,11 @@ class FifthState extends State<Fifth> {
           height: 45,
           child: ElevatedButton.icon(
             onPressed: () {
-
               String desc = "";
-              List a = [],b = [],c = [],d = [],e = [],f = [];
+              List a = [], b = [], c = [], d = [], e = [], f = [];
 
               controllerMap.forEach((key, v) {
-                for (int i = 0; i<v[1].length;i++){
+                for (int i = 0; i < v[1].length; i++) {
                   print("=======");
                   print(i);
                   print(v[0].text);
@@ -1114,7 +1103,6 @@ class FifthState extends State<Fifth> {
                 controllerMapInvoice[key] = [desc, a, b, c, e, f];
               });
 
-
               titleMap[_titleController.text] = controllerMapInvoice;
 
               box1.put("billvalue", titleMap);
@@ -1123,15 +1111,12 @@ class FifthState extends State<Fifth> {
                 builder: (BuildContext context) => _buildPopupDialog(context),
               );
 
-
               // Navigator.push(
               //   context,
               //   MaterialPageRoute(
               //     builder: (context) => sixth(),
               //   ),
               // );
-
-
             },
             icon: Icon(
               Icons.save,
@@ -1143,9 +1128,8 @@ class FifthState extends State<Fifth> {
             ), //label text
             style: ElevatedButton.styleFrom(
                 side: BorderSide(width: 2, color: Colors.redAccent),
-                primary:
-                Colors.white //elevated btton background color
-            ),
+                primary: Colors.white //elevated btton background color
+                ),
           ),
         ),
         SizedBox(
@@ -1155,23 +1139,27 @@ class FifthState extends State<Fifth> {
     );
   }
 
-
   Widget _buildPopupDialog(BuildContext context) {
     return new AlertDialog(
-      title: const Text('Bill Details Saved Succussfully', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),),
+      title: const Text(
+        'Bill Details Saved Succussfully',
+        style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+      ),
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[Center(child:
-        Text("Please enter details for next title in create bill"),)
-
+        children: <Widget>[
+          Center(
+            child: Text("Please enter details for next title in create bill"),
+          )
         ],
       ),
       actions: <Widget>[
         new TextButton(
           onPressed: () {
             Navigator.of(context).pop();
-            Navigator.pushReplacement(context,
+            Navigator.pushReplacement(
+              context,
               MaterialPageRoute(
                 builder: (context) => Fifth(),
               ),
@@ -1183,25 +1171,29 @@ class FifthState extends State<Fifth> {
     );
   }
 
-
   Widget _buildPopupDialogCreated(BuildContext context) {
     return new AlertDialog(
-      title: const Text('Bill Created Succussfully', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),),
+      title: const Text(
+        'Bill Created Succussfully',
+        style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+      ),
       content: new Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[Center(child:
-        Text("Bill details are saved and bill created successfully"),)
-
+        children: <Widget>[
+          Center(
+            child: Text("Bill details are saved and bill created successfully"),
+          )
         ],
       ),
       actions: <Widget>[
         new TextButton(
           onPressed: () {
             Navigator.of(context).pop();
-            Navigator.pushReplacement(context,
+            Navigator.pushReplacement(
+              context,
               MaterialPageRoute(
-                builder: (context) => CreateBillInvoice(),
+                builder: (context) => PdfPage(),
               ),
             );
           },
@@ -1229,7 +1221,7 @@ class FifthState extends State<Fifth> {
             "len: ${_lenControllers[index].text}\n" +
             "wth: ${_wthControllers[index].text}\n" +
             "qty: ${_qtyControllers[index].text}";
-       // await showMessage(context, text, "Result");
+        // await showMessage(context, text, "Result");
       },
       child: Text("OK"),
     );
@@ -1248,7 +1240,6 @@ class FifthState extends State<Fifth> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -1259,22 +1250,25 @@ class FifthState extends State<Fifth> {
           ),
           body: Column(
             children: [
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               _firstTitle(),
-              Expanded(child: ListView(
-                shrinkWrap: true,
-                  children: [Column(
-                children: [
-                  //_listView1(),
-                  //_listView(),
-                  _listViewfinal(),_addDetails()
-                ],
-              )])),
+              Expanded(
+                  child: ListView(shrinkWrap: true, children: [
+                Column(
+                  children: [
+                    //_listView1(),
+                    //_listView(),
+                    _listViewfinal(), _addDetails()
+                  ],
+                )
+              ])),
               //Expanded(child: _listView()),
               //_addTile(),
               _okButton1(context),
             ],
-          )), 
+          )),
     );
   }
 }
