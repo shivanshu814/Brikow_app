@@ -31,10 +31,6 @@ class _PdfPageState extends State<PdfPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                // TitleWidget(
-                //   icon: Icons.picture_as_pdf,
-                //   text: 'Generate Invoice',
-                // ),
                 Icon(Icons.picture_as_pdf, size: 150, color: Colors.red),
                 SizedBox(
                   height: 5,
@@ -56,10 +52,6 @@ class _PdfPageState extends State<PdfPage> {
                         address: 'Greater Noida, Uttar Pradesh',
                         paymentInfo: '',
                       ),
-                      // customer: Customer(
-                      //   name: 'Brikow',
-                      //   address: 'Noida, Uttar Pradesh',
-                      // ),
                       info: InvoiceInfo(
                         date: date,
                         dueDate: dueDate,
@@ -95,27 +87,6 @@ class _PdfPageState extends State<PdfPage> {
                           vat: 0,
                           unitPrice: 90,
                         ),
-                        // InvoiceItem(
-                        //   description: 'Mango',
-                        //   date: DateTime.now(),
-                        //   quantity: 1,
-                        //   vat: 0.19,
-                        //   unitPrice: 1.59,
-                        // ),
-                        // InvoiceItem(
-                        //   description: 'Blue Berries',
-                        //   date: DateTime.now(),
-                        //   quantity: 5,
-                        //   vat: 0.19,
-                        //   unitPrice: 0.99,
-                        // ),
-                        // InvoiceItem(
-                        //   description: 'Lemon',
-                        //   date: DateTime.now(),
-                        //   quantity: 4,
-                        //   vat: 0.19,
-                        //   unitPrice: 1.29,
-                        // ),
                       ],
                     );
 
@@ -135,14 +106,10 @@ class _PdfPageState extends State<PdfPage> {
 
                     final invoice = Invoice(
                       supplier: Supplier(
-                        name: 'name',
-                        address: 'Sarah Street 9, Beijing, China',
-                        paymentInfo: 'https://paypal.me/sarahfieldzz',
+                        name: 'Shivanshu Pathak',
+                        address: 'Greater Noida, Uttar Pradesh',
+                        paymentInfo: '',
                       ),
-                      // customer: Customer(
-                      //   name: 'Apple Inc.',
-                      //   address: 'Apple Street, Cupertino, CA 95014',
-                      // ),
                       info: InvoiceInfo(
                         date: date,
                         dueDate: dueDate,
@@ -151,53 +118,32 @@ class _PdfPageState extends State<PdfPage> {
                       ),
                       items: [
                         InvoiceItem(
-                          description: 'Coffee',
-                          date: DateTime.now(),
-                          quantity: 3,
-                          vat: 0.19,
-                          unitPrice: 5.99,
-                        ),
-                        InvoiceItem(
-                          description: 'Water',
-                          date: DateTime.now(),
-                          quantity: 8,
-                          vat: 0.19,
-                          unitPrice: 0.99,
-                        ),
-                        InvoiceItem(
-                          description: 'Orange',
-                          date: DateTime.now(),
-                          quantity: 3,
-                          vat: 0.19,
-                          unitPrice: 2.99,
-                        ),
-                        InvoiceItem(
-                          description: 'Apple',
-                          date: DateTime.now(),
-                          quantity: 8,
-                          vat: 0.19,
-                          unitPrice: 3.99,
-                        ),
-                        InvoiceItem(
-                          description: 'Mango',
+                          description: 'Layout',
                           date: DateTime.now(),
                           quantity: 1,
-                          vat: 0.19,
-                          unitPrice: 1.59,
+                          vat: 0,
+                          unitPrice: 50,
                         ),
                         InvoiceItem(
-                          description: 'Blue Berries',
+                          description: 'Excavation',
                           date: DateTime.now(),
-                          quantity: 5,
-                          vat: 0.19,
-                          unitPrice: 0.99,
+                          quantity: 3,
+                          vat: 0,
+                          unitPrice: 20,
                         ),
                         InvoiceItem(
-                          description: 'Lemon',
+                          description: 'PCC',
                           date: DateTime.now(),
-                          quantity: 4,
-                          vat: 0.19,
-                          unitPrice: 1.29,
+                          quantity: 2,
+                          vat: 0,
+                          unitPrice: 10,
+                        ),
+                        InvoiceItem(
+                          description: 'Reinforcement With Tools',
+                          date: DateTime.now(),
+                          quantity: 1,
+                          vat: 0,
+                          unitPrice: 90,
                         ),
                       ],
                     );
@@ -218,14 +164,10 @@ class _PdfPageState extends State<PdfPage> {
 
                     final invoice = Invoice(
                       supplier: Supplier(
-                        name: 'name',
-                        address: 'Sarah Street 9, Beijing, China',
-                        paymentInfo: 'https://paypal.me/sarahfieldzz',
+                        name: 'Shivanshu Pathak',
+                        address: 'Greater Noida, Uttar Pradesh',
+                        paymentInfo: '',
                       ),
-                      // customer: Customer(
-                      //   name: 'Apple Inc.',
-                      //   address: 'Apple Street, Cupertino, CA 95014',
-                      // ),
                       info: InvoiceInfo(
                         date: date,
                         dueDate: dueDate,
@@ -234,53 +176,32 @@ class _PdfPageState extends State<PdfPage> {
                       ),
                       items: [
                         InvoiceItem(
-                          description: 'Coffee',
-                          date: DateTime.now(),
-                          quantity: 3,
-                          vat: 0.19,
-                          unitPrice: 5.99,
-                        ),
-                        InvoiceItem(
-                          description: 'Water',
-                          date: DateTime.now(),
-                          quantity: 8,
-                          vat: 0.19,
-                          unitPrice: 0.99,
-                        ),
-                        InvoiceItem(
-                          description: 'Orange',
-                          date: DateTime.now(),
-                          quantity: 3,
-                          vat: 0.19,
-                          unitPrice: 2.99,
-                        ),
-                        InvoiceItem(
-                          description: 'Apple',
-                          date: DateTime.now(),
-                          quantity: 8,
-                          vat: 0.19,
-                          unitPrice: 3.99,
-                        ),
-                        InvoiceItem(
-                          description: 'Mango',
+                          description: 'Layout',
                           date: DateTime.now(),
                           quantity: 1,
-                          vat: 0.19,
-                          unitPrice: 1.59,
+                          vat: 0,
+                          unitPrice: 50,
                         ),
                         InvoiceItem(
-                          description: 'Blue Berries',
+                          description: 'Excavation',
                           date: DateTime.now(),
-                          quantity: 5,
-                          vat: 0.19,
-                          unitPrice: 0.99,
+                          quantity: 3,
+                          vat: 0,
+                          unitPrice: 20,
                         ),
                         InvoiceItem(
-                          description: 'Lemon',
+                          description: 'PCC',
                           date: DateTime.now(),
-                          quantity: 4,
-                          vat: 0.19,
-                          unitPrice: 1.29,
+                          quantity: 2,
+                          vat: 0,
+                          unitPrice: 10,
+                        ),
+                        InvoiceItem(
+                          description: 'Reinforcement With Tools',
+                          date: DateTime.now(),
+                          quantity: 1,
+                          vat: 0,
+                          unitPrice: 90,
                         ),
                       ],
                     );

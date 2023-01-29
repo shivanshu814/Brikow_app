@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'dart:typed_data';
+import 'package:flutter/services.dart';
 import 'package:phone_otp_ui/api/pdf_api.dart';
 import 'package:phone_otp_ui/model/customer.dart';
 import 'package:phone_otp_ui/model/invoice.dart';
@@ -11,7 +13,8 @@ import 'package:pdf/widgets.dart';
 class PdfInvoiceApi {
   static Future<File> generate(Invoice invoice) async {
     final pdf = Document();
-
+    final ByteData bytes = await rootBundle.load('images/logo3.png');
+    final Uint8List byteList = bytes.buffer.asUint8List();
     pdf.addPage(MultiPage(
       build: (context) => [
         buildHeader(invoice),
@@ -178,19 +181,19 @@ class PdfInvoiceApi {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                buildText(
-                  title: 'Net total',
-                  value: Utils.formatPrice(netTotal),
-                  unite: true,
-                ),
+                // buildText(
+                //   title: 'Net total',
+                //   value: Utils.formatPrice(netTotal),
+                //   unite: true,
+                // ),
                 Divider(),
                 buildText(
-                  title: 'Total amount due',
+                  title: 'Total amount',
                   titleStyle: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
-                  value: Utils.formatPrice(total),
+                  value: Utils.formatPrice(netTotal),
                   unite: true,
                 ),
                 SizedBox(height: 2 * PdfPageFormat.mm),
