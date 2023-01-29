@@ -17,11 +17,11 @@ class FifthState extends State<Fifth> {
 
 
   Map<TextField, List> controllerMap = {};
-  Map<TextField, List> controllerMapInvoice = {};
+  Map<String, List> controllerMapInvoice = {};
   Map<String, Map> titleMap  = {};
   Map<TextField, List> fieldMap = {};
 
-  TextEditingController _titleController = TextEditingController();
+  final TextEditingController _titleController = new TextEditingController();
 
 
   List<TextEditingController> _descriptionControllers = [];
@@ -305,6 +305,7 @@ class FifthState extends State<Fifth> {
                 ),
                 Expanded(
                   child: TextField(
+                    controller: _titleController,
                     keyboardType: TextInputType.name,
                     decoration: InputDecoration(
                       border: InputBorder.none,
@@ -556,7 +557,7 @@ class FifthState extends State<Fifth> {
                       foregroundColor: Colors.white,
                       elevation: 2,
                       backgroundColor: Colors.blueGrey),
-                  icon: Icon(Icons.remove),
+                  icon: Icon(Icons.delete),
                   label: Text('Delete Detail'),
                 ));
   }
@@ -1042,11 +1043,14 @@ class FifthState extends State<Fifth> {
                   print("=========");
                 }
 
-                controllerMapInvoice[key] = [desc, a, b, c, e, f];
+                controllerMapInvoice[key.toString()] = [desc, a, b, c, e, f];
               });
 
 
+              print(_titleController.text);
               titleMap[_titleController.text] = controllerMapInvoice;
+
+              print(titleMap);
 
               box1.put("billvalue", titleMap);
 
@@ -1088,7 +1092,7 @@ class FifthState extends State<Fifth> {
                   print("=======");
                   print(i);
                   print(v[0].text);
-                  desc = v[0].text;
+                  desc = v[0].toString();
 
                   print(v[1][i].text);
                   a.add(v[1][i].text);
@@ -1111,7 +1115,7 @@ class FifthState extends State<Fifth> {
                   print("=========");
                 }
 
-                controllerMapInvoice[key] = [desc, a, b, c, e, f];
+                controllerMapInvoice[key.toString()] = [desc, a, b, c, e, f];
               });
 
 
@@ -1198,6 +1202,7 @@ class FifthState extends State<Fifth> {
       actions: <Widget>[
         new TextButton(
           onPressed: () {
+            print(box1.get("billvalue"));
             Navigator.of(context).pop();
             Navigator.pushReplacement(context,
               MaterialPageRoute(
