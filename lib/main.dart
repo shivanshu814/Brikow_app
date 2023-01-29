@@ -4,10 +4,12 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:phone_otp_ui/fifth.dart';
 import 'package:phone_otp_ui/fourth.dart';
 import 'package:phone_otp_ui/myverify.dart';
+import 'package:phone_otp_ui/page/pdf_page.dart';
 import 'package:phone_otp_ui/phone.dart';
 import 'package:phone_otp_ui/sign_up.dart';
 import 'package:phone_otp_ui/sixth.dart';
@@ -26,6 +28,12 @@ import 'landing.dart';
 late Box box1;
 
 Future<void> main() async {
+  const String title = 'Invoice';
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   await Hive.initFlutter();
   box1 = await Hive.openBox('logindata');
   apicall();
@@ -50,7 +58,8 @@ Future<void> main() async {
         'sixth': (context) => sixth(),
         'myverify': (context) => Verify(),
         'landing': (context) => Landing(),
-        'start': (context) => SplashScreenPage()
+        'start': (context) => SplashScreenPage(),
+        'pdf_page': (context) => PdfPage()
       },
     ),
   );
@@ -79,5 +88,14 @@ void apicall() {
     }
   }
 }
-
 //void setState(Null Function() param0) {}
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) => MaterialApp(
+//         debugShowCheckedModeBanner: false,
+//         title: title,
+//         theme: ThemeData(primarySwatch: Colors.deepOrange),
+//         home: PdfPage(),
+//       );
+// }

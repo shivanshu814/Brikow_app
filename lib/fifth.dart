@@ -1,13 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, deprecated_member_use, duplicate_ignore
 
 import 'package:flutter/material.dart';
+import 'package:phone_otp_ui/page/pdf_page.dart';
 import 'package:phone_otp_ui/sixth.dart';
 
 import 'main.dart';
 
 class fifth extends StatelessWidget {
   const fifth({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -306,11 +306,10 @@ class fifth extends StatelessWidget {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             side: BorderSide(width: 2, color: Colors.redAccent),
-                            primary: Colors.white //elevated btton background color
-                        ),
-                        onPressed: (){
-
-                        },
+                            primary:
+                                Colors.white //elevated btton background color
+                            ),
+                        onPressed: () {},
                         child: const Text(
                           'Add Brief',
                           style: TextStyle(color: Colors.red, fontSize: 16),
@@ -344,7 +343,8 @@ class fifth extends StatelessWidget {
                       ), //label text
                       style: ElevatedButton.styleFrom(
                           side: BorderSide(width: 2, color: Colors.redAccent),
-                          primary: Colors.white //elevated btton background color
+                          primary:
+                              Colors.white //elevated btton background color
                           ),
                     ),
                   ),
@@ -357,209 +357,205 @@ class fifth extends StatelessWidget {
                 height: 20,
                 width: 30,
               ),
-
               Visibility(
                 visible: true,
                 child: Column(
                   children: [
                     Container(
-                width: 345.0,
-                height: 55,
-                color: Colors.grey.shade300,
-                // ignore: duplicate_ignore
-                child: Row(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  // ignore: prefer_const_literals_to_create_immutables
-                  children: [
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Icon(Icons.contact_page_outlined),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: TextField(
-                        keyboardType: TextInputType.multiline,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "   Brief",
-                        ),
+                      width: 345.0,
+                      height: 55,
+                      color: Colors.grey.shade300,
+                      // ignore: duplicate_ignore
+                      child: Row(
+                        // mainAxisAlignment: MainAxisAlignment.center,
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: [
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Icon(Icons.contact_page_outlined),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: TextField(
+                              keyboardType: TextInputType.multiline,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "   Brief",
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          width: 40.0,
+                          height: 35,
+                          color: Colors.grey.shade300,
+                          child: Row(
+                            // mainAxisAlignment: MainAxisAlignment.center,
+                            // ignore: prefer_const_literals_to_create_immutables
+                            children: [
+                              SizedBox(
+                                width: 1,
+                              ),
+                              Icon(
+                                Icons.contact_page_outlined,
+                                size: 0,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: TextField(
+                                  style: TextStyle(fontSize: 12),
+                                  keyboardType: TextInputType.phone,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: "  Nos",
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: 50.0,
+                          height: 35,
+                          color: Colors.grey.shade300,
+                          child: Row(
+                            // mainAxisAlignment: MainAxisAlignment.center,
+                            // ignore: prefer_const_literals_to_create_immutables
+                            children: [
+                              SizedBox(
+                                width: 1,
+                              ),
+                              Icon(
+                                Icons.contact_page_outlined,
+                                size: 0,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: TextField(
+                                  style: TextStyle(fontSize: 12),
+                                  keyboardType: TextInputType.phone,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: "  Length",
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          color: Colors.grey.shade300,
+                          width: 50.0,
+                          height: 35,
+                          child: Row(
+                            // mainAxisAlignment: MainAxisAlignment.center,
+                            // ignore: prefer_const_literals_to_create_immutables
+                            children: [
+                              SizedBox(
+                                width: 2,
+                              ),
+                              Icon(
+                                Icons.contact_page_outlined,
+                                size: 0,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: TextField(
+                                  style: TextStyle(fontSize: 12),
+                                  keyboardType: TextInputType.phone,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: "  Width",
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          color: Colors.grey.shade300,
+                          width: 50.0,
+                          height: 35,
+                          child: Row(
+                            // mainAxisAlignment: MainAxisAlignment.center,
+                            // ignore: prefer_const_literals_to_create_immutables
+                            children: [
+                              SizedBox(
+                                width: 2,
+                              ),
+                              Icon(
+                                Icons.contact_page_outlined,
+                                size: 0,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: TextField(
+                                  style: TextStyle(fontSize: 12),
+                                  keyboardType: TextInputType.phone,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: "  Height",
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          color: Colors.grey.shade300,
+                          width: 70.0,
+                          height: 35,
+                          child: Row(
+                            // mainAxisAlignment: MainAxisAlignment.center,
+                            // ignore: prefer_const_literals_to_create_immutables
+                            children: [
+                              SizedBox(
+                                width: 2,
+                              ),
+                              Icon(Icons.arrow_drop_down_sharp),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                child: TextField(
+                                  style: TextStyle(fontSize: 12),
+                                  keyboardType: TextInputType.phone,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: "  Unit",
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
-
-              SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    width: 40.0,
-                    height: 35,
-                    color: Colors.grey.shade300,
-                    child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      // ignore: prefer_const_literals_to_create_immutables
-                      children: [
-                        SizedBox(
-                          width: 1,
-                        ),
-                        Icon(
-                          Icons.contact_page_outlined,
-                          size: 0,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: TextField(
-                            style: TextStyle(fontSize: 12),
-                            keyboardType: TextInputType.phone,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "  Nos",
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: 50.0,
-                    height: 35,
-                    color: Colors.grey.shade300,
-                    child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      // ignore: prefer_const_literals_to_create_immutables
-                      children: [
-                        SizedBox(
-                          width: 1,
-                        ),
-                        Icon(
-                          Icons.contact_page_outlined,
-                          size: 0,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: TextField(
-                            style: TextStyle(fontSize: 12),
-                            keyboardType: TextInputType.phone,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "  Length",
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    color: Colors.grey.shade300,
-                    width: 50.0,
-                    height: 35,
-                    child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      // ignore: prefer_const_literals_to_create_immutables
-                      children: [
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Icon(
-                          Icons.contact_page_outlined,
-                          size: 0,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: TextField(
-                            style: TextStyle(fontSize: 12),
-                            keyboardType: TextInputType.phone,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "  Width",
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    color: Colors.grey.shade300,
-                    width: 50.0,
-                    height: 35,
-                    child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      // ignore: prefer_const_literals_to_create_immutables
-                      children: [
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Icon(
-                          Icons.contact_page_outlined,
-                          size: 0,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: TextField(
-                            style: TextStyle(fontSize: 12),
-                            keyboardType: TextInputType.phone,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "  Height",
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    color: Colors.grey.shade300,
-                    width: 70.0,
-                    height: 35,
-                    child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      // ignore: prefer_const_literals_to_create_immutables
-                      children: [
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Icon(Icons.arrow_drop_down_sharp),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          child: TextField(
-                            style: TextStyle(fontSize: 12),
-                            keyboardType: TextInputType.phone,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "  Unit",
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),],
-                ),),
-
               SizedBox(
                 height: 80,
                 width: 30,
               ),
-
-
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -571,7 +567,7 @@ class fifth extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => sixth(),
+                            builder: (context) => PdfPage(),
                           ),
                         );
                       },
@@ -631,5 +627,4 @@ class fifth extends StatelessWidget {
       ),
     );
   }
-
 }
