@@ -10,7 +10,7 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf/widgets.dart';
 
-class PdfInvoiceApi {
+class PdfInvoiceApi1 {
   static Future<File> generate(Invoice invoice) async {
     final pdf = Document();
     final ByteData bytes = await rootBundle.load('images/logo3.png');
@@ -31,57 +31,57 @@ class PdfInvoiceApi {
   }
 
   static Widget buildHeader(Invoice invoice) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(children: [
-                Text(
-                  'Brikow',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.normal),
-                ),
-                Text(
-                  'Contractor Designing',
-                  style: TextStyle(fontSize: 10),
-                ),
-              ]),
-              SizedBox(width: 15),
-              Text(
-                'INVOICE',
-                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 1 * PdfPageFormat.cm),
-            ],
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              buildSupplierAddress(invoice.supplier),
-            ],
+          Column(children: [
+            Text(
+              'Brikow',
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.normal),
+            ),
+            Text(
+              'Contractor Designing',
+              style: TextStyle(fontSize: 10),
+            ),
+          ]),
+          SizedBox(width: 15),
+          Text(
+            'INVOICE',
+            style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 1 * PdfPageFormat.cm),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              // buildCustomerAddress(invoice.customer),
-              buildInvoiceInfo(invoice.info),
-            ],
-          ),
         ],
-      );
+      ),
+      SizedBox(
+        height: 15,
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          buildSupplierAddress(invoice.supplier),
+        ],
+      ),
+      SizedBox(height: 1 * PdfPageFormat.cm),
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          // buildCustomerAddress(invoice.customer),
+          buildInvoiceInfo(invoice.info),
+        ],
+      ),
+    ],
+  );
 
   static Widget buildCustomerAddress(Customer customer) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(customer.name, style: TextStyle(fontWeight: FontWeight.bold)),
-          Text(customer.address),
-        ],
-      );
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(customer.name, style: TextStyle(fontWeight: FontWeight.bold)),
+      Text(customer.address),
+    ],
+  );
 
   static Widget buildInvoiceInfo(InvoiceInfo info) {
     final paymentTerms = '${info.dueDate.difference(info.date).inDays} days';
@@ -110,38 +110,42 @@ class PdfInvoiceApi {
   }
 
   static Widget buildSupplierAddress(Supplier supplier) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(supplier.name, style: TextStyle(fontWeight: FontWeight.bold)),
-          SizedBox(height: 1 * PdfPageFormat.mm),
-          Text(supplier.address),
-        ],
-      );
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(supplier.name, style: TextStyle(fontWeight: FontWeight.bold)),
+      SizedBox(height: 1 * PdfPageFormat.mm),
+      Text(supplier.address),
+    ],
+  );
 
   static Widget buildTitle(Invoice invoice) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Text(
-          //   'INVOICE',
-          //   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          // ),
-          SizedBox(height: 0.8 * PdfPageFormat.cm),
-          Text(invoice.info.description),
-          SizedBox(height: 0.8 * PdfPageFormat.cm),
-        ],
-      );
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      // Text(
+      //   'INVOICE',
+      //   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      // ),
+      SizedBox(height: 0.8 * PdfPageFormat.cm),
+      Text(invoice.info.description),
+      SizedBox(height: 0.8 * PdfPageFormat.cm),
+    ],
+  );
 
   static Widget buildInvoice(Invoice invoice) {
-    final headers = ['Description', 'Date', 'Quantity', 'Unit Price', 'Total'];
-    final data = invoice.items.map((item) {
-      final total = item.unitPrice * item.quantity * (1 + item.vat);
+    final headers = ['Description', 'Unit', 'NOS', 'L', 'W', 'H', 'Quantity'];
+    final data = invoice.items1.map((item) {
+      //final total = item.unitPrice * item.quantity * (1 + item.vat);
+      final total = 100;
 
       return [
         item.description,
-        Utils.formatDate(item.date),
-        '${item.quantity}',
-        '\$ ${item.unitPrice}',
-        '\$ ${total.toStringAsFixed(2)}',
+        item.unit,
+        item.NOS,
+        item.L,
+        item.W,
+        item.H,
+        item.quantity,
+        //'\$ ${total.toStringAsFixed(2)}',
       ];
     }).toList();
 
@@ -160,17 +164,16 @@ class PdfInvoiceApi {
         3: Alignment.centerRight,
         4: Alignment.centerRight,
         5: Alignment.centerRight,
+        6: Alignment.centerRight,
       },
     );
   }
 
   static Widget buildTotal(Invoice invoice) {
-    final netTotal = invoice.items
-        .map((item) => item.unitPrice * item.quantity)
-        .reduce((item1, item2) => item1 + item2);
-    final vatPercent = invoice.items.first.vat;
-    final vat = netTotal * vatPercent;
-    final total = netTotal + vat;
+    final netTotal = 2.0;
+    final vatPercent = 10;
+    final vat = 20;
+    final total = 20;
 
     return Container(
       alignment: Alignment.centerRight,
@@ -210,17 +213,17 @@ class PdfInvoiceApi {
   }
 
   static Widget buildFooter(Invoice invoice) => Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Divider(),
-          SizedBox(height: 2 * PdfPageFormat.mm),
-          buildSimpleText(title: 'Address', value: invoice.supplier.address),
-          SizedBox(height: 1 * PdfPageFormat.mm),
-          buildSimpleText(
-              title: 'Thank you for Your Bussiness',
-              value: invoice.supplier.paymentInfo),
-        ],
-      );
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      Divider(),
+      SizedBox(height: 2 * PdfPageFormat.mm),
+      buildSimpleText(title: 'Address', value: invoice.supplier.address),
+      SizedBox(height: 1 * PdfPageFormat.mm),
+      buildSimpleText(
+          title: 'Thank you for Your Bussiness',
+          value: invoice.supplier.paymentInfo),
+    ],
+  );
 
   static buildSimpleText({
     required String title,

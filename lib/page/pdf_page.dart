@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:phone_otp_ui/api/pdf_api.dart';
 import 'package:phone_otp_ui/api/pdf_invoice_api.dart';
 import 'package:phone_otp_ui/main.dart';
@@ -8,12 +9,105 @@ import 'package:phone_otp_ui/model/supplier.dart';
 import 'package:phone_otp_ui/widget/button_widget.dart';
 import 'package:phone_otp_ui/widget/title_widget.dart';
 
+import '../api/pdf_invoice_api1.dart';
+
 class PdfPage extends StatefulWidget {
   @override
   _PdfPageState createState() => _PdfPageState();
 }
 
 class _PdfPageState extends State<PdfPage> {
+
+
+  Box? box1;
+  Box? box2;
+  late String keyab;
+  Map<String, Map> titleMap = {};
+  Map<String, Map> finalMap = {};
+
+  List<InvoiceItem1> list = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    createBox();
+
+
+
+  }
+
+  void createBox() async {
+    box1 = await Hive.openBox('bill');
+    box2 = await Hive.openBox('logindata');
+    print(" ==========");
+    setState(() {
+      titleMap = box1?.get("billvalue");
+      print(titleMap);
+
+      titleMap.forEach((key, value) {
+        keyab=key.toString();
+        value.forEach((key1, value1) {
+          for (var i = 0; i < value1[1].length; i++)
+          {
+            if(i==0){
+              list.add(
+                InvoiceItem1(
+                  description: value1[0],
+                  unit: "",
+                  NOS: "",
+                  L: "",
+                  W: "",
+                  H: "",
+                  quantity: "",
+                ),
+              );
+              list.add(
+                InvoiceItem1(
+                  description: value1[1][i],
+                  unit: "SQM",
+                  NOS: value1[2][i],
+                  L: value1[3][i],
+                  W: value1[4][i],
+                  H: value1[5][i],
+                  quantity: value1[5][i],
+                ),
+              );
+
+            }else{
+              list.add(
+                InvoiceItem1(
+                  description: value1[1][i],
+                  unit: "SQM",
+                  NOS: value1[2][i],
+                  L: value1[3][i],
+                  W: value1[4][i],
+                  H: value1[5][i],
+                  quantity: value1[5][i],
+                ),
+              );
+            }
+            print(value1[1][i]);
+            print(value1[1][i]);
+            print(value1[2][i]);
+            print(value1[3][i]);
+            print(value1[4][i]);
+
+
+          }
+
+        });
+
+      });
+
+      // box1?.get("billvalue").forEach((k,v) {
+      //   titleMap = k;
+      // });
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: Colors.white,
@@ -46,51 +140,55 @@ class _PdfPageState extends State<PdfPage> {
                     final date = DateTime.now();
                     final dueDate = date.add(Duration(days: 7));
 
+
+
                     final invoice = Invoice(
                       supplier: Supplier(
-                        name: 'Shivanshu Pathak',
-                        address: 'Greater Noida, Uttar Pradesh',
+                        name: 'Name',
+                        address: 'Address',
                         paymentInfo: '',
                       ),
                       info: InvoiceInfo(
                         date: date,
                         dueDate: dueDate,
-                        description: 'My description...',
+                        description: keyab,
                         number: '${DateTime.now().year}-9999',
+                        //number: box2?.get("phone")
                       ),
-                      items: [
-                        InvoiceItem(
-                          description: 'Layout',
-                          date: DateTime.now(),
-                          quantity: 1,
-                          vat: 0,
-                          unitPrice: 50,
-                        ),
-                        InvoiceItem(
-                          description: 'Excavation',
-                          date: DateTime.now(),
-                          quantity: 3,
-                          vat: 0,
-                          unitPrice: 20,
-                        ),
-                        InvoiceItem(
-                          description: 'PCC',
-                          date: DateTime.now(),
-                          quantity: 2,
-                          vat: 0,
-                          unitPrice: 10,
-                        ),
-                        InvoiceItem(
-                          description: 'Reinforcement With Tools',
-                          date: DateTime.now(),
-                          quantity: 1,
-                          vat: 0,
-                          unitPrice: 90,
-                        ),
-                      ],
+                      items1: list, items: []
+                      // items: [
+                      //   InvoiceItem(
+                      //     description: 'Layout',
+                      //     date: DateTime.now(),
+                      //     quantity: 1,
+                      //     vat: 0,
+                      //     unitPrice: 50,
+                      //   ),
+                      //   InvoiceItem(
+                      //     description: 'Excavation',
+                      //     date: DateTime.now(),
+                      //     quantity: 3,
+                      //     vat: 0,
+                      //     unitPrice: 20,
+                      //   ),
+                      //   InvoiceItem(
+                      //     description: 'PCC',
+                      //     date: DateTime.now(),
+                      //     quantity: 2,
+                      //     vat: 0,
+                      //     unitPrice: 10,
+                      //   ),
+                      //   InvoiceItem(
+                      //     description: 'Reinforcement With Tools',
+                      //     date: DateTime.now(),
+                      //     quantity: 1,
+                      //     vat: 0,
+                      //     unitPrice: 90,
+                      //   ),
+                      // ],
                     );
 
-                    final pdfFile = await PdfInvoiceApi.generate(invoice);
+                    final pdfFile = await PdfInvoiceApi1.generate(invoice);
 
                     PdfApi.openFile(pdfFile);
                   },
@@ -145,7 +243,7 @@ class _PdfPageState extends State<PdfPage> {
                           vat: 0,
                           unitPrice: 90,
                         ),
-                      ],
+                      ], items1: [],
                     );
 
                     final pdfFile = await PdfInvoiceApi.generate(invoice);
@@ -203,7 +301,7 @@ class _PdfPageState extends State<PdfPage> {
                           vat: 0,
                           unitPrice: 90,
                         ),
-                      ],
+                      ], items1: [],
                     );
 
                     final pdfFile = await PdfInvoiceApi.generate(invoice);
