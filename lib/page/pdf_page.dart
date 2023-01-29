@@ -17,8 +17,6 @@ class PdfPage extends StatefulWidget {
 }
 
 class _PdfPageState extends State<PdfPage> {
-
-
   Box? box1;
   Box? box2;
   late String keyab;
@@ -29,84 +27,72 @@ class _PdfPageState extends State<PdfPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
     createBox();
-
-
-
   }
 
   void createBox() async {
     box1 = await Hive.openBox('bill');
     box2 = await Hive.openBox('logindata');
     print(" ==========");
-    setState(() {
-      titleMap = box1?.get("billvalue");
-      print(titleMap);
+    setState(
+      () {
+        titleMap = box1?.get("billvalue");
+        print(titleMap);
 
-      titleMap.forEach((key, value) {
-        keyab=key.toString();
-        value.forEach((key1, value1) {
-          for (var i = 0; i < value1[1].length; i++)
-          {
-            if(i==0){
-              list.add(
-                InvoiceItem1(
-                  description: value1[0],
-                  unit: "",
-                  NOS: "",
-                  L: "",
-                  W: "",
-                  H: "",
-                  quantity: "",
-                ),
-              );
-              list.add(
-                InvoiceItem1(
-                  description: value1[1][i],
-                  unit: "SQM",
-                  NOS: value1[2][i],
-                  L: value1[3][i],
-                  W: value1[4][i],
-                  H: value1[5][i],
-                  quantity: value1[5][i],
-                ),
-              );
-
-            }else{
-              list.add(
-                InvoiceItem1(
-                  description: value1[1][i],
-                  unit: "SQM",
-                  NOS: value1[2][i],
-                  L: value1[3][i],
-                  W: value1[4][i],
-                  H: value1[5][i],
-                  quantity: value1[5][i],
-                ),
-              );
-            }
-            print(value1[1][i]);
-            print(value1[1][i]);
-            print(value1[2][i]);
-            print(value1[3][i]);
-            print(value1[4][i]);
-
-
-          }
-
-        });
-
-      });
-
-      // box1?.get("billvalue").forEach((k,v) {
-      //   titleMap = k;
-      // });
-    });
+        titleMap.forEach(
+          (key, value) {
+            keyab = key.toString();
+            value.forEach((key1, value1) {
+              for (var i = 0; i < value1[1].length; i++) {
+                if (i == 0) {
+                  list.add(
+                    InvoiceItem1(
+                      description: value1[0],
+                      unit: "",
+                      NOS: "",
+                      L: "",
+                      W: "",
+                      H: "",
+                      quantity: "",
+                    ),
+                  );
+                  list.add(
+                    InvoiceItem1(
+                      description: value1[1][i],
+                      unit: "SQM",
+                      NOS: value1[2][i],
+                      L: value1[3][i],
+                      W: value1[4][i],
+                      H: value1[5][i],
+                      quantity: value1[5][i],
+                    ),
+                  );
+                } else {
+                  list.add(
+                    InvoiceItem1(
+                      description: value1[1][i],
+                      unit: "SQM",
+                      NOS: value1[2][i],
+                      L: value1[3][i],
+                      W: value1[4][i],
+                      H: value1[5][i],
+                      quantity: value1[5][i],
+                    ),
+                  );
+                }
+                print(value1[1][i]);
+                print(value1[1][i]);
+                print(value1[2][i]);
+                print(value1[3][i]);
+                print(value1[4][i]);
+              }
+            });
+          },
+        );
+      },
+    );
   }
-
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -140,8 +126,6 @@ class _PdfPageState extends State<PdfPage> {
                     final date = DateTime.now();
                     final dueDate = date.add(Duration(days: 7));
 
-
-
                     final invoice = Invoice(
                       supplier: Supplier(
                         name: 'Name',
@@ -155,37 +139,8 @@ class _PdfPageState extends State<PdfPage> {
                         number: '${DateTime.now().year}-9999',
                         //number: box2?.get("phone")
                       ),
-                      items1: list, items: []
-                      // items: [
-                      //   InvoiceItem(
-                      //     description: 'Layout',
-                      //     date: DateTime.now(),
-                      //     quantity: 1,
-                      //     vat: 0,
-                      //     unitPrice: 50,
-                      //   ),
-                      //   InvoiceItem(
-                      //     description: 'Excavation',
-                      //     date: DateTime.now(),
-                      //     quantity: 3,
-                      //     vat: 0,
-                      //     unitPrice: 20,
-                      //   ),
-                      //   InvoiceItem(
-                      //     description: 'PCC',
-                      //     date: DateTime.now(),
-                      //     quantity: 2,
-                      //     vat: 0,
-                      //     unitPrice: 10,
-                      //   ),
-                      //   InvoiceItem(
-                      //     description: 'Reinforcement With Tools',
-                      //     date: DateTime.now(),
-                      //     quantity: 1,
-                      //     vat: 0,
-                      //     unitPrice: 90,
-                      //   ),
-                      // ],
+                      items1: list,
+                      items: [],
                     );
 
                     final pdfFile = await PdfInvoiceApi1.generate(invoice);
@@ -243,7 +198,8 @@ class _PdfPageState extends State<PdfPage> {
                           vat: 0,
                           unitPrice: 90,
                         ),
-                      ], items1: [],
+                      ],
+                      items1: [],
                     );
 
                     final pdfFile = await PdfInvoiceApi.generate(invoice);
@@ -301,7 +257,8 @@ class _PdfPageState extends State<PdfPage> {
                           vat: 0,
                           unitPrice: 90,
                         ),
-                      ], items1: [],
+                      ],
+                      items1: [],
                     );
 
                     final pdfFile = await PdfInvoiceApi.generate(invoice);

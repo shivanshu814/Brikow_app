@@ -121,10 +121,6 @@ class PdfInvoiceApi {
   static Widget buildTitle(Invoice invoice) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Text(
-          //   'INVOICE',
-          //   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          // ),
           SizedBox(height: 0.8 * PdfPageFormat.cm),
           Text(invoice.info.description),
           SizedBox(height: 0.8 * PdfPageFormat.cm),
@@ -144,7 +140,6 @@ class PdfInvoiceApi {
         '\$ ${total.toStringAsFixed(2)}',
       ];
     }).toList();
-
 
     return Table.fromTextArray(
       headers: headers,

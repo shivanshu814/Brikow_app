@@ -47,28 +47,6 @@ class _thirdState extends State<third> {
   TextEditingController rate = TextEditingController();
   TextEditingController unit = TextEditingController();
 
-  // _savedata() {
-  //   var data = {
-  //     name: name.text,
-  //     location: location.text,
-  //     withMaterial: withMaterial.text,
-  //     work: work.text,
-  //     Layout: Layout.text,
-  //     rate: rate.text,
-  //     unit: unit.text,
-  //     Excavation: Excavation.text,
-  //     rate: rates.text,
-  //     unit: units.text
-  //   };
-  //   var res = CallApi().postData(data, 'add_project');
-  //   var body = json.decode(res.body);
-  // }
-
-  @override
-  // void initState() {
-  //   super.initState();
-  // }
-
   @override
   _savedata() async {
     var headers = {
@@ -101,7 +79,6 @@ class _thirdState extends State<third> {
       Navigator.pushReplacementNamed(context, 'fourth');
       print("data posted");
     } else {
-      // Navigator.pushReplacementNamed(context, 'fourth');
       print(response.reasonPhrase);
       print("failed");
     }
@@ -130,8 +107,6 @@ class _thirdState extends State<third> {
               height: 55,
               color: Colors.grey.shade300,
               child: Row(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   SizedBox(
                     width: 10,
@@ -161,8 +136,6 @@ class _thirdState extends State<third> {
               height: 55,
               color: Colors.grey.shade300,
               child: Row(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   SizedBox(
                     width: 10,
@@ -278,12 +251,11 @@ class _thirdState extends State<third> {
                 Checkbox(
                   value: this._checkbox2,
                   onChanged: (value) {
-                    this._checkbox2 = !_checkbox2;
-                    // setState(
-                    //   () {
-
-                    //   },
-                    // );
+                    setState(
+                      () {
+                        this._checkbox2 = !_checkbox2;
+                      },
+                    );
                   },
                 ),
                 Text(
@@ -306,7 +278,6 @@ class _thirdState extends State<third> {
                     children: [
                       Expanded(
                         child: TextField(
-                          controller: rate,
                           textAlignVertical: TextAlignVertical.center,
                           textAlign: TextAlign.left,
                           maxLines: 1,
