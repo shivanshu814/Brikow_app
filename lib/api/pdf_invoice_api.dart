@@ -15,17 +15,38 @@ class PdfInvoiceApi {
     final pdf = Document();
     final ByteData bytes = await rootBundle.load('images/logo3.png');
     final Uint8List byteList = bytes.buffer.asUint8List();
-    pdf.addPage(MultiPage(
-      build: (context) => [
-        buildHeader(invoice),
-        SizedBox(height: 3 * PdfPageFormat.cm),
-        buildTitle(invoice),
-        buildInvoice(invoice),
-        Divider(),
-        buildTotal(invoice),
-      ],
-      footer: (context) => buildFooter(invoice),
-    ));
+
+    // not adding picture in the invoice page
+
+    final image = pw.MemoryImage(
+      File('images/logo3.png').readAsBytesSync(),
+    );
+
+    pdf.addPage(
+      pw.Page(
+        build: (pw.Context context) {
+          return pw.Center(
+            child: pw.Image(image),
+          ); // Center
+        },
+      ),
+    );
+
+    //end
+
+    pdf.addPage(
+      MultiPage(
+        build: (context) => [
+          buildHeader(invoice),
+          SizedBox(height: 3 * PdfPageFormat.cm),
+          buildTitle(invoice),
+          buildInvoice(invoice),
+          Divider(),
+          buildTotal(invoice),
+        ],
+        footer: (context) => buildFooter(invoice),
+      ),
+    );
 
     return PdfApi.saveDocument(name: 'my_invoice.pdf', pdf: pdf);
   }
