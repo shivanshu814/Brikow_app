@@ -77,6 +77,30 @@
             }
         }
 
+## **1)POST: &nbsp; construction/contractor/add_project**   --------- UPDATED
+
+         {
+            "Name":"olo",
+            "Location":"Mumbai",
+            "Date":"2022-12-21",
+            "withMaterial":"yes",
+            "work":[
+                {"description":"Layout",
+                "rate":"2312",
+                "unit":"SQM"
+                },
+            { "description":"Excavation",
+                "rate":"213",
+                "unit":"SFT"
+                },
+                {
+                    "description":"PCC",
+                "rate":"213",
+                "unit":"SFT"
+                }
+            ]
+       }
+
 ## **2)POST: &nbsp; &nbsp; /contractor/calculateBill**
 
 ### desc: calculates bill of an existing project
@@ -303,6 +327,8 @@
     {
         "Name":"PROJECT NAME"
     }
+## **4)POST: &nbsp; &nbsp; construction/contractor/getProject/Project_Name**
+
 
 ## **5)GET: &nbsp; &nbsp; /contractor/logout**
 
