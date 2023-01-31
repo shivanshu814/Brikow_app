@@ -15,6 +15,7 @@ class third extends StatefulWidget {
 
 class _thirdState extends State<third> {
   late Box box2;
+  late Box box3;
   void initState() {
     super.initState();
     createBox();
@@ -22,6 +23,7 @@ class _thirdState extends State<third> {
 
   void createBox() async {
     box1 = await Hive.openBox('logindata');
+    box3 = await Hive.openBox('projectdata');
   }
 
   bool _checkbox = false;
@@ -94,6 +96,8 @@ class _thirdState extends State<third> {
     print("verify head:" + request.headers.toString());
 
     http.StreamedResponse response = await request.send();
+
+
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
@@ -708,6 +712,13 @@ class _thirdState extends State<third> {
                   height: 35,
                   child: ElevatedButton.icon(
                     onPressed: () {
+
+                      box3.put('name', name.text);
+                      box3.put('location', location.text);
+
+                      print(box3.get("name"));
+                      print(box3.get("location"));
+
                       _savedata();
                       Navigator.push(
                         context,

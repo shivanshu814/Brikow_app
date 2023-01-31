@@ -41,10 +41,12 @@ class _VerifyState extends State<Verify> {
     request.body = json.encode({"Name": this.name});
     request.headers.addAll(headers);
 
+
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
+
     } else {
       print(response.reasonPhrase);
     }
@@ -211,7 +213,7 @@ class _VerifyState extends State<Verify> {
               height: 55,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  addproject();
+                 // addproject();
                   Navigator.push(
                     context,
                     MaterialPageRoute(

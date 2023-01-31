@@ -2,7 +2,8 @@ import 'package:phone_otp_ui/model/customer.dart';
 import 'package:phone_otp_ui/model/supplier.dart';
 
 class Invoice {
-  final InvoiceInfo info;
+ // final InvoiceInfo info;
+  final InvoiceInfo1 info;
   final Supplier supplier;
   // final Customer customer;
   final List<InvoiceItem> items;
@@ -28,6 +29,16 @@ class InvoiceInfo {
     required this.number,
     required this.date,
     required this.dueDate,
+  });
+}
+
+class InvoiceInfo1 {
+  final String description;
+  final DateTime date;
+
+  const InvoiceInfo1({
+    required this.description,
+    required this.date,
   });
 }
 

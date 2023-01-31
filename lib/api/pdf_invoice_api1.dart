@@ -22,7 +22,7 @@ class PdfInvoiceApi1 {
         buildTitle(invoice),
         buildInvoice(invoice),
         Divider(),
-        buildTotal(invoice),
+        //buildTotal(invoice),
       ],
       footer: (context) => buildFooter(invoice),
     ));
@@ -83,19 +83,16 @@ class PdfInvoiceApi1 {
     ],
   );
 
-  static Widget buildInvoiceInfo(InvoiceInfo info) {
-    final paymentTerms = '${info.dueDate.difference(info.date).inDays} days';
+  static Widget buildInvoiceInfo(InvoiceInfo1 info) {
+    //final paymentTerms = '${info.dueDate.difference(info.date).inDays} days';
     final titles = <String>[
-      'Invoice Number:',
+      'Description:',
       'Invoice Date:',
-      'Payment Terms:',
-      'Due Date:'
+
     ];
     final data = <String>[
-      info.number,
+      info.description,
       Utils.formatDate(info.date),
-      paymentTerms,
-      Utils.formatDate(info.dueDate),
     ];
 
     return Column(

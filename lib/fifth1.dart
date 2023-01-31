@@ -1031,10 +1031,13 @@ class FifthState extends State<Fifth> {
           child: ElevatedButton.icon(
             onPressed: () {
               String desc = "";
-              List a = [], b = [], c = [], d = [], e = [], f = [];
+
 
               controllerMap.forEach((key, v) {
                 for (int i = 0; i < v[1].length; i++) {
+
+                  List a = [], b = [], c = [], d = [], e = [], f = [];
+
                   print("=======");
                   print(i);
                   print(v[0].text);
@@ -1059,16 +1062,17 @@ class FifthState extends State<Fifth> {
                   f.add(v[6][i].text);
 
                   print("=========");
+
+                  controllerMapInvoice[key.toString()] = [desc, a, b, c, e, f];
+
+                  //print(controllerMapInvoice[key.toString()]);
+
+
                 }
 
-                controllerMapInvoice[key.toString()] = [desc, a, b, c, e, f];
+
               });
 
-// <<<<<<< HEAD
-//
-//               print(_titleController.text);
-// =======
-// >>>>>>> 25bfd4f97da23af0e56f91e34a1b9a3d31d342f9
               titleMap[_titleController.text] = controllerMapInvoice;
 
               print(titleMap);
@@ -1104,10 +1108,11 @@ class FifthState extends State<Fifth> {
           child: ElevatedButton.icon(
             onPressed: () {
               String desc = "";
-              List a = [], b = [], c = [], d = [], e = [], f = [];
+
 
               controllerMap.forEach((key, v) {
                 for (int i = 0; i < v[1].length; i++) {
+                  List a = [], b = [], c = [], d = [], e = [], f = [];
                   print("=======");
                   print(i);
                   print(v[0].text);
@@ -1132,9 +1137,10 @@ class FifthState extends State<Fifth> {
                   f.add(v[6][i].text);
 
                   print("=========");
+                  controllerMapInvoice[key.toString()] = [desc, a, b, c, e, f];
                 }
 
-                controllerMapInvoice[key.toString()] = [desc, a, b, c, e, f];
+
               });
 
               titleMap[_titleController.text] = controllerMapInvoice;
@@ -1223,7 +1229,9 @@ class FifthState extends State<Fifth> {
       actions: <Widget>[
         new TextButton(
           onPressed: () {
+            print("Done");
             print(box1.get("billvalue"));
+
             Navigator.of(context).pop();
             Navigator.pushReplacement(
               context,

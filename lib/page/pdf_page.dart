@@ -21,6 +21,7 @@ class _PdfPageState extends State<PdfPage> {
 
   Box? box1;
   Box? box2;
+  Box? box3;
   late String keyab;
   Map<String, Map> titleMap = {};
   Map<String, Map> finalMap = {};
@@ -41,6 +42,7 @@ class _PdfPageState extends State<PdfPage> {
   void createBox() async {
     box1 = await Hive.openBox('bill');
     box2 = await Hive.openBox('logindata');
+    box3 = await Hive.openBox('projectdata');
     print(" ==========");
     setState(() {
       titleMap = box1?.get("billvalue");
@@ -144,15 +146,14 @@ class _PdfPageState extends State<PdfPage> {
 
                     final invoice = Invoice(
                       supplier: Supplier(
-                        name: 'Name',
-                        address: 'Address',
+                        name: box3?.get("name"),
+                        address: box3?.get("location"),
                         paymentInfo: '',
                       ),
-                      info: InvoiceInfo(
+                      info: InvoiceInfo1(
                         date: date,
-                        dueDate: dueDate,
                         description: keyab,
-                        number: '${DateTime.now().year}-9999',
+
                         //number: box2?.get("phone")
                       ),
                       items1: list, items: []
@@ -208,11 +209,9 @@ class _PdfPageState extends State<PdfPage> {
                         address: 'Greater Noida, Uttar Pradesh',
                         paymentInfo: '',
                       ),
-                      info: InvoiceInfo(
+                      info: InvoiceInfo1(
                         date: date,
-                        dueDate: dueDate,
                         description: 'My description...',
-                        number: '${DateTime.now().year}-9999',
                       ),
                       items: [
                         InvoiceItem(
@@ -266,11 +265,9 @@ class _PdfPageState extends State<PdfPage> {
                         address: 'Greater Noida, Uttar Pradesh',
                         paymentInfo: '',
                       ),
-                      info: InvoiceInfo(
+                      info: InvoiceInfo1(
                         date: date,
-                        dueDate: dueDate,
                         description: 'My description...',
-                        number: '${DateTime.now().year}-9999',
                       ),
                       items: [
                         InvoiceItem(

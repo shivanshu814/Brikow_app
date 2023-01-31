@@ -69,7 +69,7 @@ class PdfInvoiceApi {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // buildCustomerAddress(invoice.customer),
-              buildInvoiceInfo(invoice.info),
+              //buildInvoiceInfo(invoice.info),
             ],
           ),
         ],
