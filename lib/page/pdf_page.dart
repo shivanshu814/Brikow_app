@@ -20,11 +20,13 @@ class _PdfPageState extends State<PdfPage> {
   Box? box1;
   Box? box2;
   Box? box3;
-  late String keyab;
+  String keyab = "";
   Map<String, Map> titleMap = {};
   Map<String, Map> finalMap = {};
 
   List<InvoiceItem1> list = [];
+  List<InvoiceItem2> list2 = [];
+  List<InvoiceItem3> list3 = [];
 
   @override
   void initState() {
@@ -37,14 +39,31 @@ class _PdfPageState extends State<PdfPage> {
     box2 = await Hive.openBox('logindata');
     box3 = await Hive.openBox('projectdata');
     print(" ==========");
+
+    print("box1");
+    print(box1?.get("billvalue1"));
+
     setState(
       () {
-        titleMap = box1?.get("billvalue");
+        print("titlemap");
+        print(box1?.get("billvalue1"));
+        titleMap = box1?.get("billvalue1");
         print(titleMap);
 
         titleMap.forEach(
           (key, value) {
             keyab = key.toString();
+
+            list.add(InvoiceItem1(
+              description: key,
+              unit: "",
+              NOS: "",
+              L: "",
+              W: "",
+              H: "",
+              quantity: "",
+            ),);
+
             value.forEach((key1, value1) {
               for (var i = 0; i < value1[1].length; i++) {
                 if (i == 0) {
@@ -92,8 +111,83 @@ class _PdfPageState extends State<PdfPage> {
             });
           },
         );
+
+        titleMap.forEach(
+              (key, value) {
+            keyab = key.toString();
+
+            list2.add(InvoiceItem2(
+              description: key,
+              unit: "",
+              NOS: "",
+              quantity: "",
+            ),);
+
+            value.forEach((key1, value1) {
+              for (var i = 0; i < value1[1].length; i++) {
+
+                  list2.add(
+                    InvoiceItem2(
+                      description: value1[1][i],
+                      unit: "SQM",
+                      NOS: value1[2][i],
+                      quantity: value1[5][i],
+                    ),
+                  );
+
+                print(value1[1][i]);
+                print(value1[1][i]);
+                print(value1[2][i]);
+                print(value1[3][i]);
+                print(value1[4][i]);
+              }
+            });
+          },
+        );
+
+
+        titleMap.forEach(
+              (key, value) {
+            keyab = key.toString();
+
+            list3.add(InvoiceItem3(
+              description: key,
+              unit: "",
+              Rate: "",
+              quantity: "",
+              amount: ""
+            ),);
+
+            value.forEach((key1, value1) {
+              for (var i = 0; i < value1[1].length; i++) {
+
+                list3.add(
+                  InvoiceItem3(
+                    description: value1[1][i],
+                    unit: "SQM",
+                    Rate: 2.toString(),
+                    quantity: value1[5][i],
+                    amount: (int.parse(value1[5][i]) * 2).toString()
+                  ),
+                );
+
+                print(value1[1][i]);
+                print(value1[1][i]);
+                print(value1[2][i]);
+                print(value1[3][i]);
+                print(value1[4][i]);
+              }
+            });
+          },
+        );
+
+        print("lis22");
+        print(list2);
       },
     );
+
+    print("lis2");
+    print(list);
   }
 
   @override
@@ -136,12 +230,14 @@ class _PdfPageState extends State<PdfPage> {
                       ),
                       info: InvoiceInfo1(
                         date: date,
-                        description: keyab,
+                        description: "Measurement",
 
                         //number: box2?.get("phone")
                       ),
                       items1: list,
                       items: [],
+                      items2: [],
+                      items3: []
                     );
 
                     final pdfFile = await PdfInvoiceApi1.generate(invoice);
@@ -159,49 +255,22 @@ class _PdfPageState extends State<PdfPage> {
                     final dueDate = date.add(Duration(days: 7));
 
                     final invoice = Invoice(
-                      supplier: Supplier(
-                        name: 'Shivanshu Pathak',
-                        address: 'Greater Noida, Uttar Pradesh',
-                        paymentInfo: '',
-                      ),
-                      info: InvoiceInfo1(
-                        date: date,
-                        description: 'My description...',
-                      ),
-                      items: [
-                        InvoiceItem(
-                          description: 'Layout',
-                          date: DateTime.now(),
-                          quantity: 1,
-                          vat: 0,
-                          unitPrice: 50,
+                        supplier: Supplier(
+                          name: box3?.get("name"),
+                          address: box3?.get("location"),
+                          paymentInfo: '',
                         ),
-                        InvoiceItem(
-                          description: 'Excavation',
-                          date: DateTime.now(),
-                          quantity: 3,
-                          vat: 0,
-                          unitPrice: 20,
+                        info: InvoiceInfo1(
+                          date: date,
+                          description: "Summary",
                         ),
-                        InvoiceItem(
-                          description: 'PCC',
-                          date: DateTime.now(),
-                          quantity: 2,
-                          vat: 0,
-                          unitPrice: 10,
-                        ),
-                        InvoiceItem(
-                          description: 'Reinforcement With Tools',
-                          date: DateTime.now(),
-                          quantity: 1,
-                          vat: 0,
-                          unitPrice: 90,
-                        ),
-                      ],
+                      items: [],
                       items1: [],
+                      items2: list2,
+                        items3: []
                     );
 
-                    final pdfFile = await PdfInvoiceApi.generate(invoice);
+                    final pdfFile = await PdfInvoiceApi1.generateSummary(invoice);
 
                     PdfApi.openFile(pdfFile);
                   },
@@ -217,48 +286,21 @@ class _PdfPageState extends State<PdfPage> {
 
                     final invoice = Invoice(
                       supplier: Supplier(
-                        name: 'Shivanshu Pathak',
-                        address: 'Greater Noida, Uttar Pradesh',
+                        name: box3?.get("name"),
+                        address: box3?.get("location"),
                         paymentInfo: '',
                       ),
                       info: InvoiceInfo1(
                         date: date,
-                        description: 'My description...',
+                        description: 'Abstract',
                       ),
-                      items: [
-                        InvoiceItem(
-                          description: 'Layout',
-                          date: DateTime.now(),
-                          quantity: 1,
-                          vat: 0,
-                          unitPrice: 50,
-                        ),
-                        InvoiceItem(
-                          description: 'Excavation',
-                          date: DateTime.now(),
-                          quantity: 3,
-                          vat: 0,
-                          unitPrice: 20,
-                        ),
-                        InvoiceItem(
-                          description: 'PCC',
-                          date: DateTime.now(),
-                          quantity: 2,
-                          vat: 0,
-                          unitPrice: 10,
-                        ),
-                        InvoiceItem(
-                          description: 'Reinforcement With Tools',
-                          date: DateTime.now(),
-                          quantity: 1,
-                          vat: 0,
-                          unitPrice: 90,
-                        ),
-                      ],
+                      items: [],
                       items1: [],
+                      items2: [],
+                        items3: list3
                     );
 
-                    final pdfFile = await PdfInvoiceApi.generate(invoice);
+                    final pdfFile = await PdfInvoiceApi1.generateAbstract(invoice);
 
                     PdfApi.openFile(pdfFile);
                   },

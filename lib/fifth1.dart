@@ -1032,11 +1032,22 @@ class FifthState extends State<Fifth> {
             onPressed: () {
               String desc = "";
 
+              if(box1.get("billvalue")!=null){
+                print("hydro");
+                print(box1.get("billvalue"));
+                print(titleMap);
+                titleMap = box1.get("billvalue");
+              }
+
 
               controllerMap.forEach((key, v) {
+
+                print(key);
+                print(v);
+                List a = [], b = [], c = [], d = [], e = [], f = [];
                 for (int i = 0; i < v[1].length; i++) {
 
-                  List a = [], b = [], c = [], d = [], e = [], f = [];
+                  //List a = [], b = [], c = [], d = [], e = [], f = [];
 
                   print("=======");
                   print(i);
@@ -1077,6 +1088,8 @@ class FifthState extends State<Fifth> {
 
               print(titleMap);
 
+              //box1.get("billvalue")[_titleController.text] = controllerMapInvoice;
+
               box1.put("billvalue", titleMap);
 
               showDialog(
@@ -1109,14 +1122,32 @@ class FifthState extends State<Fifth> {
             onPressed: () {
               String desc = "";
 
+              if(box1.get("billvalue")!=null){
+                print("hydro");
+                print(box1.get("billvalue"));
+                print(titleMap);
+                titleMap = box1.get("billvalue");
+              }
+
+
+              print("Value of title");
+              print(titleMap);
+
+
 
               controllerMap.forEach((key, v) {
+
+                List a = [], b = [], c = [], d = [], e = [], f = [];
+
                 for (int i = 0; i < v[1].length; i++) {
-                  List a = [], b = [], c = [], d = [], e = [], f = [];
                   print("=======");
                   print(i);
+                  print(v[0]);
                   print(v[0].text);
-                  desc = v[0].toString();
+                  desc = v[0].text.toString();
+
+                  print("DESCCCCCCC"+desc);
+                 // print(desc);
 
                   print(v[1][i].text);
                   a.add(v[1][i].text);
@@ -1137,7 +1168,9 @@ class FifthState extends State<Fifth> {
                   f.add(v[6][i].text);
 
                   print("=========");
+
                   controllerMapInvoice[key.toString()] = [desc, a, b, c, e, f];
+
                 }
 
 
@@ -1197,13 +1230,16 @@ class FifthState extends State<Fifth> {
       actions: <Widget>[
         new TextButton(
           onPressed: () {
+            print("billvaluevalue");
+            print(box1.get("billvalue"));
+
             Navigator.of(context).pop();
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) => Fifth(),
               ),
-            );
+             );
           },
           child: const Text('Close'),
         ),
@@ -1231,6 +1267,17 @@ class FifthState extends State<Fifth> {
           onPressed: () {
             print("Done");
             print(box1.get("billvalue"));
+
+            box1.put("billvalue1", box1.get("billvalue"));
+
+            print("box1");
+            print(box1.get("billvalue1"));
+
+            box1.delete("billvalue");
+
+
+            print("box1");
+            print(box1.get("billvalue1"));
 
             Navigator.of(context).pop();
             Navigator.pushReplacement(

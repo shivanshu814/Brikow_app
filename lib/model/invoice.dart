@@ -8,12 +8,16 @@ class Invoice {
   // final Customer customer;
   final List<InvoiceItem> items;
   final List<InvoiceItem1> items1;
+  final List<InvoiceItem2> items2;
+  final List<InvoiceItem3> items3;
 
   const Invoice({
     required this.info,
     required this.supplier,
     required this.items,
     required this.items1,
+    required this.items2,
+    required this.items3,
   });
 }
 
@@ -31,7 +35,6 @@ class InvoiceInfo {
   });
 }
 
-<<<<<<< HEAD
 class InvoiceInfo1 {
   final String description;
   final DateTime date;
@@ -43,9 +46,6 @@ class InvoiceInfo1 {
 }
 
 
-
-=======
->>>>>>> aacdebade8e0df2b65dca11d84050254ee737299
 class InvoiceItem {
   final String description;
   final DateTime date;
@@ -78,5 +78,36 @@ class InvoiceItem1 {
     required this.W,
     required this.H,
     required this.quantity,
+  });
+}
+
+
+class InvoiceItem2 {
+  final String description;
+  final String unit;
+  final String NOS;
+  final String quantity;
+
+  const InvoiceItem2({
+    required this.description,
+    required this.unit,
+    required this.NOS,
+    required this.quantity,
+  });
+}
+
+class InvoiceItem3 {
+  final String description;
+  final String unit;
+  final String Rate;
+  final String quantity;
+  final String amount;
+
+  const InvoiceItem3({
+    required this.description,
+    required this.unit,
+    required this.Rate,
+    required this.quantity,
+    required this.amount,
   });
 }
