@@ -31,21 +31,21 @@ class InvoiceInfo {
   });
 }
 
-<<<<<<< HEAD
-class InvoiceInfo1 {
-  final String description;
-  final DateTime date;
+// <<<<<<< HEAD
+// class InvoiceInfo1 {
+//   final String description;
+//   final DateTime date;
 
-  const InvoiceInfo1({
-    required this.description,
-    required this.date,
-  });
-}
+//   const InvoiceInfo1({
+//     required this.description,
+//     required this.date,
+//   });
+// }
 
 
 
-=======
->>>>>>> aacdebade8e0df2b65dca11d84050254ee737299
+// =======
+// >>>>>>> aacdebade8e0df2b65dca11d84050254ee737299
 class InvoiceItem {
   final String description;
   final DateTime date;
