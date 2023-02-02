@@ -57,15 +57,15 @@ class _thirdState extends State<third> {
           'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkxODM3NWU3MjE4ZTc1ODIwMmY2MyIsImlhdCI6MTY3MzA3NDg4OCwiZXhwIjoxNjc1NjY2ODg4fQ.lSDOvNG2hyFEzzznQvw8d2vHsRxhf6yaY-MIsWjrpIM'
     };
     var request = http.Request('POST',
-        Uri.parse('http://admin.brikow.com/api/contractor/add_project'));
+        Uri.parse('http://admin.brikow.com/api/construction/contractor/add_project'));
     request.body = json.encode({
-      "Name": name,
-      "Location": location,
-      'withMaterial': withMaterial,
-      'work': {
-        'Layout': {'rate': rate, 'unit': unit},
-        'Excavation': {'rate': rate, 'unit': unit}
-      }
+      "Name": name.text,
+      "Location": location.text,
+      'withMaterial': withMaterial.text,
+      'work': [
+         {'description':'Layout','rate': rate.text, 'unit': unit.text},
+        {'description':'Excavation','rate': rate.text, 'unit': unit.text}
+      ]
     });
     request.headers.addAll(headers);
 
@@ -74,6 +74,8 @@ class _thirdState extends State<third> {
     print("verify head:" + request.headers.toString());
 
     http.StreamedResponse response = await request.send();
+
+
 
 
 
@@ -691,12 +693,12 @@ class _thirdState extends State<third> {
                       print(box3.get("location"));
 
                       _savedata();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => fourth(),
-                        ),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => fourth(),
+                      //   ),
+                      // );
                     },
                     icon: Icon(
                       Icons.save,
