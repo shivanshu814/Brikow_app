@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import 'api.dart';
 import 'fourth.dart';
 import 'main.dart';
@@ -61,7 +62,7 @@ class _thirdState extends State<third> {
     request.body = json.encode({
       "Name": name.text,
       "Location": location.text,
-      'withMaterial': withMaterial.text,
+      'withMaterial': "Yes",
       'work': [
          {'description':'Layout','rate': rate.text, 'unit': unit.text},
         {'description':'Excavation','rate': rate.text, 'unit': unit.text}
@@ -76,13 +77,20 @@ class _thirdState extends State<third> {
     http.StreamedResponse response = await request.send();
 
 
-
-
+    final now = new DateTime.now();
+    String formatter = DateFormat('yMd').format(now);
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
       // Navigator.pushNamed(context, 'myverify');
-      Navigator.pushReplacementNamed(context, 'fourth');
+      box3.put('date', formatter);
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => fourth(location.text, name.text, formatter),
+        ),
+      );
       print("data posted");
     } else {
       print(response.reasonPhrase);

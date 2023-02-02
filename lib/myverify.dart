@@ -16,15 +16,69 @@ class Verify extends StatefulWidget {
 }
 
 class _VerifyState extends State<Verify> {
+
+  Map<String, dynamic> result = {};
+
   List items = [];
   int _selectedIndex = 0;
   late Box box2;
   String name = "";
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _getProjectData();
+  }
+
+  @override
+  _getProjectData() async {
+    var headers = {
+      'Content-Type': 'application/json',
+      'Cookie':
+      'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkxODM3NWU3MjE4ZTc1ODIwMmY2MyIsImlhdCI6MTY3MzA3NDg4OCwiZXhwIjoxNjc1NjY2ODg4fQ.lSDOvNG2hyFEzzznQvw8d2vHsRxhf6yaY-MIsWjrpIM'
+    };
+    var request = http.Request('GET',
+        Uri.parse('http://admin.brikow.com/api/construction/contractor/getAllProjects'));
+
+    request.headers.addAll(headers);
+
+    print("verify req:" + request.toString());
+    print("verify head:" + request.headers.toString());
+
+
+    print(request);
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+
+
+
+      setState(() async{
+        result = jsonDecode(await response.stream.bytesToString()) as Map<String, dynamic>;
+      });
+
+      print(result["response"][0]["Name"]);
+      result.forEach((key, value) {
+        print(key);
+        print(value);
+      });
+
+      //print(await response.stream.bytesToString());
+      // Navigator.pushNamed(context, 'myverify');
+      print("data GET SUccessful");
+    } else {
+      print(response.reasonPhrase);
+      print("failed");
+    }
+    print(response.statusCode);
+  }
+
   void _onItemTapped(int index) {
     print("index");
     setState(() {
-      print("index1");
+      print("index1 ");
       _selectedIndex = index;
       print(_selectedIndex);
     });
@@ -55,6 +109,7 @@ class _VerifyState extends State<Verify> {
   Widget _homeWidget(int index) {
     if (index == 0) {
       print("object");
+      _getProjectData();
       return new Container(
         child: _buildHome(),
       );
@@ -76,22 +131,56 @@ class _VerifyState extends State<Verify> {
   }
 
   Widget _buildHome() {
+    print("buidl");
     return Container(
-      child: Column(
+      padding: EdgeInsets.all(10),
+      alignment: Alignment.topCenter,
+      child:  ListView(
+        shrinkWrap: true,
+        children: [
+        Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          SizedBox(
-            height: 60,
-          ),
+          SizedBox(height: 20),
+
+          Container(
+            //padding: EdgeInsets.only(left: 10, right: 10),
+            child: Row(
+            children: [
+
+
+              RichText(
+                text: TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: "Welcome",
+                      style: TextStyle(color: Color.fromRGBO(18, 54, 105, 1), fontSize: 28, fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
+              ),
+
+              IconButton(
+                color: Colors.blueGrey,
+                highlightColor: Colors.black54,
+                iconSize: 30,
+                icon: Icon(Icons.logout),
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => MyPhone(title: 'Phone')));
+                  box1.clear();
+                },
+              ),
+
+
+            ],mainAxisAlignment: MainAxisAlignment.spaceBetween,),),
+
+          // const Text(
+          //   "Projects                                 ",
+          //   style: TextStyle(fontSize: 30),
+          // ),
           const SizedBox(
-            height: 20,
-          ),
-          const Text(
-            "Projects                                 ",
-            style: TextStyle(fontSize: 30),
-          ),
-          const SizedBox(
-            height: 15,
+            height: 10,
           ),
           const Text(
             "Your Projects                                                ",
@@ -100,14 +189,119 @@ class _VerifyState extends State<Verify> {
           const SizedBox(
             height: 10,
           ),
+
+         Container(
+              child: GridView.count(
+                  physics: ScrollPhysics(),
+                shrinkWrap: true,
+                  crossAxisCount: 2,
+                  children: result["response"]==null?[]:
+                  List.generate(
+                      //box2.get('isLogged',defaultValue: false)?MyPhone(title: "phone"):Verify(),
+                      result["response"].length,//this is the total number of cards
+                          (index){
+                        return Container(
+                          child: Card(
+                            color: Color.fromRGBO(18, 54, 105, 1),
+                            child:Container(
+                              padding: EdgeInsets.all(16),
+                              alignment: Alignment.centerLeft,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  RichText(
+                                    text: TextSpan(
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: "Date: "+result["response"][index]["Date"].substring(0, 10)+"\n\n",
+                                          style: TextStyle(color: Colors.white.withOpacity(0.7), fontSize: 14),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    //mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                  Expanded(
+                                  flex: 1,child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                                    children: [
+                                        Icon(
+                                        Icons.work,
+                                        color: Colors.white,
+                                        //size: 30,
+                                      )
+                                      ],)),
+                                      Expanded(
+                                        flex: 2,
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                        RichText(
+                                          text: TextSpan(
+                                            children: <TextSpan>[
+                                              TextSpan(
+                                                text: result["response"][index]["Name"].toUpperCase()+"\n\n",
+                                                style: TextStyle(color: Colors.white, fontSize: 18),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],))
+                                    ],
+                                  ),
+                                  RichText(
+                                    text: TextSpan(
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: "Location: ",
+                                          style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 14),
+                                        ),
+                                        TextSpan(
+                                          text: result["response"][index]["Location"],
+                                          style: TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 14),
+                                        ),
+
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(height: 5,),
+                                  RichText(
+                                    text: TextSpan(
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: "Material: ",
+                                          style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 14),
+                                        ),
+                                        TextSpan(
+                                          text: result["response"][index]["withMaterial"]+"\n",
+                                          style: TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 14),
+                                        ),
+
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                            //Text(result["response"][index]["Name"]),
+                          ),
+                        );
+                      }
+                  ),
+              )
+          ),
           const SizedBox(
             width: 20,
             height: 40,
           ),
-          Center(
+          Container(
+            alignment: Alignment.bottomCenter,
             child: SizedBox(
-              width: 320,
-              height: 55,
+              width: 250,
+              height: 45,
               child: ElevatedButton.icon(
                 onPressed: () {
                  // addproject();
@@ -124,20 +318,20 @@ class _VerifyState extends State<Verify> {
                 ), //icon data for elevated button
                 label: Text(
                   "Add Project",
-                  style: TextStyle(color: Colors.black, fontSize: 25),
+                  style: TextStyle(color: Colors.black, fontSize: 18),
                 ), //label text
                 style: ElevatedButton.styleFrom(
-                  side: BorderSide(width: 3, color: Colors.blue),
-                  primary: Colors.white,
+                  side: BorderSide(width: 3, color: Color.fromRGBO(195, 225, 241, 1)),
+                  primary: Color.fromRGBO(195, 225, 241, 1),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ), //elevated btton background color
                 ),
               ),
-            ),
-          ),
+          ),)
         ],
-      ),
+      )
+      ],),
     );
   }
 
@@ -147,27 +341,27 @@ class _VerifyState extends State<Verify> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => MyPhone(title: 'Phone')));
-                box1.clear();
-              },
-              child: Icon(
-                Icons.logout,
-                color: Colors.black54,
-              ),
-            ),
-          ],
-          title: const Text(
-            'Home',
-            style: TextStyle(color: Colors.black),
-          ),
-          //backgroundColor: Colors.red.shade100,
-          backgroundColor: Color.fromRGBO(224, 234, 242, 1),
-        ),
+        // appBar: AppBar(
+        //   actions: <Widget>[
+        //     TextButton(
+        //       onPressed: () {
+        //         Navigator.of(context).pushReplacement(MaterialPageRoute(
+        //             builder: (context) => MyPhone(title: 'Phone')));
+        //         box1.clear();
+        //       },
+        //       child: Icon(
+        //         Icons.logout,
+        //         color: Colors.black54,
+        //       ),
+        //     ),
+        //   ],
+        //   title: const Text(
+        //     'Home',
+        //     style: TextStyle(color: Colors.black),
+        //   ),
+        //   //backgroundColor: Colors.red.shade100,
+        //   backgroundColor: Color.fromRGBO(224, 234, 242, 1),
+        // ),
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.red.shade100,
           items: const <BottomNavigationBarItem>[
