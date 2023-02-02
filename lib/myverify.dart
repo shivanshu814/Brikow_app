@@ -22,22 +22,35 @@ class _VerifyState extends State<Verify> {
   List items = [];
   int _selectedIndex = 0;
   late Box box2;
+  late Box box1;
+  String token="";
   String name = "";
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
+    print("init_state");
+    createBox();
     _getProjectData();
+  }
+
+  void createBox() async {
+    box1 = await Hive.openBox('logindata');
+    setState(() {
+      print("token");
+      print(box1.get("token").toString());
+      token=box1.get("token").toString();
+    });
   }
 
   @override
   _getProjectData() async {
+
     var headers = {
       'Content-Type': 'application/json',
-      'Cookie':
-      'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkxODM3NWU3MjE4ZTc1ODIwMmY2MyIsImlhdCI6MTY3MzA3NDg4OCwiZXhwIjoxNjc1NjY2ODg4fQ.lSDOvNG2hyFEzzznQvw8d2vHsRxhf6yaY-MIsWjrpIM'
+      'Cookie': token
+      //'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkxODM3NWU3MjE4ZTc1ODIwMmY2MyIsImlhdCI6MTY3MzA3NDg4OCwiZXhwIjoxNjc1NjY2ODg4fQ.lSDOvNG2hyFEzzznQvw8d2vHsRxhf6yaY-MIsWjrpIM'
     };
     var request = http.Request('GET',
         Uri.parse('http://admin.brikow.com/api/construction/contractor/getAllProjects'));
@@ -54,16 +67,11 @@ class _VerifyState extends State<Verify> {
     if (response.statusCode == 200) {
 
 
+      result = jsonDecode(await response.stream.bytesToString()) as Map<String, dynamic>;
 
-      setState(() async{
-        result = jsonDecode(await response.stream.bytesToString()) as Map<String, dynamic>;
-      });
 
       print(result["response"][0]["Name"]);
-      result.forEach((key, value) {
-        print(key);
-        print(value);
-      });
+
 
       //print(await response.stream.bytesToString());
       // Navigator.pushNamed(context, 'myverify');
@@ -109,6 +117,7 @@ class _VerifyState extends State<Verify> {
   Widget _homeWidget(int index) {
     if (index == 0) {
       print("object");
+      createBox();
       _getProjectData();
       return new Container(
         child: _buildHome(),

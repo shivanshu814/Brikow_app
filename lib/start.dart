@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:phone_otp_ui/myverify.dart';
 import 'package:phone_otp_ui/phone.dart';
 
+import 'landing.dart';
 import 'phone.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
@@ -46,7 +47,8 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
           MaterialPageRoute(
             builder: (_)
               =>
-              box2.get('isLogged',defaultValue: false)?MyPhone(title: "phone"):Verify(),
+              //box2.get('isLogged',defaultValue: false)?MyPhone(title: "phone"):Verify(),
+            box2.get('isLogged',defaultValue: false)?MyPhone(title: "phone"):Landing(),
 
           ),
         );

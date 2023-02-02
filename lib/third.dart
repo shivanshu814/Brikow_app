@@ -17,6 +17,8 @@ class third extends StatefulWidget {
 class _thirdState extends State<third> {
   late Box box2;
   late Box box3;
+  String token = "";
+
   void initState() {
     super.initState();
     createBox();
@@ -25,6 +27,11 @@ class _thirdState extends State<third> {
   void createBox() async {
     box1 = await Hive.openBox('logindata');
     box3 = await Hive.openBox('projectdata');
+    setState(() {
+      print("token");
+      token=box1.get("token").toString();
+      print(box1.get("token"));
+    });
   }
 
   bool _checkbox = false;
@@ -54,14 +61,20 @@ class _thirdState extends State<third> {
   _savedata() async {
     var headers = {
       'Content-Type': 'application/json',
-      'Cookie':
-          'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkxODM3NWU3MjE4ZTc1ODIwMmY2MyIsImlhdCI6MTY3MzA3NDg4OCwiZXhwIjoxNjc1NjY2ODg4fQ.lSDOvNG2hyFEzzznQvw8d2vHsRxhf6yaY-MIsWjrpIM'
+      'Cookie': token
+      // 'Cookie':
+      //     'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkxODM3NWU3MjE4ZTc1ODIwMmY2MyIsImlhdCI6MTY3MzA3NDg4OCwiZXhwIjoxNjc1NjY2ODg4fQ.lSDOvNG2hyFEzzznQvw8d2vHsRxhf6yaY-MIsWjrpIM'
     };
+
+    final now = new DateTime.now();
+    String formatter = DateFormat('yMd').format(now);
+
     var request = http.Request('POST',
         Uri.parse('http://admin.brikow.com/api/construction/contractor/add_project'));
     request.body = json.encode({
       "Name": name.text,
       "Location": location.text,
+      "Date":formatter,
       'withMaterial': "Yes",
       'work': [
          {'description':'Layout','rate': rate.text, 'unit': unit.text},
@@ -77,13 +90,13 @@ class _thirdState extends State<third> {
     http.StreamedResponse response = await request.send();
 
 
-    final now = new DateTime.now();
-    String formatter = DateFormat('yMd').format(now);
+
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
       // Navigator.pushNamed(context, 'myverify');
       box3.put('date', formatter);
+
 
       Navigator.pushReplacement(
         context,

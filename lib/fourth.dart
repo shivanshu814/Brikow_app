@@ -32,24 +32,25 @@ class fourth extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   const SizedBox(
-                    height: 30,
+                    height: 50,
                   ),
-                  Container(
-                    alignment: Alignment.topRight,
-                    height: 20,
-                    child: IconButton(
-                      iconSize: 40,
-                      icon: Icon(Icons.home),
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Verify(),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
+                  // Container(
+                  //   alignment: Alignment.topRight,
+                  //   height: 20,
+                  //   child: IconButton(
+                  //     iconSize: 40,
+                  //     icon: Icon(Icons.home),
+                  //     onPressed: () {
+                  //       print("pressing");
+                  //       Navigator.pushReplacement(
+                  //         context,
+                  //         MaterialPageRoute(
+                  //           builder: (context) => Verify(),
+                  //         ),
+                  //       );
+                  //     },
+                  //   ),
+                  // ),
                   const SizedBox(
                     height: 10,
                   ),

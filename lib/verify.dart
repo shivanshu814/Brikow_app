@@ -56,6 +56,11 @@ class _MyVerifyState extends State<MyVerify> {
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
+      response.headers.forEach((key, value) {print(key);});
+      print(response.headers["set-cookie"]);
+      box1.put("token", response.headers["set-cookie"]);
+      print(box1.get("token"));
+
       // Navigator.pushNamed(context, 'myverify');
       Navigator.pushReplacementNamed(context, 'landing');
     } else {
