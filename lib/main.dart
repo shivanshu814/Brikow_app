@@ -11,18 +11,13 @@ import 'package:phone_otp_ui/fourth.dart';
 import 'package:phone_otp_ui/myverify.dart';
 import 'package:phone_otp_ui/page/pdf_page.dart';
 import 'package:phone_otp_ui/phone.dart';
-import 'package:phone_otp_ui/sign_up.dart';
 import 'package:phone_otp_ui/sixth.dart';
 import 'package:phone_otp_ui/start.dart';
 import 'package:phone_otp_ui/third.dart';
-// ignore: depend_on_referenced_packages
 import 'package:phone_otp_ui/verify.dart';
-// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:hive_flutter/adapters.dart';
-
 import 'landing.dart';
 
 late Box box1;

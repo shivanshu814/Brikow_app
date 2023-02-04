@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_null_comparison, unnecessary_string_interpolations, deprecated_member_use
 import 'dart:convert';
 import 'dart:math';
 
@@ -9,6 +8,8 @@ import 'package:http/http.dart';
 import 'package:phone_otp_ui/verify.dart';
 import 'main.dart';
 import 'package:http/http.dart' as http;
+
+import 'myverify.dart';
 
 class MyPhone extends StatefulWidget {
   const MyPhone({Key? key, required String title}) : super(key: key);
@@ -70,131 +71,164 @@ class _MyPhoneState extends State<MyPhone> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return (Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Column(
-        children: [
-          SizedBox(
-            height: 24,
-          ),
-          FittedBox(
-            child: Image.asset(
-              'images/Front.png',
-            ),
-            fit: BoxFit.fitWidth,
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 25, right: 25),
-            alignment: Alignment.center,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 0,
-                  ),
-                  Image.asset(
-                    'images/logo2.png',
-                    width: 500,
-                    height: 200,
-                  ),
-                  Text(
-                    "India's #1 Construction Billing and",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.normal,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    "Property Management App",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.normal,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  Text(
-                    "Log in or Sign up",
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.grey.shade900,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Container(
-                    height: 55,
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: Colors.grey),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 20,
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              Expanded(
+                flex: 2,
+                child: Stack(
+                  children: [
+                    Container(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(),
+                          color: Color.fromARGB(255, 255, 255, 255),
                         ),
-                        Text(
-                          "+91",
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              opacity: (20),
+                              image: AssetImage("images/password.gif"),
+                              fit: BoxFit.fitHeight)),
+                    ),
+                    // new Image(image: new AssetImage('assets/workers2.png')),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Expanded(
+                flex: 2,
+                child: Container(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Text(
+                          "India's #1",
                           style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.grey.shade900,
-                          ),
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(
-                          width: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                        child: Text(
+                          "Construction Billing and",
+                          style: TextStyle(color: Colors.black, fontSize: 20),
                         ),
-                        Expanded(
-                          child: TextField(
-                            controller: PhoneController,
-                            keyboardType: TextInputType.phone,
-                            onChanged: (value) {
-                              Phone = value;
-                            },
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Enter Mobile Number",
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                        child: Text(
+                          "Property Management App",
+                          style: TextStyle(color: Colors.black, fontSize: 20),
+                        ),
+                      ),
+
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        "Record all the information about",
+                        style: TextStyle(color: Colors.black, fontSize: 16),
+                      ),
+                      Text(
+                        "the project and work-site in the software",
+                        style: TextStyle(color: Colors.black, fontSize: 16),
+                      ),
+                      Text(
+                        "and access these details whenever you want.",
+                        style: TextStyle(color: Colors.black, fontSize: 16),
+                      ),
+                      SizedBox(
+                        height: 25,
+                      ),
+                      Container(
+                        height: 55,
+                        width: 300,
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 1, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Text(
+                              "+91",
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.grey.shade900,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              child: TextField(
+                                controller: PhoneController,
+                                keyboardType: TextInputType.phone,
+                                onChanged: (value) {
+                                  Phone = value;
+                                },
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Enter Mobile Number",
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      // SizedBox(
+                      //   height: 5,
+                      // ),
+                      Padding(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 20, horizontal: 38),
+                        child: GestureDetector(
+                          onTap: (() {
+                            Navigator.pushReplacementNamed(context, 'verify');
+                            signup();
+                          }),
+                          child: Container(
+                            height: 55,
+                            width: 550,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 70),
+                            decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              "Send OTP",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      //Navigator.pushNamed(context, 'verify');
-                      Navigator.pushReplacementNamed(context, 'verify');
-                      signup();
-                    },
-                    child: Container(
-                      width: 230,
-                      height: 45,
-                      decoration: BoxDecoration(
-                        color: Colors.red.shade200,
-                        borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Center(
-                        child: Text("Send OTP"),
-                      ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
-            ),
+                ),
+              )
+            ],
           ),
-        ],
+        ),
       ),
-    );
+    ));
   }
 }

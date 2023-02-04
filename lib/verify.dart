@@ -56,7 +56,9 @@ class _MyVerifyState extends State<MyVerify> {
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
-      response.headers.forEach((key, value) {print(key);});
+      response.headers.forEach((key, value) {
+        print(key);
+      });
       print(response.headers["set-cookie"]);
       box1.put("token", response.headers["set-cookie"]);
       print(box1.get("token"));
@@ -121,7 +123,7 @@ class _MyVerifyState extends State<MyVerify> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'images/logo2.png',
+                'images/password.png',
                 width: 150,
                 height: 150,
               ),
@@ -159,19 +161,28 @@ class _MyVerifyState extends State<MyVerify> {
               SizedBox(
                 height: 20,
               ),
-              GestureDetector(
-                onTap: () {
-                  verified();
-                },
-                child: Container(
-                  width: 230,
-                  height: 45,
-                  decoration: BoxDecoration(
-                    color: Colors.red.shade200,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Center(
-                    child: Text("Verify Phone Number"),
+
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 2),
+                child: GestureDetector(
+                  onTap: (() {
+                    verified();
+                  }),
+                  child: Container(
+                    height: 55,
+                    width: 700,
+                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 70),
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Text(
+                      textAlign: TextAlign.center,
+                      "Verify Phone Number",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -186,8 +197,8 @@ class _MyVerifyState extends State<MyVerify> {
                       );
                     },
                     child: Text(
-                      "Edit Phone Number ?",
-                      style: TextStyle(color: Colors.black),
+                      "                  Edit Phone Number ?",
+                      style: TextStyle(color: Colors.black, fontSize: 18),
                     ),
                   ),
                 ],
