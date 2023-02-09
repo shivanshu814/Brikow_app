@@ -16,7 +16,7 @@ class FifthState extends State<Fifth> {
 
   Map<TextField, List> controllerMap = {};
   Map<String, List> controllerMapInvoice = {};
-  Map<String, Map> titleMap  = {};
+  Map<String, Map> titleMap = {};
   //Map<TextField, List> controllerMapInvoice = {};
   //Map<String, Map> titleMap = {};
   Map<TextField, List> fieldMap = {};
@@ -1032,57 +1032,59 @@ class FifthState extends State<Fifth> {
             onPressed: () {
               String desc = "";
 
-              if(box1.get("billvalue")!=null){
+              if (box1.get("billvalue") != null) {
                 print("hydro");
                 print(box1.get("billvalue"));
                 print(titleMap);
                 titleMap = box1.get("billvalue");
               }
 
+              controllerMap.forEach(
+                (key, v) {
+                  print(key);
+                  print(v);
+                  List a = [], b = [], c = [], d = [], e = [], f = [];
+                  for (int i = 0; i < v[1].length; i++) {
+                    //List a = [], b = [], c = [], d = [], e = [], f = [];
 
-              controllerMap.forEach((key, v) {
+                    print("=======");
+                    print(i);
+                    print(v[0].text);
+                    desc = v[0].text;
 
-                print(key);
-                print(v);
-                List a = [], b = [], c = [], d = [], e = [], f = [];
-                for (int i = 0; i < v[1].length; i++) {
+                    print(v[1][i].text);
+                    a.add(v[1][i].text);
 
-                  //List a = [], b = [], c = [], d = [], e = [], f = [];
+                    print(v[2][i].text);
+                    b.add(v[2][i].text);
 
-                  print("=======");
-                  print(i);
-                  print(v[0].text);
-                  desc = v[0].text;
+                    print(v[3][i].text);
+                    c.add(v[3][i].text);
 
-                  print(v[1][i].text);
-                  a.add(v[1][i].text);
+                    print(v[4][i].text);
+                    d.add(v[4][i].text);
 
-                  print(v[2][i].text);
-                  b.add(v[2][i].text);
+                    print(v[5][i].text);
+                    e.add(v[5][i].text);
 
-                  print(v[3][i].text);
-                  c.add(v[3][i].text);
+                    print(v[6][i].text);
+                    f.add(v[6][i].text);
 
-                  print(v[4][i].text);
-                  d.add(v[4][i].text);
+                    print("=========");
 
-                  print(v[5][i].text);
-                  e.add(v[5][i].text);
+                    controllerMapInvoice[key.toString()] = [
+                      desc,
+                      a,
+                      b,
+                      c,
+                      e,
+                      f
+                    ];
 
-                  print(v[6][i].text);
-                  f.add(v[6][i].text);
-
-                  print("=========");
-
-                  controllerMapInvoice[key.toString()] = [desc, a, b, c, e, f];
-
-                  //print(controllerMapInvoice[key.toString()]);
-
-
-                }
-
-
-              });
+                    //print(controllerMapInvoice[key.toString()]);
+                  }
+                },
+              );
 
               titleMap[_titleController.text] = controllerMapInvoice;
 
@@ -1122,21 +1124,17 @@ class FifthState extends State<Fifth> {
             onPressed: () {
               String desc = "";
 
-              if(box1.get("billvalue")!=null){
+              if (box1.get("billvalue") != null) {
                 print("hydro");
                 print(box1.get("billvalue"));
                 print(titleMap);
                 titleMap = box1.get("billvalue");
               }
 
-
               print("Value of title");
               print(titleMap);
 
-
-
               controllerMap.forEach((key, v) {
-
                 List a = [], b = [], c = [], d = [], e = [], f = [];
 
                 for (int i = 0; i < v[1].length; i++) {
@@ -1146,8 +1144,8 @@ class FifthState extends State<Fifth> {
                   print(v[0].text);
                   desc = v[0].text.toString();
 
-                  print("DESCCCCCCC"+desc);
-                 // print(desc);
+                  print("DESCCCCCCC" + desc);
+                  // print(desc);
 
                   print(v[1][i].text);
                   a.add(v[1][i].text);
@@ -1170,10 +1168,7 @@ class FifthState extends State<Fifth> {
                   print("=========");
 
                   controllerMapInvoice[key.toString()] = [desc, a, b, c, e, f];
-
                 }
-
-
               });
 
               titleMap[_titleController.text] = controllerMapInvoice;
@@ -1183,13 +1178,6 @@ class FifthState extends State<Fifth> {
                 context: context,
                 builder: (BuildContext context) => _buildPopupDialog(context),
               );
-
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => sixth(),
-              //   ),
-              // );
             },
             icon: Icon(
               Icons.save,
@@ -1239,7 +1227,7 @@ class FifthState extends State<Fifth> {
               MaterialPageRoute(
                 builder: (context) => Fifth(),
               ),
-             );
+            );
           },
           child: const Text('Close'),
         ),
@@ -1274,7 +1262,6 @@ class FifthState extends State<Fifth> {
             print(box1.get("billvalue1"));
 
             box1.delete("billvalue");
-
 
             print("box1");
             print(box1.get("billvalue1"));
@@ -1334,31 +1321,34 @@ class FifthState extends State<Fifth> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.grey,
-            title: Text('Generate Bill'),
-          ),
-          body: Column(
-            children: [
-              SizedBox(
-                height: 20,
+        appBar: AppBar(
+          backgroundColor: Colors.grey,
+          title: Text('Generate Bill'),
+        ),
+        body: Column(
+          children: [
+            SizedBox(
+              height: 20,
+            ),
+            _firstTitle(),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Column(
+                    children: [
+                      //_listView1(),
+                      //_listView(),
+                      _listViewfinal(), _addDetails()
+                    ],
+                  ),
+                ],
               ),
-              _firstTitle(),
-              Expanded(
-                  child: ListView(shrinkWrap: true, children: [
-                Column(
-                  children: [
-                    //_listView1(),
-                    //_listView(),
-                    _listViewfinal(), _addDetails()
-                  ],
-                )
-              ])),
-              //Expanded(child: _listView()),
-              //_addTile(),
-              _okButton1(context),
-            ],
-          )),
+            ),
+            _okButton1(context),
+          ],
+        ),
+      ),
     );
   }
 }

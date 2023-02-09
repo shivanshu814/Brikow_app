@@ -16,14 +16,13 @@ class Verify extends StatefulWidget {
 }
 
 class _VerifyState extends State<Verify> {
-
   Map<String, dynamic> result = {};
 
   List items = [];
   int _selectedIndex = 0;
   late Box box2;
   late Box box1;
-  String token="";
+  String token = "";
   String name = "";
 
   @override
@@ -40,38 +39,70 @@ class _VerifyState extends State<Verify> {
     setState(() {
       print("token");
       print(box1.get("token").toString());
-      token=box1.get("token").toString();
+      token = box1.get("token").toString();
     });
   }
 
-  @override
-  _getProjectData() async {
-
+  logout() async {
     var headers = {
       'Content-Type': 'application/json',
       'Cookie': token
       //'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkxODM3NWU3MjE4ZTc1ODIwMmY2MyIsImlhdCI6MTY3MzA3NDg4OCwiZXhwIjoxNjc1NjY2ODg4fQ.lSDOvNG2hyFEzzznQvw8d2vHsRxhf6yaY-MIsWjrpIM'
     };
-    var request = http.Request('GET',
-        Uri.parse('http://admin.brikow.com/api/construction/contractor/getAllProjects'));
+    var request = http.Request(
+        'GET',
+        Uri.parse(
+            'http://admin.brikow.com/api/construction/contractor/logout'));
 
     request.headers.addAll(headers);
 
     print("verify req:" + request.toString());
     print("verify head:" + request.headers.toString());
 
+    print(request);
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      result = jsonDecode(await response.stream.bytesToString())
+          as Map<String, dynamic>;
+
+      print(result["response"][0]["Name"]);
+
+      //print(await response.stream.bytesToString());
+      // Navigator.pushNamed(context, 'myverify');
+      print("logout SUccessful");
+    } else {
+      print(response.reasonPhrase);
+      print("logout failed");
+    }
+    print(response.statusCode);
+  }
+
+  @override
+  _getProjectData() async {
+    var headers = {
+      'Content-Type': 'application/json',
+      'Cookie': token
+      //'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYjkxODM3NWU3MjE4ZTc1ODIwMmY2MyIsImlhdCI6MTY3MzA3NDg4OCwiZXhwIjoxNjc1NjY2ODg4fQ.lSDOvNG2hyFEzzznQvw8d2vHsRxhf6yaY-MIsWjrpIM'
+    };
+    var request = http.Request(
+        'GET',
+        Uri.parse(
+            'http://admin.brikow.com/api/construction/contractor/getAllProjects'));
+
+    request.headers.addAll(headers);
+
+    print("verify req:" + request.toString());
+    print("verify head:" + request.headers.toString());
 
     print(request);
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-
-
-      result = jsonDecode(await response.stream.bytesToString()) as Map<String, dynamic>;
-
+      result = jsonDecode(await response.stream.bytesToString())
+          as Map<String, dynamic>;
 
       print(result["response"][0]["Name"]);
-
 
       //print(await response.stream.bytesToString());
       // Navigator.pushNamed(context, 'myverify');
@@ -103,12 +134,10 @@ class _VerifyState extends State<Verify> {
     request.body = json.encode({"Name": this.name});
     request.headers.addAll(headers);
 
-
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
-
     } else {
       print(response.reasonPhrase);
     }
@@ -144,233 +173,252 @@ class _VerifyState extends State<Verify> {
     return Container(
       padding: EdgeInsets.all(10),
       alignment: Alignment.topCenter,
-      child:  ListView(
+      child: ListView(
         shrinkWrap: true,
         children: [
-        Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(height: 20),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(height: 20),
 
-          Container(
-            //padding: EdgeInsets.only(left: 10, right: 10),
-            child: Row(
-            children: [
-
-
-              RichText(
-                text: TextSpan(
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: "Welcome",
-                      style: TextStyle(color: Color.fromRGBO(18, 54, 105, 1), fontSize: 28, fontWeight: FontWeight.w600),
+              Container(
+                //padding: EdgeInsets.only(left: 10, right: 10),
+                child: Row(
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: "Welcome",
+                            style: TextStyle(
+                                color: Color.fromRGBO(18, 54, 105, 1),
+                                fontSize: 28,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
+                    ),
+                    IconButton(
+                      color: Colors.blueGrey,
+                      highlightColor: Colors.black54,
+                      iconSize: 30,
+                      icon: Icon(Icons.logout),
+                      onPressed: () {
+                        logout();
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => MyPhone(title: 'Phone')));
+                        box1.clear();
+                      },
                     ),
                   ],
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 ),
               ),
 
-              IconButton(
-                color: Colors.blueGrey,
-                highlightColor: Colors.black54,
-                iconSize: 30,
-                icon: Icon(Icons.logout),
-                onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => MyPhone(title: 'Phone')));
-                  box1.clear();
-                },
+              // const Text(
+              //   "Projects                                 ",
+              //   style: TextStyle(fontSize: 30),
+              // ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text(
+                "Your Projects                                                ",
+                style: TextStyle(fontSize: 20),
+              ),
+              const SizedBox(
+                height: 10,
               ),
 
-
-            ],mainAxisAlignment: MainAxisAlignment.spaceBetween,),),
-
-          // const Text(
-          //   "Projects                                 ",
-          //   style: TextStyle(fontSize: 30),
-          // ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Text(
-            "Your Projects                                                ",
-            style: TextStyle(fontSize: 20),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-
-         Container(
-              child: GridView.count(
-                  physics: ScrollPhysics(),
+              Container(
+                  child: GridView.count(
+                physics: ScrollPhysics(),
                 shrinkWrap: true,
-                  crossAxisCount: 2,
-                  children: result["response"]==null?[]:
-                  List.generate(
-                      //box2.get('isLogged',defaultValue: false)?MyPhone(title: "phone"):Verify(),
-                      result["response"].length,//this is the total number of cards
-                          (index){
+                crossAxisCount: 2,
+                children: result["response"] == null
+                    ? []
+                    : List.generate(
+                        //box2.get('isLogged',defaultValue: false)?MyPhone(title: "phone"):Verify(),
+                        result["response"]
+                            .length, //this is the total number of cards
+                        (index) {
                         return Container(
                           child: Card(
-                            color: Color.fromRGBO(18, 54, 105, 1),
-                            child:Container(
-                              padding: EdgeInsets.all(16),
-                              alignment: Alignment.centerLeft,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  RichText(
-                                    text: TextSpan(
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                          text: "Date: "+result["response"][index]["Date"].substring(0, 10)+"\n\n",
-                                          style: TextStyle(color: Colors.white.withOpacity(0.7), fontSize: 14),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    //mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                  Expanded(
-                                  flex: 1,child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                                    children: [
-                                        Icon(
-                                        Icons.work,
-                                        color: Colors.white,
-                                        //size: 30,
-                                      )
-                                      ],)),
-                                      Expanded(
-                                        flex: 2,
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                        RichText(
-                                          text: TextSpan(
-                                            children: <TextSpan>[
-                                              TextSpan(
-                                                text: result["response"][index]["Name"].toUpperCase()+"\n\n",
-                                                style: TextStyle(color: Colors.white, fontSize: 18),
-                                              ),
-                                            ],
+                              color: Color.fromRGBO(89, 124, 194, 1),
+                              child: Container(
+                                padding: EdgeInsets.all(10),
+                                alignment: Alignment.centerLeft,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: "Date: " +
+                                                result["response"][index]
+                                                        ["Date"]
+                                                    .substring(0, 10) +
+                                                "\n",
+                                            style: TextStyle(
+                                                color: Colors.white
+                                                    .withOpacity(0.7),
+                                                fontSize: 14),
                                           ),
-                                        ),
-                                      ],))
-                                    ],
-                                  ),
-                                  RichText(
-                                    text: TextSpan(
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                          text: "Location: ",
-                                          style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 14),
-                                        ),
-                                        TextSpan(
-                                          text: result["response"][index]["Location"],
-                                          style: TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 14),
-                                        ),
-
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      //mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Expanded(
+                                            flex: 1,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.stretch,
+                                              children: [
+                                                Icon(
+                                                  Icons.work,
+                                                  color: Colors.white,
+                                                  //size: 30,
+                                                )
+                                              ],
+                                            )),
+                                        Expanded(
+                                            flex: 2,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                RichText(
+                                                  text: TextSpan(
+                                                    children: <TextSpan>[
+                                                      TextSpan(
+                                                        text: result["response"]
+                                                                        [index]
+                                                                    ["Name"]
+                                                                .toUpperCase() +
+                                                            "\n",
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 16),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ))
                                       ],
                                     ),
-                                  ),
-                                  SizedBox(height: 5,),
-                                  RichText(
-                                    text: TextSpan(
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                          text: "Material: ",
-                                          style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 14),
-                                        ),
-                                        TextSpan(
-                                          text: result["response"][index]["withMaterial"]+"\n",
-                                          style: TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 14),
-                                        ),
-
-                                      ],
+                                    RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: "Location: ",
+                                            style: TextStyle(
+                                                color: Colors.white
+                                                    .withOpacity(0.5),
+                                                fontSize: 14),
+                                          ),
+                                          TextSpan(
+                                            text: result["response"][index]
+                                                ["Location"],
+                                            style: TextStyle(
+                                                color: Colors.white
+                                                    .withOpacity(0.8),
+                                                fontSize: 14),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: "Material: ",
+                                            style: TextStyle(
+                                                color: Colors.white
+                                                    .withOpacity(0.5),
+                                                fontSize: 14),
+                                          ),
+                                          TextSpan(
+                                            text: result["response"][index]
+                                                    ["withMaterial"] +
+                                                "\n",
+                                            style: TextStyle(
+                                                color: Colors.white
+                                                    .withOpacity(0.8),
+                                                fontSize: 14),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                              //Text(result["response"][index]["Name"]),
                               ),
-                            )
-                            //Text(result["response"][index]["Name"]),
-                          ),
                         );
-                      }
-                  ),
-              )
-          ),
-          const SizedBox(
-            width: 20,
-            height: 40,
-          ),
-          Container(
-            alignment: Alignment.bottomCenter,
-            child: SizedBox(
-              width: 250,
-              height: 45,
-              child: ElevatedButton.icon(
-                onPressed: () {
-                 // addproject();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => third(),
-                    ),
-                  );
-                },
-                icon: Icon(
-                  Icons.add_circle_outline_outlined,
-                  color: Colors.black,
-                ), //icon data for elevated button
-                label: Text(
-                  "Add Project",
-                  style: TextStyle(color: Colors.black, fontSize: 18),
-                ), //label text
-                style: ElevatedButton.styleFrom(
-                  side: BorderSide(width: 3, color: Color.fromRGBO(195, 225, 241, 1)),
-                  primary: Color.fromRGBO(195, 225, 241, 1),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ), //elevated btton background color
-                ),
+                      }),
+              )),
+              const SizedBox(
+                width: 20,
+                height: 40,
               ),
-          ),)
+              Container(
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                  width: 250,
+                  height: 45,
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      // addproject();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => third(),
+                        ),
+                      );
+                    },
+                    icon: Icon(
+                      Icons.add_circle_outline_outlined,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ), //icon data for elevated button
+                    label: Text(
+                      "Add Project",
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          fontSize: 18),
+                    ), //label text
+                    style: ElevatedButton.styleFrom(
+                      side: BorderSide(
+                          width: 3, color: Color.fromRGBO(188, 66, 115, 1)),
+                      primary: Color.fromRGBO(89, 124, 194, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ), //elevated btton background color
+                    ),
+                  ),
+                ),
+              )
+            ],
+          )
         ],
-      )
-      ],),
+      ),
     );
   }
 
-  @override
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        // appBar: AppBar(
-        //   actions: <Widget>[
-        //     TextButton(
-        //       onPressed: () {
-        //         Navigator.of(context).pushReplacement(MaterialPageRoute(
-        //             builder: (context) => MyPhone(title: 'Phone')));
-        //         box1.clear();
-        //       },
-        //       child: Icon(
-        //         Icons.logout,
-        //         color: Colors.black54,
-        //       ),
-        //     ),
-        //   ],
-        //   title: const Text(
-        //     'Home',
-        //     style: TextStyle(color: Colors.black),
-        //   ),
-        //   //backgroundColor: Colors.red.shade100,
-        //   backgroundColor: Color.fromRGBO(224, 234, 242, 1),
-        // ),
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.red.shade100,
           items: const <BottomNavigationBarItem>[

@@ -101,26 +101,9 @@ class _LandingState extends State<Landing> {
                           ),
                         ),
                       ),
-
                       SizedBox(
                         height: 30,
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                      //   child: Text(
-                      //     "explore, study, follow the arrival of books,",
-                      //     style: GoogleFonts.lato(
-                      //         textStyle: TextStyle(color: Colors.grey[600])),
-                      //   ),
-                      // ),
-                      // Padding(
-                      //   padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                      //   child: Text(
-                      //     "get into good habbit of reading.",
-                      //     style: GoogleFonts.lato(
-                      //         textStyle: TextStyle(color: Colors.grey[600])),
-                      //   ),
-                      // ),
                       SizedBox(
                         height: 25,
                       ),

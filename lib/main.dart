@@ -83,14 +83,3 @@ void apicall() {
     }
   }
 }
-//void setState(Null Function() param0) {}
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) => MaterialApp(
-//         debugShowCheckedModeBanner: false,
-//         title: title,
-//         theme: ThemeData(primarySwatch: Colors.deepOrange),
-//         home: PdfPage(),
-//       );
-// }
