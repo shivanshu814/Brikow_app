@@ -244,7 +244,7 @@ class _VerifyState extends State<Verify> {
                         (index) {
                         return Container(
                           child: Card(
-                              color: Color.fromRGBO(89, 124, 194, 1),
+                              color: Color.fromARGB(210, 88, 40, 205),
                               child: Container(
                                 padding: EdgeInsets.all(10),
                                 alignment: Alignment.centerLeft,
@@ -398,8 +398,10 @@ class _VerifyState extends State<Verify> {
                     ), //label text
                     style: ElevatedButton.styleFrom(
                       side: BorderSide(
-                          width: 3, color: Color.fromRGBO(188, 66, 115, 1)),
-                      primary: Color.fromRGBO(89, 124, 194, 1),
+                        width: 3,
+                        color: Color.fromARGB(21, 88, 40, 205),
+                      ),
+                      primary: Color.fromARGB(210, 88, 40, 205),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ), //elevated btton background color
@@ -420,7 +422,7 @@ class _VerifyState extends State<Verify> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.red.shade100,
+          selectedItemColor: Color.fromARGB(210, 88, 40, 205),
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),

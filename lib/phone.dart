@@ -94,7 +94,7 @@ class _MyPhoneState extends State<MyPhone> {
                       decoration: BoxDecoration(
                           image: DecorationImage(
                               opacity: (20),
-                              image: AssetImage("images/password.gif"),
+                              image: AssetImage("images/login.jpg"),
                               fit: BoxFit.fitHeight)),
                     ),
                     // new Image(image: new AssetImage('assets/workers2.png')),
@@ -119,6 +119,9 @@ class _MyPhoneState extends State<MyPhone> {
                               fontWeight: FontWeight.bold),
                         ),
                       ),
+                      SizedBox(
+                        height: 11,
+                      ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 35.0),
                         child: Text(
@@ -136,18 +139,6 @@ class _MyPhoneState extends State<MyPhone> {
 
                       SizedBox(
                         height: 15,
-                      ),
-                      Text(
-                        "Record all the information about",
-                        style: TextStyle(color: Colors.black, fontSize: 16),
-                      ),
-                      Text(
-                        "the project and work-site in the software",
-                        style: TextStyle(color: Colors.black, fontSize: 16),
-                      ),
-                      Text(
-                        "and access these details whenever you want.",
-                        style: TextStyle(color: Colors.black, fontSize: 16),
                       ),
                       SizedBox(
                         height: 25,

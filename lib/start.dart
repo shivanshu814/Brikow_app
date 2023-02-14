@@ -16,7 +16,6 @@ class SplashScreenPage extends StatefulWidget {
 }
 
 class _SplashScreenPageState extends State<SplashScreenPage> {
-
   late Box box2;
 
   @override
@@ -26,7 +25,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     getData();
   }
 
-  void getData() async{
+  void getData() async {
     box2 = await Hive.openBox('logindata');
   }
 
@@ -35,8 +34,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     return Timer(
       duration,
       () {
-
-        print("splash"+box2.get('isLogged',defaultValue: false).toString());
+        print("splash" + box2.get('isLogged', defaultValue: false).toString());
         print(box2.get("isLogged"));
 
         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>
@@ -45,11 +43,11 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
 
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (_)
-              =>
-              //box2.get('isLogged',defaultValue: false)?MyPhone(title: "phone"):Verify(),
-            box2.get('isLogged',defaultValue: false)?MyPhone(title: "phone"):Landing(),
-
+            builder: (_) =>
+                //box2.get('isLogged',defaultValue: false)?MyPhone(title: "phone"):Verify(),
+                box2.get('isLogged', defaultValue: false)
+                    ? MyPhone(title: "phone")
+                    : Landing(),
           ),
         );
       },
@@ -62,7 +60,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       backgroundColor: Color.fromARGB(255, 233, 117, 134),
       body: Center(
         child: Image.asset(
-          "images/logo2.png",
+          "images/logo.png",
           width: 700.0,
           height: 300.0,
         ),

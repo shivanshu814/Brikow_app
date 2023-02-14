@@ -36,8 +36,6 @@ class fifth extends StatelessWidget {
                 height: 55,
                 color: Colors.grey.shade300,
                 child: Row(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  // ignore: prefer_const_literals_to_create_immutables
                   children: [
                     SizedBox(
                       width: 10,
@@ -78,8 +76,6 @@ class fifth extends StatelessWidget {
                 height: 55,
                 color: Colors.grey.shade300,
                 child: Row(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  // ignore: prefer_const_literals_to_create_immutables
                   children: [
                     SizedBox(
                       width: 10,

@@ -20,12 +20,11 @@ class _LandingState extends State<Landing> {
   Widget build(BuildContext context) {
     return (Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xffcf2c4e),
+        backgroundColor: Color.fromARGB(210, 88, 40, 205),
         scrolledUnderElevation: 15,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(25),
-              bottomLeft: Radius.circular(25)),
+              bottomRight: Radius.circular(5), bottomLeft: Radius.circular(5)),
         ),
         title: const Text(
           textAlign: TextAlign.center,
@@ -47,65 +46,51 @@ class _LandingState extends State<Landing> {
           ),
         ],
       ),
-      backgroundColor: Color(0xffcf2c4e),
+      backgroundColor: Color.fromARGB(255, 244, 244, 244),
       body: SafeArea(
         child: Center(
           child: Column(
             children: [
               Expanded(
-                  flex: 3,
-                  child: Stack(
-                    children: [
-                      Container(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(),
-                            color: Color(0xffcf2c4e),
-                          ),
+                flex: 3,
+                child: Stack(
+                  children: [
+                    Container(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(),
+                          color: Color.fromARGB(210, 88, 40, 205),
                         ),
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                opacity: (0.3),
-                                image: AssetImage("images/overlay.png"),
-                                fit: BoxFit.fitHeight)),
-                      ),
-                      Center(
-                        child: Container(
-                            child: Image.asset("images/workers2.png")),
-                      ),
-                    ],
-                  )),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              opacity: (10),
+                              image: AssetImage("images/final.jpg"),
+                              fit: BoxFit.fitHeight)),
+                    ),
+                    // Center(
+                    //   child: Container(child: Image.asset("images/final.jpg")),
+                    // ),
+                  ],
+                ),
+              ),
               Expanded(
                 flex: 2,
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Color.fromARGB(220, 200, 219, 195),
                       borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(50),
-                          topRight: Radius.circular(50))),
+                          topLeft: Radius.circular(0),
+                          topRight: Radius.circular(0))),
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 40,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                        child: Text(
-                          "Brikow",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        height: 10,
                       ),
                       SizedBox(
-                        height: 30,
-                      ),
-                      SizedBox(
-                        height: 25,
+                        height: 50,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -119,7 +104,7 @@ class _LandingState extends State<Landing> {
                           child: Container(
                             padding: EdgeInsets.symmetric(vertical: 20),
                             decoration: BoxDecoration(
-                                color: Colors.black,
+                                color: Color.fromARGB(210, 88, 40, 205),
                                 borderRadius: BorderRadius.circular(20)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -144,7 +129,7 @@ class _LandingState extends State<Landing> {
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 30,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -158,7 +143,7 @@ class _LandingState extends State<Landing> {
                           child: Container(
                             padding: EdgeInsets.symmetric(vertical: 20),
                             decoration: BoxDecoration(
-                                color: Colors.black,
+                                color: Color.fromARGB(210, 88, 40, 205),
                                 borderRadius: BorderRadius.circular(20)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
