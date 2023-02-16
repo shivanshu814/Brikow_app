@@ -333,12 +333,17 @@ class fifth extends StatelessWidget {
                         color: Colors.red,
                       ),
                       //icon data for elevated button
+
                       label: Text(
                         "Add Details",
-                        style: TextStyle(color: Colors.red, fontSize: 15),
+                        style: TextStyle(
+                            color: Color.fromARGB(210, 88, 40, 205),
+                            fontSize: 15),
                       ), //label text
                       style: ElevatedButton.styleFrom(
-                          side: BorderSide(width: 2, color: Colors.redAccent),
+                          side: BorderSide(
+                              width: 2,
+                              color: Color.fromARGB(210, 88, 40, 205)),
                           primary:
                               Colors.white //elevated btton background color
                           ),
@@ -573,10 +578,14 @@ class fifth extends StatelessWidget {
                       ), //icon data for elevated button
                       label: Text(
                         "Finish",
-                        style: TextStyle(color: Colors.red, fontSize: 15),
+                        style: TextStyle(
+                            color: Color.fromARGB(210, 88, 40, 205),
+                            fontSize: 15),
                       ), //label text
                       style: ElevatedButton.styleFrom(
-                          side: BorderSide(width: 2, color: Colors.redAccent),
+                          side: BorderSide(
+                              width: 2,
+                              color: Color.fromARGB(210, 88, 40, 205)),
                           primary:
                               Colors.white //elevated btton background color
                           ),
@@ -599,14 +608,18 @@ class fifth extends StatelessWidget {
                       },
                       icon: Icon(
                         Icons.save,
-                        color: Colors.redAccent,
+                        color: Color.fromARGB(210, 88, 40, 205),
                       ), //icon data for elevated button
                       label: Text(
                         "Save and Create new Title",
-                        style: TextStyle(color: Colors.red, fontSize: 15),
+                        style: TextStyle(
+                            color: Color.fromARGB(210, 88, 40, 205),
+                            fontSize: 15),
                       ), //label text
                       style: ElevatedButton.styleFrom(
-                          side: BorderSide(width: 2, color: Colors.redAccent),
+                          side: BorderSide(
+                              width: 2,
+                              color: Color.fromARGB(210, 88, 40, 205)),
                           primary:
                               Colors.white //elevated btton background color
                           ),

@@ -231,142 +231,149 @@ class _VerifyState extends State<Verify> {
               ),
 
               Container(
-                  child: GridView.count(
-                physics: ScrollPhysics(),
-                shrinkWrap: true,
-                crossAxisCount: 2,
-                children: result["response"] == null
-                    ? []
-                    : List.generate(
-                        //box2.get('isLogged',defaultValue: false)?MyPhone(title: "phone"):Verify(),
-                        result["response"]
-                            .length, //this is the total number of cards
-                        (index) {
-                        return Container(
-                          child: Card(
-                              color: Color.fromARGB(210, 88, 40, 205),
-                              child: Container(
-                                padding: EdgeInsets.all(10),
-                                alignment: Alignment.centerLeft,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    RichText(
-                                      text: TextSpan(
-                                        children: <TextSpan>[
-                                          TextSpan(
-                                            text: "Date: " +
-                                                result["response"][index]
-                                                        ["Date"]
-                                                    .substring(0, 10) +
-                                                "\n",
-                                            style: TextStyle(
-                                                color: Colors.white
-                                                    .withOpacity(0.7),
-                                                fontSize: 14),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Row(
+                child: GridView.count(
+                  physics: ScrollPhysics(),
+                  shrinkWrap: true,
+                  crossAxisCount: 2,
+                  children: result["response"] == null
+                      ? []
+                      : List.generate(
+                          //box2.get('isLogged',defaultValue: false)?MyPhone(title: "phone"):Verify(),
+                          result["response"]
+                              .length, //this is the total number of cards
+                          (index) {
+                            return Container(
+                              child: Card(
+                                  color: Color.fromARGB(210, 88, 40, 205),
+                                  child: Container(
+                                    padding: EdgeInsets.all(10),
+                                    alignment: Alignment.centerLeft,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                      //mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        Expanded(
-                                            flex: 1,
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.stretch,
-                                              children: [
-                                                Icon(
-                                                  Icons.work,
-                                                  color: Colors.white,
-                                                  //size: 30,
-                                                )
-                                              ],
-                                            )),
-                                        Expanded(
-                                            flex: 2,
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                RichText(
-                                                  text: TextSpan(
-                                                    children: <TextSpan>[
-                                                      TextSpan(
-                                                        text: result["response"]
-                                                                        [index]
-                                                                    ["Name"]
-                                                                .toUpperCase() +
-                                                            "\n",
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 16),
+                                        RichText(
+                                          text: TextSpan(
+                                            children: <TextSpan>[
+                                              TextSpan(
+                                                text: "Date: " +
+                                                    result["response"][index]
+                                                            ["Date"]
+                                                        .substring(0, 10) +
+                                                    "\n",
+                                                style: TextStyle(
+                                                    color: Colors.white
+                                                        .withOpacity(0.7),
+                                                    fontSize: 14),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          //mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Expanded(
+                                                flex: 1,
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment
+                                                          .stretch,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.work,
+                                                      color: Colors.white,
+                                                      //size: 30,
+                                                    )
+                                                  ],
+                                                )),
+                                            Expanded(
+                                                flex: 2,
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    RichText(
+                                                      text: TextSpan(
+                                                        children: <TextSpan>[
+                                                          TextSpan(
+                                                            text: result["response"]
+                                                                            [
+                                                                            index]
+                                                                        ["Name"]
+                                                                    .toUpperCase() +
+                                                                "\n",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 16),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ],
-                                            ))
+                                                    ),
+                                                  ],
+                                                ))
+                                          ],
+                                        ),
+                                        RichText(
+                                          text: TextSpan(
+                                            children: <TextSpan>[
+                                              TextSpan(
+                                                text: "Location: ",
+                                                style: TextStyle(
+                                                    color: Colors.white
+                                                        .withOpacity(0.5),
+                                                    fontSize: 14),
+                                              ),
+                                              TextSpan(
+                                                text: result["response"][index]
+                                                    ["Location"],
+                                                style: TextStyle(
+                                                    color: Colors.white
+                                                        .withOpacity(0.8),
+                                                    fontSize: 14),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        RichText(
+                                          text: TextSpan(
+                                            children: <TextSpan>[
+                                              TextSpan(
+                                                text: "Material: ",
+                                                style: TextStyle(
+                                                    color: Colors.white
+                                                        .withOpacity(0.5),
+                                                    fontSize: 14),
+                                              ),
+                                              TextSpan(
+                                                text: result["response"][index]
+                                                        ["withMaterial"] +
+                                                    "\n",
+                                                style: TextStyle(
+                                                    color: Colors.white
+                                                        .withOpacity(0.8),
+                                                    fontSize: 14),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ],
                                     ),
-                                    RichText(
-                                      text: TextSpan(
-                                        children: <TextSpan>[
-                                          TextSpan(
-                                            text: "Location: ",
-                                            style: TextStyle(
-                                                color: Colors.white
-                                                    .withOpacity(0.5),
-                                                fontSize: 14),
-                                          ),
-                                          TextSpan(
-                                            text: result["response"][index]
-                                                ["Location"],
-                                            style: TextStyle(
-                                                color: Colors.white
-                                                    .withOpacity(0.8),
-                                                fontSize: 14),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    RichText(
-                                      text: TextSpan(
-                                        children: <TextSpan>[
-                                          TextSpan(
-                                            text: "Material: ",
-                                            style: TextStyle(
-                                                color: Colors.white
-                                                    .withOpacity(0.5),
-                                                fontSize: 14),
-                                          ),
-                                          TextSpan(
-                                            text: result["response"][index]
-                                                    ["withMaterial"] +
-                                                "\n",
-                                            style: TextStyle(
-                                                color: Colors.white
-                                                    .withOpacity(0.8),
-                                                fontSize: 14),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )
-                              //Text(result["response"][index]["Name"]),
-                              ),
-                        );
-                      }),
-              )),
+                                  )
+                                  //Text(result["response"][index]["Name"]),
+                                  ),
+                            );
+                          },
+                        ),
+                ),
+              ),
               const SizedBox(
                 width: 20,
                 height: 40,
@@ -374,8 +381,8 @@ class _VerifyState extends State<Verify> {
               Container(
                 alignment: Alignment.bottomCenter,
                 child: SizedBox(
-                  width: 250,
-                  height: 45,
+                  width: 350,
+                  height: 55,
                   child: ElevatedButton.icon(
                     onPressed: () {
                       // addproject();
@@ -394,11 +401,11 @@ class _VerifyState extends State<Verify> {
                       "Add Project",
                       style: TextStyle(
                           color: Color.fromARGB(255, 255, 255, 255),
-                          fontSize: 18),
+                          fontSize: 22),
                     ), //label text
                     style: ElevatedButton.styleFrom(
                       side: BorderSide(
-                        width: 3,
+                        width: 1,
                         color: Color.fromARGB(21, 88, 40, 205),
                       ),
                       primary: Color.fromARGB(210, 88, 40, 205),

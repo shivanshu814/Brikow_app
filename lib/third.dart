@@ -29,7 +29,7 @@ class _thirdState extends State<third> {
     box3 = await Hive.openBox('projectdata');
     setState(() {
       print("token");
-      token=box1.get("token").toString();
+      token = box1.get("token").toString();
       print(box1.get("token"));
     });
   }
@@ -69,16 +69,18 @@ class _thirdState extends State<third> {
     final now = new DateTime.now();
     String formatter = DateFormat('yMd').format(now);
 
-    var request = http.Request('POST',
-        Uri.parse('http://admin.brikow.com/api/construction/contractor/add_project'));
+    var request = http.Request(
+        'POST',
+        Uri.parse(
+            'http://admin.brikow.com/api/construction/contractor/add_project'));
     request.body = json.encode({
       "Name": name.text,
       "Location": location.text,
-      "Date":formatter,
+      "Date": formatter,
       'withMaterial': "Yes",
       'work': [
-         {'description':'Layout','rate': rate.text, 'unit': unit.text},
-        {'description':'Excavation','rate': rate.text, 'unit': unit.text}
+        {'description': 'Layout', 'rate': rate.text, 'unit': unit.text},
+        {'description': 'Excavation', 'rate': rate.text, 'unit': unit.text}
       ]
     });
     request.headers.addAll(headers);
@@ -89,14 +91,10 @@ class _thirdState extends State<third> {
 
     http.StreamedResponse response = await request.send();
 
-
-
-
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
       // Navigator.pushNamed(context, 'myverify');
       box3.put('date', formatter);
-
 
       Navigator.pushReplacement(
         context,
@@ -117,10 +115,10 @@ class _thirdState extends State<third> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(224, 234, 242, 1),
+        backgroundColor: Color.fromARGB(210, 88, 40, 205),
         title: Text(
           'Add Project',
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
       ),
       body: Center(
@@ -130,7 +128,7 @@ class _thirdState extends State<third> {
               height: 15,
             ),
             Container(
-              width: 345.0,
+              width: 125.0,
               height: 55,
               color: Colors.grey.shade300,
               child: Row(
@@ -212,8 +210,8 @@ class _thirdState extends State<third> {
                 ),
                 Container(
                   alignment: Alignment.center,
-                  width: 120.0,
-                  height: 35,
+                  width: 110.0,
+                  height: 50,
                   color: Colors.white,
                   child: Row(
                     children: [
@@ -241,8 +239,8 @@ class _thirdState extends State<third> {
                   width: 50,
                 ),
                 Container(
-                  height: 35,
-                  width: 120,
+                  height: 50,
+                  width: 110,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
@@ -298,8 +296,8 @@ class _thirdState extends State<third> {
                 ),
                 Container(
                   alignment: Alignment.center,
-                  width: 120.0,
-                  height: 35,
+                  width: 110.0,
+                  height: 50,
                   color: Colors.white,
                   child: Row(
                     children: [
@@ -326,8 +324,8 @@ class _thirdState extends State<third> {
                   width: 50,
                 ),
                 Container(
-                  height: 35,
-                  width: 120,
+                  width: 110.0,
+                  height: 50,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
@@ -383,8 +381,8 @@ class _thirdState extends State<third> {
                 ),
                 Container(
                   alignment: Alignment.center,
-                  width: 120.0,
-                  height: 35,
+                  width: 110.0,
+                  height: 50,
                   color: Colors.white,
                   child: Row(
                     children: [
@@ -411,8 +409,8 @@ class _thirdState extends State<third> {
                   width: 50,
                 ),
                 Container(
-                  height: 35,
-                  width: 120,
+                  width: 110.0,
+                  height: 50,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
@@ -468,8 +466,8 @@ class _thirdState extends State<third> {
                 ),
                 Container(
                   alignment: Alignment.center,
-                  width: 120.0,
-                  height: 35,
+                  width: 110.0,
+                  height: 50,
                   color: Colors.white,
                   child: Row(
                     children: [
@@ -496,8 +494,8 @@ class _thirdState extends State<third> {
                   width: 50,
                 ),
                 Container(
-                  height: 35,
-                  width: 120,
+                  width: 110.0,
+                  height: 50,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
@@ -553,8 +551,8 @@ class _thirdState extends State<third> {
                 ),
                 Container(
                   alignment: Alignment.center,
-                  width: 120.0,
-                  height: 35,
+                  width: 110.0,
+                  height: 50,
                   color: Colors.white,
                   child: Row(
                     children: [
@@ -581,8 +579,8 @@ class _thirdState extends State<third> {
                   width: 50,
                 ),
                 Container(
-                  height: 35,
-                  width: 120,
+                  width: 110.0,
+                  height: 50,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
@@ -638,8 +636,8 @@ class _thirdState extends State<third> {
                 ),
                 Container(
                   alignment: Alignment.center,
-                  width: 120.0,
-                  height: 35,
+                  width: 110.0,
+                  height: 50,
                   color: Colors.white,
                   child: Row(
                     children: [
@@ -666,8 +664,8 @@ class _thirdState extends State<third> {
                   width: 50,
                 ),
                 Container(
-                  height: 35,
-                  width: 120,
+                  width: 110.0,
+                  height: 50,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
@@ -702,11 +700,10 @@ class _thirdState extends State<third> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 SizedBox(
-                  width: 250,
-                  height: 35,
+                  width: 273,
+                  height: 45,
                   child: ElevatedButton.icon(
                     onPressed: () {
-
                       box3.put('name', name.text);
                       box3.put('location', location.text);
 
@@ -714,36 +711,34 @@ class _thirdState extends State<third> {
                       print(box3.get("location"));
 
                       _savedata();
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => fourth(),
-                      //   ),
-                      // );
                     },
                     icon: Icon(
                       Icons.save,
-                      color: Colors.red.shade200,
+                      color: Color.fromARGB(210, 88, 40, 205),
+                      size: 22,
                     ), //icon data for elevated button
                     label: Text(
                       "Save and Next",
-                      style:
-                          TextStyle(color: Colors.red.shade200, fontSize: 18),
+                      style: TextStyle(
+                          color: Color.fromARGB(210, 88, 40, 205),
+                          fontSize: 22),
                     ), //label text
                     style: ElevatedButton.styleFrom(
-                        side: BorderSide(width: 2, color: Colors.red.shade200),
+                        side: BorderSide(
+                            width: 3, color: Color.fromARGB(210, 88, 40, 205)),
                         // ignore: deprecated_member_use
                         primary: Colors.white //elevated btton background color
                         ),
                   ),
                 ),
                 SizedBox(
-                  width: 70,
-                ),
-                SizedBox(
+                  width: 59,
                   height: 14,
                 ),
               ],
+            ),
+            SizedBox(
+              height: 14,
             ),
           ],
         ),
@@ -751,25 +746,3 @@ class _thirdState extends State<third> {
     );
   }
 }
-
-
-
-
-
-// GestureDetector(
-                //   onTap: () {
-                //     _savedata();
-                //   },
-                //   child: Container(
-                //     width: 230,
-                //     height: 45,
-                //     decoration: BoxDecoration(
-                //       color: Colors.red.shade200,
-                //       borderRadius: BorderRadius.circular(10),
-                //     ),
-                //     child: Center(
-                //       child: Text("Save and Next"),
-                //     ),
-                //   ),
-                // ),
-                
