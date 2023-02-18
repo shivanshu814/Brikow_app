@@ -30,7 +30,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   }
 
   startSplashScreen() async {
-    var duration = const Duration(seconds: 10);
+    var duration = const Duration(seconds: 4);
     return Timer(
       duration,
       () {
