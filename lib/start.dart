@@ -34,7 +34,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     return Timer(
       duration,
       () {
-        print("splash" + box2.get('isLogged', defaultValue: false).toString());
+        print("splashh" + box2.get('isLogged', defaultValue: false).toString());
         print(box2.get("isLogged"));
 
         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>
@@ -57,13 +57,28 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 233, 117, 134),
+      backgroundColor: Color.fromARGB(210, 214, 203, 243),
       body: Center(
-        child: Image.asset(
-          "images/logo.png",
-          width: 700.0,
-          height: 300.0,
-        ),
+
+
+            child: Column(children: [
+
+            CircleAvatar(
+              radius: 150,
+              child: Image.asset(
+                "images/logo.png",
+                width: 600.0,
+                height: 200.0,
+              ),
+              //backgroundImage: AssetImage('images/logo.png'),
+              backgroundColor: Colors.white70,
+
+            ),
+
+              // Image.network(
+              //     'https://static.javatpoint.com/tutorial/flutter/images/flutter-creating-android-platform-specific-code3.png'
+              // ),
+            ])
       ),
     );
   }
