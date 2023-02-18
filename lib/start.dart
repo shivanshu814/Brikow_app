@@ -60,9 +60,8 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       backgroundColor: Color.fromARGB(210, 214, 203, 243),
       body: Center(
 
-
-            child: Column(children: [
-
+            child: Column(
+                children: [
             CircleAvatar(
               radius: 150,
               child: Image.asset(
@@ -74,11 +73,14 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
               backgroundColor: Colors.white70,
 
             ),
+              SizedBox(height: 150,),
 
-              // Image.network(
-              //     'https://static.javatpoint.com/tutorial/flutter/images/flutter-creating-android-platform-specific-code3.png'
-              // ),
-            ])
+              Image.network(
+                  'https://analyticaldesignresearch.files.wordpress.com/2016/02/its-nice-that-pocopay-01.gif',height: 100,
+              ),
+            ],
+            mainAxisAlignment: MainAxisAlignment.center,
+            )
       ),
     );
   }
