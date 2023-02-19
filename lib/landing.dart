@@ -51,11 +51,24 @@ class _LandingState extends State<Landing> {
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  GestureDetector(onTap:(){Navigator.pushNamed(context, 'phone');},child: Container(child: Icon(Icons.logout,size: 30,color: Colors.black54,),padding: EdgeInsets.only(right: 20),))
+                  GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, 'phone');
+                      },
+                      child: Container(
+                        child: Icon(
+                          Icons.logout,
+                          size: 30,
+                          color: Colors.black54,
+                        ),
+                        padding: EdgeInsets.only(right: 20),
+                      ))
                 ],
               ),
               Expanded(
@@ -105,17 +118,29 @@ class _LandingState extends State<Landing> {
                       SizedBox(
                         height: 50,
                       ),
-                      Container(padding: EdgeInsets.only(left:30),alignment: Alignment.centerLeft,child: Text(
-                        'Welcome',
-                        style: TextStyle(fontFamily: 'roboto',color: Colors.white,fontSize: 25),
-                      )),
+                      Container(
+                          padding: EdgeInsets.only(left: 30),
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Welcome',
+                            style: TextStyle(
+                                fontFamily: 'roboto',
+                                color: Colors.white,
+                                fontSize: 25),
+                          )),
                       SizedBox(
                         height: 10,
                       ),
-                      Container(padding: EdgeInsets.only(left:30),alignment: Alignment.centerLeft,child: Text(
-                        'A smarter, better way to manage Billing, Property Management & Investment',
-                        style: TextStyle(fontFamily: 'roboto',color: Colors.white70,fontSize: 15),
-                      )),
+                      Container(
+                          padding: EdgeInsets.only(left: 30),
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'A smarter, better way to manage Billing, Property Management & Investment',
+                            style: TextStyle(
+                                fontFamily: 'roboto',
+                                color: Colors.white70,
+                                fontSize: 15),
+                          )),
                       SizedBox(
                         height: 50,
                       ),
@@ -139,7 +164,7 @@ class _LandingState extends State<Landing> {
                                 Text(
                                   "Construction",
                                   style: TextStyle(
-                                      fontSize: 15,
+                                      fontSize: 16,
                                       color: Colors.black87,
                                       fontWeight: FontWeight.w900),
                                 ),
@@ -178,7 +203,7 @@ class _LandingState extends State<Landing> {
                                 Text(
                                   "Property Manager / Broker",
                                   style: TextStyle(
-                                      fontSize: 15,
+                                      fontSize: 16,
                                       color: Colors.black87,
                                       fontWeight: FontWeight.w900),
                                 ),
@@ -197,7 +222,7 @@ class _LandingState extends State<Landing> {
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
