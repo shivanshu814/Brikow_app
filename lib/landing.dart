@@ -19,6 +19,7 @@ class _LandingState extends State<Landing> {
   @override
   Widget build(BuildContext context) {
     return (Scaffold(
+      resizeToAvoidBottomInset: false,
       // appBar: AppBar(
       //   backgroundColor: Color.fromARGB(210, 88, 40, 205),
       //   scrolledUnderElevation: 15,
@@ -51,65 +52,67 @@ class _LandingState extends State<Landing> {
         child: Center(
           child: Column(
             children: [
-              SizedBox(
-                height: 20,
+              Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        opacity: (20),
+                        image: AssetImage("images/8104.jpg"),
+                        fit: BoxFit.fitHeight)),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, 'phone');
-                      },
-                      child: Container(
-                        child: Icon(
-                          Icons.logout,
-                          size: 30,
-                          color: Colors.black54,
-                        ),
-                        padding: EdgeInsets.only(right: 20),
-                      ))
-                ],
-              ),
-              Expanded(
-                flex: 2,
-                child: Stack(
-                  children: [
-                    // Container(
-                    //   child: Container(
-                    //     decoration: BoxDecoration(
-                    //       borderRadius: BorderRadius.only(),
-                    //       color: Color.fromARGB(210, 88, 40, 205),
-                    //     ),
-                    //   ),
-                    // ),
-                    // Container(
-                    //   decoration: BoxDecoration(
-                    //       image: DecorationImage(
-                    //           opacity: (10),
-                    //           image: AssetImage("images/logo.png"),
-                    //           fit: BoxFit.fitHeight)),
-                    // ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.end,
+              //   children: [
+              //     GestureDetector(
+              //         onTap: () {
+              //           Navigator.pushNamed(context, 'phone');
+              //         },
+              //         child: Container(
+              //           child: Icon(
+              //             Icons.logout,
+              //             size: 30,
+              //             color: Colors.black54,
+              //           ),
+              //           padding: EdgeInsets.only(right: 20),
+              //         ))
+              //   ],
+              // ),
+              // Expanded(
+              //   flex: 2,
+              //   child: Stack(
+              //     children: [
+              //       // Container(
+              //       //   child: Container(
+              //       //     decoration: BoxDecoration(
+              //       //       borderRadius: BorderRadius.only(),
+              //       //       color: Color.fromARGB(210, 88, 40, 205),
+              //       //     ),
+              //       //   ),
+              //       // ),
+              //       // Container(
+              //       //   decoration: BoxDecoration(
+              //       //       image: DecorationImage(
+              //       //           opacity: (10),
+              //       //           image: AssetImage("images/logo.png"),
+              //       //           fit: BoxFit.fitHeight)),
+              //       // ),
 
-                    Center(
-                      child: Image.asset(
-                        'images/logo.png',
-                        //width: 150.0,
-                        height: 120.0,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              //       Center(
+              //         child: Image.asset(
+              //           'images/logo.png',
+              //           //width: 150.0,
+              //           height: 120.0,
+              //           fit: BoxFit.cover,
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               Expanded(
-                flex: 3,
+                flex: 1,
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Color.fromRGBO(42, 53, 71, 1),
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(35),
-                          topRight: Radius.circular(35))),
+                    color: Color.fromRGBO(42, 53, 71, 1),
+                  ),
                   child: Column(
                     children: [
                       SizedBox(
@@ -139,13 +142,20 @@ class _LandingState extends State<Landing> {
                             style: TextStyle(
                                 fontFamily: 'roboto',
                                 color: Colors.white70,
-                                fontSize: 15),
+                                fontSize: 18),
                           )),
                       SizedBox(
-                        height: 50,
+                        height: 280,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                opacity: (20),
+                                image: AssetImage("images/login.jpg"),
+                                fit: BoxFit.fitHeight)),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
                         child: GestureDetector(
                           onTap: (() {
                             Navigator.push(
@@ -192,33 +202,30 @@ class _LandingState extends State<Landing> {
                                 MaterialPageRoute(
                                     builder: (context) => Verify()));
                           }),
-                          child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 20),
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(245, 224, 212, 255),
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
-                                  "Property Manager / Broker",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black87,
-                                      fontWeight: FontWeight.w900),
-                                ),
-                                Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.black87,
-                                )
-                              ],
-                            ),
-                          ),
+                          // child: Container(
+                          //   padding: EdgeInsets.symmetric(vertical: 20),
+                          //   decoration: BoxDecoration(
+                          //       color: Color.fromARGB(245, 224, 212, 255),
+                          //       borderRadius: BorderRadius.circular(20)),
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          //     children: [
+                          //       Text(
+                          //         "Property Manager / Broker",
+                          //         style: TextStyle(
+                          //             fontSize: 16,
+                          //             color: Colors.black87,
+                          //             fontWeight: FontWeight.w900),
+                          //       ),
+                          //       Icon(
+                          //         Icons.arrow_forward,
+                          //         color: Colors.black87,
+                          //       )
+                          //     ],
+                          //   ),
+                          // ),
                         ),
                       ),
-                      SizedBox(
-                        height: 30,
-                      )
                     ],
                   ),
                 ),
