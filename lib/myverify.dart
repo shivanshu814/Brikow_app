@@ -9,6 +9,8 @@ import 'package:phone_otp_ui/phone.dart';
 import 'package:phone_otp_ui/third.dart';
 import 'package:phone_otp_ui/third.dart';
 
+import 'landing.dart';
+
 class Verify extends StatefulWidget {
   const Verify({Key? key}) : super(key: key);
   @override
@@ -231,13 +233,11 @@ class _VerifyState extends State<Verify> {
                       iconSize: 40,
                       icon: Icon(Icons.arrow_back),
                       onPressed: () {
-                        logout();
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                            builder: (context) => MyPhone(title: 'landing'),
+                            builder: (context) => Landing(),
                           ),
                         );
-                        box1.clear();
                       },
                     ),
                     RichText(
