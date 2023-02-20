@@ -187,9 +187,9 @@ class _VerifyState extends State<Verify> {
                 child: Row(
                   children: [
                     IconButton(
-                      color: Colors.blueGrey,
-                      highlightColor: Colors.black54,
-                      iconSize: 30,
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      highlightColor: Color.fromARGB(255, 0, 0, 0),
+                      iconSize: 40,
                       icon: Icon(Icons.arrow_back),
                       onPressed: () {
                         logout();
@@ -218,22 +218,23 @@ class _VerifyState extends State<Verify> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 ),
               ),
-
-              // const Text(
-              //   "Projects                                 ",
-              //   style: TextStyle(fontSize: 30),
-              // ),
+              RichText(
+                text: TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
+                      text:
+                          "                                      Your Projects",
+                      style: TextStyle(
+                          color: Color.fromRGBO(237, 99, 0, 1),
+                          fontSize: 23,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
+              ),
               const SizedBox(
                 height: 10,
               ),
-              const Text(
-                "Your Projects                                                ",
-                style: TextStyle(fontSize: 20),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-
               Container(
                 child: GridView.count(
                   physics: ScrollPhysics(),
