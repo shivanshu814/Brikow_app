@@ -165,42 +165,127 @@ class _VerifyState extends State<Verify> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   Widget _buildProfile() {
-    return Container(
-      child: SizedBox(
-        width: 350,
-        height: 55,
-        child: ElevatedButton.icon(
+    return (Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(217, 151, 113, 227),
+        leading: IconButton(
+          color: Colors.black,
+          icon: const Icon(Icons.arrow_back),
+          tooltip: 'Home',
           onPressed: () {
-            // addproject();
-            Navigator.push(
-              context,
+            Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => third(),
+                builder: (context) => Verify(),
               ),
             );
           },
-          icon: Icon(
-            Icons.add_circle_outline_outlined,
-            color: Color.fromARGB(255, 255, 255, 255),
-          ), //icon data for elevated button
-          label: Text(
-            "Add Project",
-            style: TextStyle(
-                color: Color.fromARGB(255, 255, 255, 255), fontSize: 22),
-          ), //label text
-          style: ElevatedButton.styleFrom(
-            side: BorderSide(
-              width: 1,
-              color: Color.fromARGB(21, 88, 40, 205),
-            ),
-            primary: Color.fromARGB(210, 113, 64, 235),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ), //elevated btton background color
+        ),
+        title: Text(
+          'Welcome',
+          style: TextStyle(
+            color: Color.fromARGB(255, 0, 0, 0),
           ),
         ),
       ),
-    );
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              Expanded(
+                flex: 3,
+                child: Stack(
+                  children: [
+                    Container(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(),
+                          color: Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 420,
+                      width: 520,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            opacity: (20),
+                            image: AssetImage("images/crane.gif"),
+                            fit: BoxFit.fill),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 11,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                child: Text(
+                  "A smarter, better way to manage Billling,",
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 0), fontSize: 16),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                child: Text(
+                  "Property Management & Investment",
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 0), fontSize: 16),
+                ),
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              Container(
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                  width: 350,
+                  height: 55,
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      // addproject();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => third(),
+                        ),
+                      );
+                    },
+                    icon: Icon(
+                      Icons.add_circle_outline_outlined,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                    ), //icon data for elevated button
+                    label: Text(
+                      "Add Project",
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          fontSize: 22),
+                    ), //label text
+                    style: ElevatedButton.styleFrom(
+                      side: BorderSide(
+                        width: 1,
+                        color: Color.fromARGB(21, 88, 40, 205),
+                      ),
+                      primary: Color.fromARGB(210, 113, 64, 235),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ), //elevated btton background color
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 100,
+              ),
+            ],
+          ),
+        ),
+      ),
+    ));
   }
 
   Widget _addProject() {
@@ -244,7 +329,7 @@ class _VerifyState extends State<Verify> {
                       text: TextSpan(
                         children: <TextSpan>[
                           TextSpan(
-                            text: "Welcome",
+                            text: "Add Project",
                             style: TextStyle(
                                 color: Color.fromRGBO(0, 0, 0, 1),
                                 fontSize: 28,
@@ -432,44 +517,44 @@ class _VerifyState extends State<Verify> {
                 width: 20,
                 height: 40,
               ),
-              Container(
-                alignment: Alignment.bottomCenter,
-                child: SizedBox(
-                  width: 350,
-                  height: 55,
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      // addproject();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => third(),
-                        ),
-                      );
-                    },
-                    icon: Icon(
-                      Icons.add_circle_outline_outlined,
-                      color: Color.fromARGB(255, 255, 255, 255),
-                    ), //icon data for elevated button
-                    label: Text(
-                      "Add Project",
-                      style: TextStyle(
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          fontSize: 22),
-                    ), //label text
-                    style: ElevatedButton.styleFrom(
-                      side: BorderSide(
-                        width: 1,
-                        color: Color.fromARGB(21, 88, 40, 205),
-                      ),
-                      primary: Color.fromARGB(210, 113, 64, 235),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ), //elevated btton background color
-                    ),
-                  ),
-                ),
-              )
+              // Container(
+              //   alignment: Alignment.bottomCenter,
+              //   child: SizedBox(
+              //     width: 350,
+              //     height: 55,
+              //     child: ElevatedButton.icon(
+              //       onPressed: () {
+              //         // addproject();
+              //         Navigator.push(
+              //           context,
+              //           MaterialPageRoute(
+              //             builder: (context) => third(),
+              //           ),
+              //         );
+              //       },
+              //       icon: Icon(
+              //         Icons.add_circle_outline_outlined,
+              //         color: Color.fromARGB(255, 255, 255, 255),
+              //       ), //icon data for elevated button
+              //       label: Text(
+              //         "Add Project",
+              //         style: TextStyle(
+              //             color: Color.fromARGB(255, 255, 255, 255),
+              //             fontSize: 22),
+              //       ), //label text
+              //       style: ElevatedButton.styleFrom(
+              //         side: BorderSide(
+              //           width: 1,
+              //           color: Color.fromARGB(21, 88, 40, 205),
+              //         ),
+              //         primary: Color.fromARGB(210, 113, 64, 235),
+              //         shape: RoundedRectangleBorder(
+              //           borderRadius: BorderRadius.circular(20),
+              //         ), //elevated btton background color
+              //       ),
+              //     ),
+              //   ),
+              // )
             ],
           )
         ],
