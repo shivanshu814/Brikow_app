@@ -295,7 +295,7 @@ class _VerifyState extends State<Verify> {
   }
 
   Widget _buildHome() {
-    print("buidl");
+    print("build");
     return Container(
       padding: EdgeInsets.all(10),
       alignment: Alignment.topCenter,
