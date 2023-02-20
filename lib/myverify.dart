@@ -164,6 +164,45 @@ class _VerifyState extends State<Verify> {
 
   Widget _buildProfile() {
     return Container(
+      child: SizedBox(
+        width: 350,
+        height: 55,
+        child: ElevatedButton.icon(
+          onPressed: () {
+            // addproject();
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => third(),
+              ),
+            );
+          },
+          icon: Icon(
+            Icons.add_circle_outline_outlined,
+            color: Color.fromARGB(255, 255, 255, 255),
+          ), //icon data for elevated button
+          label: Text(
+            "Add Project",
+            style: TextStyle(
+                color: Color.fromARGB(255, 255, 255, 255), fontSize: 22),
+          ), //label text
+          style: ElevatedButton.styleFrom(
+            side: BorderSide(
+              width: 1,
+              color: Color.fromARGB(21, 88, 40, 205),
+            ),
+            primary: Color.fromARGB(210, 113, 64, 235),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ), //elevated btton background color
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _addProject() {
+    return Container(
       child: Text("Profile"),
     );
   }
@@ -249,7 +288,7 @@ class _VerifyState extends State<Verify> {
                           (index) {
                             return Container(
                               child: Card(
-                                  color: Color.fromARGB(210, 88, 40, 205),
+                                  color: Color.fromARGB(217, 151, 113, 227),
                                   child: Container(
                                     padding: EdgeInsets.all(10),
                                     alignment: Alignment.centerLeft,
@@ -269,9 +308,10 @@ class _VerifyState extends State<Verify> {
                                                         .substring(0, 10) +
                                                     "\n",
                                                 style: TextStyle(
-                                                    color: Colors.white
+                                                    color: Color.fromARGB(
+                                                            255, 0, 0, 0)
                                                         .withOpacity(0.7),
-                                                    fontSize: 14),
+                                                    fontSize: 15),
                                               ),
                                             ],
                                           ),
@@ -290,7 +330,8 @@ class _VerifyState extends State<Verify> {
                                                   children: [
                                                     Icon(
                                                       Icons.work,
-                                                      color: Colors.white,
+                                                      color: Color.fromARGB(
+                                                          255, 0, 0, 0),
                                                       //size: 30,
                                                     )
                                                   ],
@@ -312,8 +353,12 @@ class _VerifyState extends State<Verify> {
                                                                     .toUpperCase() +
                                                                 "\n",
                                                             style: TextStyle(
-                                                                color: Colors
-                                                                    .white,
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        0,
+                                                                        0,
+                                                                        0),
                                                                 fontSize: 16),
                                                           ),
                                                         ],
@@ -329,17 +374,19 @@ class _VerifyState extends State<Verify> {
                                               TextSpan(
                                                 text: "Location: ",
                                                 style: TextStyle(
-                                                    color: Colors.white
+                                                    color: Color.fromARGB(
+                                                            255, 0, 0, 0)
                                                         .withOpacity(0.5),
-                                                    fontSize: 14),
+                                                    fontSize: 15),
                                               ),
                                               TextSpan(
                                                 text: result["response"][index]
                                                     ["Location"],
                                                 style: TextStyle(
-                                                    color: Colors.white
+                                                    color: Color.fromARGB(
+                                                            255, 0, 0, 0)
                                                         .withOpacity(0.8),
-                                                    fontSize: 14),
+                                                    fontSize: 15),
                                               ),
                                             ],
                                           ),
@@ -353,18 +400,20 @@ class _VerifyState extends State<Verify> {
                                               TextSpan(
                                                 text: "Material: ",
                                                 style: TextStyle(
-                                                    color: Colors.white
+                                                    color: Color.fromARGB(
+                                                            255, 0, 0, 0)
                                                         .withOpacity(0.5),
-                                                    fontSize: 14),
+                                                    fontSize: 15),
                                               ),
                                               TextSpan(
                                                 text: result["response"][index]
                                                         ["withMaterial"] +
                                                     "\n",
                                                 style: TextStyle(
-                                                    color: Colors.white
+                                                    color: Color.fromARGB(
+                                                            255, 0, 0, 0)
                                                         .withOpacity(0.8),
-                                                    fontSize: 14),
+                                                    fontSize: 15),
                                               ),
                                             ],
                                           ),
@@ -413,7 +462,7 @@ class _VerifyState extends State<Verify> {
                         width: 1,
                         color: Color.fromARGB(21, 88, 40, 205),
                       ),
-                      primary: Color.fromARGB(210, 88, 40, 205),
+                      primary: Color.fromARGB(210, 113, 64, 235),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ), //elevated btton background color
@@ -434,11 +483,16 @@ class _VerifyState extends State<Verify> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Color.fromARGB(210, 88, 40, 205),
+          backgroundColor: Color.fromARGB(217, 151, 113, 227),
+          selectedItemColor: Color.fromARGB(210, 0, 0, 0),
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),
               label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.add),
+              label: 'Add Project',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.account_circle_outlined),
@@ -453,7 +507,7 @@ class _VerifyState extends State<Verify> {
             print(_selectedIndex);
           },
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         body: Center(
           child: _homeWidget(_selectedIndex),
         ),
