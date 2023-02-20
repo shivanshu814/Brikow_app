@@ -21,7 +21,15 @@ class _LandingState extends State<Landing> {
     return (Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(236, 219, 179, 240),
+        backgroundColor: Color.fromARGB(217, 151, 113, 227),
+        leading: IconButton(
+          color: Colors.black,
+          icon: const Icon(Icons.arrow_back),
+          tooltip: 'Back',
+          onPressed: () {
+            Navigator.pushNamed(context, 'landing');
+          },
+        ),
         title: Text(
           'Welcome',
           style: TextStyle(
