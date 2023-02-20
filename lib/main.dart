@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
+import 'package:pdf/widgets.dart';
 import 'package:phone_otp_ui/fifth.dart';
 import 'package:phone_otp_ui/fourth.dart';
 import 'package:phone_otp_ui/myverify.dart';
@@ -42,7 +43,6 @@ Future<void> main() async {
         'phone': (context) => const MyPhone(
               title: 'phone',
             ),
-
         'verify': (context) => const MyVerify(
               Phone: '',
             ),

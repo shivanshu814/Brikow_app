@@ -20,216 +20,219 @@ class _LandingState extends State<Landing> {
   Widget build(BuildContext context) {
     return (Scaffold(
       resizeToAvoidBottomInset: false,
-      // appBar: AppBar(
-      //   backgroundColor: Color.fromARGB(210, 88, 40, 205),
-      //   scrolledUnderElevation: 15,
-      //   shape: const RoundedRectangleBorder(
-      //     borderRadius: BorderRadius.only(
-      //         bottomRight: Radius.circular(5), bottomLeft: Radius.circular(5)),
-      //   ),
-      //   title: const Text(
-      //     textAlign: TextAlign.center,
-      //     'Brikow',
-      //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
-      //   ),
-      //   actions: <Widget>[
-      //     Padding(
-      //       padding: const EdgeInsets.only(right: 8),
-      //       child: IconButton(
-      //         icon: const Icon(
-      //           Icons.logout,
-      //           size: 30,
-      //         ),
-      //         onPressed: () {
-      //           Navigator.pushNamed(context, 'phone');
-      //         },
-      //       ),
-      //     ),
-      //   ],
-      // ),
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(236, 219, 179, 240),
+        title: Text(
+          'Welcome',
+          style: TextStyle(
+            color: Color.fromARGB(255, 0, 0, 0),
+          ),
+        ),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: IconButton(
+              color: Color.fromARGB(255, 0, 0, 0),
+              icon: const Icon(
+                Icons.logout,
+                size: 30,
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, 'phone');
+              },
+            ),
+          ),
+        ],
+      ),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: Column(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        opacity: (20),
-                        image: AssetImage("images/8104.jpg"),
-                        fit: BoxFit.fitHeight)),
-              ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.end,
-              //   children: [
-              //     GestureDetector(
-              //         onTap: () {
-              //           Navigator.pushNamed(context, 'phone');
-              //         },
-              //         child: Container(
-              //           child: Icon(
-              //             Icons.logout,
-              //             size: 30,
-              //             color: Colors.black54,
-              //           ),
-              //           padding: EdgeInsets.only(right: 20),
-              //         ))
-              //   ],
-              // ),
-              // Expanded(
-              //   flex: 2,
-              //   child: Stack(
-              //     children: [
-              //       // Container(
-              //       //   child: Container(
-              //       //     decoration: BoxDecoration(
-              //       //       borderRadius: BorderRadius.only(),
-              //       //       color: Color.fromARGB(210, 88, 40, 205),
-              //       //     ),
-              //       //   ),
-              //       // ),
-              //       // Container(
-              //       //   decoration: BoxDecoration(
-              //       //       image: DecorationImage(
-              //       //           opacity: (10),
-              //       //           image: AssetImage("images/logo.png"),
-              //       //           fit: BoxFit.fitHeight)),
-              //       // ),
-
-              //       Center(
-              //         child: Image.asset(
-              //           'images/logo.png',
-              //           //width: 150.0,
-              //           height: 120.0,
-              //           fit: BoxFit.cover,
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
               Expanded(
-                flex: 1,
+                flex: 3,
+                child: Stack(
+                  children: [
+                    Container(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(),
+                          color: Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 420,
+                      width: 520,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            opacity: (20),
+                            image: AssetImage("images/8104.jpg"),
+                            fit: BoxFit.fill),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 11,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                child: Text(
+                  "A smarter, better way to manage Billling,",
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 0), fontSize: 16),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 35.0),
+                child: Text(
+                  "Property Management & Investment",
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 0), fontSize: 16),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Expanded(
+                flex: 3,
                 child: Container(
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(42, 53, 71, 1),
-                  ),
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        height: 50,
-                      ),
-                      Container(
-                          padding: EdgeInsets.only(left: 30),
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Welcome',
-                            style: TextStyle(
-                                fontFamily: 'roboto',
-                                color: Colors.white,
-                                fontSize: 25),
-                          )),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                          padding: EdgeInsets.only(left: 30),
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'A smarter, better way to manage Billing, Property Management & Investment',
-                            style: TextStyle(
-                                fontFamily: 'roboto',
-                                color: Colors.white70,
-                                fontSize: 18),
-                          )),
-                      SizedBox(
-                        height: 280,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                opacity: (20),
-                                image: AssetImage("images/login.jpg"),
-                                fit: BoxFit.fitHeight)),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        child: GestureDetector(
-                          onTap: (() {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Verify()));
-                          }),
-                          child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 20),
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(245, 224, 212, 255),
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
+                      Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 25),
+                            child: GestureDetector(
+                              onTap: (() {
+                                Navigator.pushReplacementNamed(
+                                    context, 'myverify');
+                              }),
+                              child: Container(
+                                height: 150,
+                                width: 150,
+                                padding: EdgeInsets.all(16),
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                          "images/icons8-city-buildings-96.png"),
+                                    ),
+                                    color: Color.fromARGB(176, 226, 221, 221),
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Text(
+                                  textAlign: TextAlign.center,
                                   "Construction",
                                   style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black87,
-                                      fontWeight: FontWeight.w900),
+                                    fontSize: 15,
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                  ),
                                 ),
-                                SizedBox(
-                                  width: 12,
-                                ),
-                                Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.black87,
-                                )
-                              ],
+                              ),
                             ),
                           ),
-                        ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 2),
+                            child: GestureDetector(
+                              onTap: (() {
+                                Navigator.pushReplacementNamed(
+                                    context, 'myverify');
+                              }),
+                              child: Container(
+                                height: 150,
+                                width: 150,
+                                padding: EdgeInsets.all(16),
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                          "images/icons8-property-64.png"),
+                                    ),
+                                    color: Color.fromARGB(176, 226, 221, 221),
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Text(
+                                  textAlign: TextAlign.center,
+                                  "Property",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        height: 30,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                        child: GestureDetector(
-                          onTap: (() {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Verify()));
-                          }),
-                          // child: Container(
-                          //   padding: EdgeInsets.symmetric(vertical: 20),
-                          //   decoration: BoxDecoration(
-                          //       color: Color.fromARGB(245, 224, 212, 255),
-                          //       borderRadius: BorderRadius.circular(20)),
-                          //   child: Row(
-                          //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          //     children: [
-                          //       Text(
-                          //         "Property Manager / Broker",
-                          //         style: TextStyle(
-                          //             fontSize: 16,
-                          //             color: Colors.black87,
-                          //             fontWeight: FontWeight.w900),
-                          //       ),
-                          //       Icon(
-                          //         Icons.arrow_forward,
-                          //         color: Colors.black87,
-                          //       )
-                          //     ],
-                          //   ),
-                          // ),
-                        ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 25),
+                            child: GestureDetector(
+                              onTap: (() {
+                                Navigator.pushReplacementNamed(
+                                    context, 'myverify');
+                              }),
+                              child: Container(
+                                height: 150,
+                                width: 150,
+                                padding: EdgeInsets.all(16),
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                          "images/icons8-rent-96.png"),
+                                    ),
+                                    color: Color.fromARGB(176, 226, 221, 221),
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Text(
+                                  textAlign: TextAlign.center,
+                                  "Sell Property",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 2),
+                            child: GestureDetector(
+                              onTap: (() {
+                                Navigator.pushReplacementNamed(
+                                    context, 'myverify');
+                              }),
+                              child: Container(
+                                height: 150,
+                                width: 150,
+                                padding: EdgeInsets.all(16),
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage(
+                                          "images/icons8-finance-64.png"),
+                                    ),
+                                    color: Color.fromARGB(176, 226, 221, 221),
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Text(
+                                  textAlign: TextAlign.center,
+                                  "Finance",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
                 ),
-              ),
+              )
             ],
           ),
         ),

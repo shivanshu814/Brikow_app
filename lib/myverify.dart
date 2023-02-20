@@ -179,12 +179,28 @@ class _VerifyState extends State<Verify> {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 20),
-
+              SizedBox(
+                height: 0,
+              ),
               Container(
                 //padding: EdgeInsets.only(left: 10, right: 10),
                 child: Row(
                   children: [
+                    IconButton(
+                      color: Colors.blueGrey,
+                      highlightColor: Colors.black54,
+                      iconSize: 30,
+                      icon: Icon(Icons.arrow_back),
+                      onPressed: () {
+                        logout();
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => MyPhone(title: 'landing'),
+                          ),
+                        );
+                        box1.clear();
+                      },
+                    ),
                     RichText(
                       text: TextSpan(
                         children: <TextSpan>[

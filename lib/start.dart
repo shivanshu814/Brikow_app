@@ -55,22 +55,10 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       body: Center(
         child: Column(
           children: [
-            CircleAvatar(
-              radius: 150,
-              child: Image.asset(
-                "images/logo.png",
-                width: 600.0,
-                height: 200.0,
-              ),
-              //backgroundImage: AssetImage('images/logo.png'),
-              backgroundColor: Colors.white70,
-            ),
-            SizedBox(
-              height: 150,
-            ),
-            Image.network(
-              'https://analyticaldesignresearch.files.wordpress.com/2016/02/its-nice-that-pocopay-01.gif',
-              height: 100,
+            Image.asset(
+              "images/output-onlinepngtools.png",
+              width: 600.0,
+              height: 350.0,
             ),
           ],
           mainAxisAlignment: MainAxisAlignment.center,
