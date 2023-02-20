@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:phone_otp_ui/myverify.dart';
 import 'package:phone_otp_ui/phone.dart';
-
 import 'landing.dart';
 import 'phone.dart';
 import 'package:flutter/material.dart';
@@ -36,11 +35,6 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       () {
         print("splashh" + box2.get('isLogged', defaultValue: false).toString());
         print(box2.get("isLogged"));
-
-        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>
-        // box2.get('isLogged',defaultValue: false)?MyPhone(title: "phone"):Verify()
-        //   ,),);
-
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (_) =>
@@ -59,9 +53,8 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     return Scaffold(
       backgroundColor: Color.fromARGB(210, 214, 203, 243),
       body: Center(
-
-            child: Column(
-                children: [
+        child: Column(
+          children: [
             CircleAvatar(
               radius: 150,
               child: Image.asset(
@@ -71,16 +64,17 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
               ),
               //backgroundImage: AssetImage('images/logo.png'),
               backgroundColor: Colors.white70,
-
             ),
-              SizedBox(height: 150,),
-
-              Image.network(
-                  'https://analyticaldesignresearch.files.wordpress.com/2016/02/its-nice-that-pocopay-01.gif',height: 100,
-              ),
-            ],
-            mainAxisAlignment: MainAxisAlignment.center,
-            )
+            SizedBox(
+              height: 150,
+            ),
+            Image.network(
+              'https://analyticaldesignresearch.files.wordpress.com/2016/02/its-nice-that-pocopay-01.gif',
+              height: 100,
+            ),
+          ],
+          mainAxisAlignment: MainAxisAlignment.center,
+        ),
       ),
     );
   }

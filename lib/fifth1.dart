@@ -233,13 +233,13 @@ class FifthState extends State<Fifth> {
             ),
           ),
           Container(
-              margin: EdgeInsets.only(left: 25, right: 25, top: 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment
-                    .spaceEvenly, // use whichever suits your need
-                children: <Widget>[
-                  Expanded(
-                      child: Padding(
+            margin: EdgeInsets.only(left: 25, right: 25, top: 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment
+                  .spaceEvenly, // use whichever suits your need
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
                     child: TextField(
                       textAlign: TextAlign.center,
@@ -248,9 +248,10 @@ class FifthState extends State<Fifth> {
                         hintText: 'Nos',
                       ),
                     ),
-                  )),
-                  Expanded(
-                      child: Padding(
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
                     child: TextField(
                       textAlign: TextAlign.center,
@@ -259,9 +260,10 @@ class FifthState extends State<Fifth> {
                         hintText: 'Hgt',
                       ),
                     ),
-                  )),
-                  Expanded(
-                      child: Padding(
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
                     child: TextField(
                       textAlign: TextAlign.center,
@@ -270,9 +272,10 @@ class FifthState extends State<Fifth> {
                         hintText: 'Len',
                       ),
                     ),
-                  )),
-                  Expanded(
-                      child: Padding(
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
                     child: TextField(
                       textAlign: TextAlign.center,
@@ -281,9 +284,10 @@ class FifthState extends State<Fifth> {
                         hintText: 'Wth',
                       ),
                     ),
-                  )),
-                  Expanded(
-                      child: Padding(
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
                     child: TextField(
                       textAlign: TextAlign.center,
@@ -292,9 +296,11 @@ class FifthState extends State<Fifth> {
                         hintText: 'Qty',
                       ),
                     ),
-                  )),
-                ],
-              )),
+                  ),
+                ),
+              ],
+            ),
+          ),
           _addTile(),
         ],
       ),
@@ -355,8 +361,10 @@ class FifthState extends State<Fifth> {
 
   Widget _addTile() {
     return ListTile(
-      title: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-        Container(
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
             width: 150,
             margin: EdgeInsets.only(bottom: 10),
             child: TextButton.icon(
@@ -385,23 +393,25 @@ class FifthState extends State<Fifth> {
                 // final wthField = _generateTextField(wth, "wth");
                 // final qtyField = _generateTextField(qty, "qty");
 
-                setState(() {
-                  _briefControllers.add(brief);
-                  _nosControllers.add(nos);
-                  _hgtControllers.add(hgt);
-                  _lenControllers.add(len);
-                  _wthControllers.add(wth);
-                  _qtyControllers.add(qty);
+                setState(
+                  () {
+                    _briefControllers.add(brief);
+                    _nosControllers.add(nos);
+                    _hgtControllers.add(hgt);
+                    _lenControllers.add(len);
+                    _wthControllers.add(wth);
+                    _qtyControllers.add(qty);
 
-                  _briefFields.add(briefField);
-                  _nosFields.add(nosField);
-                  _hgtFields.add(hgtField);
-                  _lenFields.add(lenField);
-                  _wthFields.add(wthField);
-                  _qtyFields.add(qtyField);
+                    _briefFields.add(briefField);
+                    _nosFields.add(nosField);
+                    _hgtFields.add(hgtField);
+                    _lenFields.add(lenField);
+                    _wthFields.add(wthField);
+                    _qtyFields.add(qtyField);
 
-                  _conFields.add(con);
-                });
+                    _conFields.add(con);
+                  },
+                );
               },
               style: TextButton.styleFrom(
                   fixedSize: const Size(100, 50),
@@ -410,8 +420,9 @@ class FifthState extends State<Fifth> {
                   backgroundColor: Colors.white),
               icon: Icon(Icons.add),
               label: Text('Add Brief'),
-            )),
-        Container(
+            ),
+          ),
+          Container(
             width: 150,
             margin: EdgeInsets.only(bottom: 10),
             child: TextButton.icon(
@@ -441,9 +452,11 @@ class FifthState extends State<Fifth> {
                 // // final qtyField = _generateTextField(qty, "qty");
                 //
                 //
-                setState(() {
-                  _conFields1.add(con);
-                });
+                setState(
+                  () {
+                    _conFields1.add(con);
+                  },
+                );
               },
               style: TextButton.styleFrom(
                   fixedSize: const Size(100, 50),
@@ -452,8 +465,10 @@ class FifthState extends State<Fifth> {
                   backgroundColor: Colors.white),
               icon: Icon(Icons.add),
               label: Text('Add Details'),
-            ))
-      ]),
+            ),
+          ),
+        ],
+      ),
       //title: Icon(Icons.add),
       onTap: () {},
     );
@@ -461,55 +476,63 @@ class FifthState extends State<Fifth> {
 
   Widget _deleteBrief1(TextField tf, int i) {
     return IconButton(
-        icon: Icon(
-          Icons.delete,
-          color: Colors.white,
-        ),
-        style: IconButton.styleFrom(backgroundColor: Colors.red.shade300),
-        onPressed: () {
-          setState(() {
-            fieldMap.forEach((k, v) {
-              if (k == tf) {
-                print("found");
-                print(v[0]);
-                v[0].removeAt(i);
-                v[1].removeAt(i);
-                v[2].removeAt(i);
-                v[3].removeAt(i);
-                v[4].removeAt(i);
-                v[5].removeAt(i);
-                v[6].removeAt(i);
-              }
-            });
+      icon: Icon(
+        Icons.delete,
+        color: Colors.white,
+      ),
+      style: IconButton.styleFrom(backgroundColor: Colors.red.shade300),
+      onPressed: () {
+        setState(
+          () {
+            fieldMap.forEach(
+              (k, v) {
+                if (k == tf) {
+                  print("found");
+                  print(v[0]);
+                  v[0].removeAt(i);
+                  v[1].removeAt(i);
+                  v[2].removeAt(i);
+                  v[3].removeAt(i);
+                  v[4].removeAt(i);
+                  v[5].removeAt(i);
+                  v[6].removeAt(i);
+                }
+              },
+            );
 
-            controllerMap.forEach((k, v) {
-              if (k == tf) {
-                print("found");
-                print(v[0]);
-                v[1].removeAt(i);
-                v[2].removeAt(i);
-                v[3].removeAt(i);
-                v[4].removeAt(i);
-                v[5].removeAt(i);
-                v[6].removeAt(i);
-              }
-            });
-          });
-        });
+            controllerMap.forEach(
+              (k, v) {
+                if (k == tf) {
+                  print("found");
+                  print(v[0]);
+                  v[1].removeAt(i);
+                  v[2].removeAt(i);
+                  v[3].removeAt(i);
+                  v[4].removeAt(i);
+                  v[5].removeAt(i);
+                  v[6].removeAt(i);
+                }
+              },
+            );
+          },
+        );
+      },
+    );
   }
 
   Widget _deleteBrief(TextField tf, int i) {
     return ListTile(
       title: Row(
-          //mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Container(
-                width: 50,
-                //margin: EdgeInsets.only(bottom: 10),
-                child: TextButton.icon(
-                  onPressed: () {
-                    setState(() {
-                      fieldMap.forEach((k, v) {
+        //mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
+            width: 50,
+            child: TextButton.icon(
+              onPressed: () {
+                setState(
+                  () {
+                    fieldMap.forEach(
+                      (k, v) {
                         if (k == tf) {
                           print("found");
                           print(v[0]);
@@ -521,132 +544,120 @@ class FifthState extends State<Fifth> {
                           v[5].removeAt(i);
                           v[6].removeAt(i);
                         }
-                      });
-                    });
+                      },
+                    );
                   },
-                  style: TextButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      elevation: 2,
-                      backgroundColor: Colors.red.shade300),
-                  icon: Icon(Icons.delete),
-                  label: Text(''),
-                ))
-          ]),
+                );
+              },
+              style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  elevation: 2,
+                  backgroundColor: Colors.red.shade300),
+              icon: Icon(Icons.delete),
+              label: Text(''),
+            ),
+          )
+        ],
+      ),
       //title: Icon(Icons.add),
       onTap: () {},
     );
   }
 
   Widget _deleteDetail(TextField tf) {
-// <<<<<<< HEAD
-//
-//     return
-//             Container(
-//                 width: 150,
-//                 margin: EdgeInsets.only(bottom: 10),
-//                 child: TextButton.icon(
-//
-//                   onPressed: () {
-//                     setState(() {
-//                       fieldMap.remove(tf);
-//                       controllerMap.remove(tf);
-//                     });
-//
-//                   },
-//                   style: TextButton.styleFrom(
-//                       fixedSize: const Size(100, 50),
-//                       foregroundColor: Colors.white,
-//                       elevation: 2,
-//                       backgroundColor: Colors.blueGrey),
-//                   icon: Icon(Icons.delete),
-//                   label: Text('Delete Detail'),
-//                 ));
-// =======
     return Container(
-        width: 150,
-        margin: EdgeInsets.only(bottom: 10),
-        child: TextButton.icon(
-          onPressed: () {
-            setState(() {
+      width: 150,
+      margin: EdgeInsets.only(bottom: 10),
+      child: TextButton.icon(
+        onPressed: () {
+          setState(
+            () {
               fieldMap.remove(tf);
               controllerMap.remove(tf);
-            });
-          },
-          style: TextButton.styleFrom(
-              fixedSize: const Size(100, 50),
-              foregroundColor: Colors.white,
-              elevation: 2,
-              backgroundColor: Colors.blueGrey),
-          icon: Icon(Icons.remove),
-          label: Text('Delete Detail'),
-        ));
+            },
+          );
+        },
+        style: TextButton.styleFrom(
+            fixedSize: const Size(100, 50),
+            foregroundColor: Colors.white,
+            elevation: 2,
+            backgroundColor: Colors.blueGrey),
+        icon: Icon(Icons.remove),
+        label: Text('Delete Detail'),
+      ),
+    );
   }
 
   Widget _addBrief(TextField tf, int i) {
     return Container(
-        width: 150,
-        margin: EdgeInsets.only(bottom: 10),
-        child: TextButton.icon(
-          onPressed: () {
-            List<TextEditingController> _briefControllers = [];
-            List<TextField> _briefFields = [];
-            List<TextEditingController> _nosControllers = [];
-            List<TextField> _nosFields = [];
-            List<TextEditingController> _hgtControllers = [];
-            List<TextField> _hgtFields = [];
-            List<TextEditingController> _lenControllers = [];
-            List<TextField> _lenFields = [];
-            List<TextEditingController> _wthControllers = [];
-            List<TextField> _wthFields = [];
-            List<TextEditingController> _qtyControllers = [];
-            List<TextField> _qtyFields = [];
+      width: 150,
+      margin: EdgeInsets.only(bottom: 10),
+      child: TextButton.icon(
+        onPressed: () {
+          List<TextEditingController> _briefControllers = [];
+          List<TextField> _briefFields = [];
+          List<TextEditingController> _nosControllers = [];
+          List<TextField> _nosFields = [];
+          List<TextEditingController> _hgtControllers = [];
+          List<TextField> _hgtFields = [];
+          List<TextEditingController> _lenControllers = [];
+          List<TextField> _lenFields = [];
+          List<TextEditingController> _wthControllers = [];
+          List<TextField> _wthFields = [];
+          List<TextEditingController> _qtyControllers = [];
+          List<TextField> _qtyFields = [];
 
-            List<Container> _conFields = [];
-            List<Container> _conFields1 = [];
+          List<Container> _conFields = [];
+          List<Container> _conFields1 = [];
 
-            final brief = new TextEditingController();
-            final briefField = _generateBriefTextField(brief, "Brief");
+          final brief = new TextEditingController();
+          final briefField = _generateBriefTextField(brief, "Brief");
 
-            final nos = TextEditingController();
-            final hgt = TextEditingController();
-            final len = TextEditingController();
-            final wth = TextEditingController();
-            final qty = TextEditingController();
+          final nos = TextEditingController();
+          final hgt = TextEditingController();
+          final len = TextEditingController();
+          final wth = TextEditingController();
+          final qty = TextEditingController();
 
-            final nosField = _generateTextFieldBr2(nos, 'Nos');
-            final hgtField = _generateTextFieldBr2(hgt, 'Hgt');
-            final lenField = _generateTextFieldBr2(len, 'Len');
-            final wthField = _generateTextFieldBr2(wth, 'Wth');
-            final qtyField = _generateTextFieldBr2(qty, 'Qty');
+          final nosField = _generateTextFieldBr2(nos, 'Nos');
+          final hgtField = _generateTextFieldBr2(hgt, 'Hgt');
+          final lenField = _generateTextFieldBr2(len, 'Len');
+          final wthField = _generateTextFieldBr2(wth, 'Wth');
+          final qtyField = _generateTextFieldBr2(qty, 'Qty');
 
-            final con = _generateBreifContainer(
-                nosField, hgtField, lenField, wthField, qtyField);
+          final con = _generateBreifContainer(
+              nosField, hgtField, lenField, wthField, qtyField);
 
-            setState(() {
-              fieldMap.forEach((k, v) {
-                if (k == tf) {
-                  print("found");
-                  print(v[0]);
-                  v[0].add(briefField);
-                  v[1].add(nosField);
-                  v[2].add(hgtField);
-                  v[3].add(lenField);
-                  v[4].add(wthField);
-                  v[5].add(qtyField);
-                  v[6].add(con);
-                }
-              });
+          setState(
+            () {
+              fieldMap.forEach(
+                (k, v) {
+                  if (k == tf) {
+                    print("found");
+                    print(v[0]);
+                    v[0].add(briefField);
+                    v[1].add(nosField);
+                    v[2].add(hgtField);
+                    v[3].add(lenField);
+                    v[4].add(wthField);
+                    v[5].add(qtyField);
+                    v[6].add(con);
+                  }
+                },
+              );
 
-              controllerMap.forEach((key, v) {
-                if (key == tf) {
-                  v[1].add(brief);
-                  v[2].add(nos);
-                  v[3].add(hgt);
-                  v[4].add(len);
-                  v[5].add(wth);
-                  v[6].add(qty);
-                }
-              });
+              controllerMap.forEach(
+                (key, v) {
+                  if (key == tf) {
+                    v[1].add(brief);
+                    v[2].add(nos);
+                    v[3].add(hgt);
+                    v[4].add(len);
+                    v[5].add(wth);
+                    v[6].add(qty);
+                  }
+                },
+              );
 
               // _briefControllers.add(brief);
               // _nosControllers.add(nos);
@@ -670,25 +681,29 @@ class FifthState extends State<Fifth> {
               _conFields.add(con);
 
               //fieldMap[tf] = [_briefFields, _nosFields, _hgtFields, _lenFields, _wthFields, _qtyFields, _conFields];
-            });
+            },
+          );
 
-            print(fieldMap[tf]);
-            //controllerMap[_descriptionControllers[0]] = [_briefControllers, _nosControllers,_hgtControllers, _lenControllers, _wthControllers, _qtyControllers];
-          },
-          style: TextButton.styleFrom(
-              fixedSize: const Size(100, 50),
-              foregroundColor: Colors.red,
-              elevation: 2,
-              backgroundColor: Colors.white),
-          icon: Icon(Icons.add),
-          label: Text('Add Brief'),
-        ));
+          print(fieldMap[tf]);
+          //controllerMap[_descriptionControllers[0]] = [_briefControllers, _nosControllers,_hgtControllers, _lenControllers, _wthControllers, _qtyControllers];
+        },
+        style: TextButton.styleFrom(
+            fixedSize: const Size(100, 50),
+            foregroundColor: Colors.red,
+            elevation: 2,
+            backgroundColor: Colors.white),
+        icon: Icon(Icons.add),
+        label: Text('Add Brief'),
+      ),
+    );
   }
 
   Widget _addDetails() {
     return ListTile(
-      title: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-        Container(
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
             width: 150,
             margin: EdgeInsets.only(bottom: 10),
             child: TextButton.icon(
@@ -733,25 +748,27 @@ class FifthState extends State<Fifth> {
                 final con = _generateBreifContainer(
                     nosField, hgtField, lenField, wthField, qtyField);
 
-                setState(() {
-                  _descriptionControllers.add(desc);
-                  _briefControllers.add(brief);
-                  _nosControllers.add(nos);
-                  _hgtControllers.add(hgt);
-                  _lenControllers.add(len);
-                  _wthControllers.add(wth);
-                  _qtyControllers.add(qty);
+                setState(
+                  () {
+                    _descriptionControllers.add(desc);
+                    _briefControllers.add(brief);
+                    _nosControllers.add(nos);
+                    _hgtControllers.add(hgt);
+                    _lenControllers.add(len);
+                    _wthControllers.add(wth);
+                    _qtyControllers.add(qty);
 
-                  _descriptionFields.add(descField);
-                  _briefFields.add(briefField);
-                  _nosFields.add(nosField);
-                  _hgtFields.add(hgtField);
-                  _lenFields.add(lenField);
-                  _wthFields.add(wthField);
-                  _qtyFields.add(qtyField);
+                    _descriptionFields.add(descField);
+                    _briefFields.add(briefField);
+                    _nosFields.add(nosField);
+                    _hgtFields.add(hgtField);
+                    _lenFields.add(lenField);
+                    _wthFields.add(wthField);
+                    _qtyFields.add(qtyField);
 
-                  _conFields.add(con);
-                });
+                    _conFields.add(con);
+                  },
+                );
 
                 controllerMap[descField] = [
                   desc,
@@ -779,8 +796,10 @@ class FifthState extends State<Fifth> {
                   backgroundColor: Colors.white),
               icon: Icon(Icons.add),
               label: Text('Add Details'),
-            ))
-      ]),
+            ),
+          )
+        ],
+      ),
       //title: Icon(Icons.add),
       onTap: () {},
     );
@@ -801,16 +820,17 @@ class FifthState extends State<Fifth> {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
-          prefixIcon: Icon(Icons.contact_page_outlined),
-          prefixIconColor: Colors.black,
-          //  contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-          hintText: hint,
-          filled: true,
-          fillColor: Colors.grey.shade300,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(0),
-            borderSide: BorderSide.none,
-          )),
+        prefixIcon: Icon(Icons.contact_page_outlined),
+        prefixIconColor: Colors.black,
+        //  contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+        hintText: hint,
+        filled: true,
+        fillColor: Colors.grey.shade300,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(0),
+          borderSide: BorderSide.none,
+        ),
+      ),
     );
   }
 
@@ -841,37 +861,42 @@ class FifthState extends State<Fifth> {
   Container _generateBreifContainer(TextField Nos, TextField Hgt, TextField Len,
       TextField Wth, TextField Qty) {
     return Container(
-        margin: EdgeInsets.only(top: 0),
-        child: Row(
-          mainAxisAlignment:
-              MainAxisAlignment.spaceEvenly, // use whichever suits your need
-          children: <Widget>[
-            Expanded(
-                child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-                    child: Nos)),
-            Expanded(
-                child: Padding(
+      margin: EdgeInsets.only(top: 0),
+      child: Row(
+        mainAxisAlignment:
+            MainAxisAlignment.spaceEvenly, // use whichever suits your need
+        children: <Widget>[
+          Expanded(
+              child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
+                  child: Nos)),
+          Expanded(
+            child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
               child: Hgt,
-            )),
-            Expanded(
-                child: Padding(
+            ),
+          ),
+          Expanded(
+            child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
               child: Len,
-            )),
-            Expanded(
-                child: Padding(
+            ),
+          ),
+          Expanded(
+            child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
               child: Wth,
-            )),
-            Expanded(
-                child: Padding(
+            ),
+          ),
+          Expanded(
+            child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
               child: Qty,
-            )),
-          ],
-        ));
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _listView() {
@@ -909,56 +934,62 @@ class FifthState extends State<Fifth> {
     fieldMap.forEach((k, v) => print(v[0].length));
 
     List<Widget> list = <Widget>[];
-    fieldMap.forEach((k, v) {
-      list.add(Container(
-        margin: EdgeInsets.only(left: 25, right: 25),
-        child: InputDecorator(
-          child: Column(
-            children: [
-              k,
-              SizedBox(
-                height: 3,
-              ),
-              for (var i = 0; i < v[0].length; i++)
-                Column(children: [
+    fieldMap.forEach(
+      (k, v) {
+        list.add(
+          Container(
+            margin: EdgeInsets.only(left: 25, right: 25),
+            child: InputDecorator(
+              child: Column(
+                children: [
+                  k,
+                  SizedBox(
+                    height: 3,
+                  ),
+                  for (var i = 0; i < v[0].length; i++)
+                    Column(
+                      children: [
+                        Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: v[0][i],
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.red.shade300,
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(2),
+                                      bottomRight: Radius.circular(2))),
+                              child: _deleteBrief1(k, i),
+                            )
+                          ],
+                        ),
+                        v[6][i],
+                      ],
+                    ),
+                  // _addBrief(k, v[0].length+1),
+                  //   //_conFields[i]
+                  // _deleteDetail(k),
+
                   Row(
                     children: <Widget>[
-                      Expanded(
-                        child: v[0][i],
+                      Expanded(child: _addBrief(k, v[0].length + 1)),
+                      SizedBox(
+                        width: 50,
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.red.shade300,
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(2),
-                                bottomRight: Radius.circular(2))),
-                        child: _deleteBrief1(k, i),
-                      )
+                      Expanded(child: _deleteDetail(k)),
                     ],
                   ),
-                  v[6][i],
-                ]),
-              // _addBrief(k, v[0].length+1),
-              //   //_conFields[i]
-              // _deleteDetail(k),
-
-              Row(
-                children: <Widget>[
-                  Expanded(child: _addBrief(k, v[0].length + 1)),
-                  SizedBox(
-                    width: 50,
-                  ),
-                  Expanded(child: _deleteDetail(k)),
                 ],
               ),
-            ],
+              decoration: InputDecoration(
+                border: InputBorder.none,
+              ),
+            ),
           ),
-          decoration: InputDecoration(
-            border: InputBorder.none,
-          ),
-        ),
-      ));
-    });
+        );
+      },
+    );
 
     final children = [
       // fieldMap.forEach((k,v) =>
@@ -990,11 +1021,12 @@ class FifthState extends State<Fifth> {
     //   children: list,
     // ));
     return SingleChildScrollView(
-        child: ListView(
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true, // Only if you have layout issue
-      children: list,
-    ));
+      child: ListView(
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true, // Only if you have layout issue
+        children: list,
+      ),
+    );
   }
 
   Widget _listView1() {
@@ -1134,42 +1166,51 @@ class FifthState extends State<Fifth> {
               print("Value of title");
               print(titleMap);
 
-              controllerMap.forEach((key, v) {
-                List a = [], b = [], c = [], d = [], e = [], f = [];
+              controllerMap.forEach(
+                (key, v) {
+                  List a = [], b = [], c = [], d = [], e = [], f = [];
 
-                for (int i = 0; i < v[1].length; i++) {
-                  print("=======");
-                  print(i);
-                  print(v[0]);
-                  print(v[0].text);
-                  desc = v[0].text.toString();
+                  for (int i = 0; i < v[1].length; i++) {
+                    print("=======");
+                    print(i);
+                    print(v[0]);
+                    print(v[0].text);
+                    desc = v[0].text.toString();
 
-                  print("DESCCCCCCC" + desc);
-                  // print(desc);
+                    print("DESCCCCCCC" + desc);
+                    // print(desc);
 
-                  print(v[1][i].text);
-                  a.add(v[1][i].text);
+                    print(v[1][i].text);
+                    a.add(v[1][i].text);
 
-                  print(v[2][i].text);
-                  b.add(v[2][i].text);
+                    print(v[2][i].text);
+                    b.add(v[2][i].text);
 
-                  print(v[3][i].text);
-                  c.add(v[3][i].text);
+                    print(v[3][i].text);
+                    c.add(v[3][i].text);
 
-                  print(v[4][i].text);
-                  d.add(v[4][i].text);
+                    print(v[4][i].text);
+                    d.add(v[4][i].text);
 
-                  print(v[5][i].text);
-                  e.add(v[5][i].text);
+                    print(v[5][i].text);
+                    e.add(v[5][i].text);
 
-                  print(v[6][i].text);
-                  f.add(v[6][i].text);
+                    print(v[6][i].text);
+                    f.add(v[6][i].text);
 
-                  print("=========");
+                    print("=========");
 
-                  controllerMapInvoice[key.toString()] = [desc, a, b, c, e, f];
-                }
-              });
+                    controllerMapInvoice[key.toString()] = [
+                      desc,
+                      a,
+                      b,
+                      c,
+                      e,
+                      f
+                    ];
+                  }
+                },
+              );
 
               titleMap[_titleController.text] = controllerMapInvoice;
 
