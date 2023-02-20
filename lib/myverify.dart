@@ -207,24 +207,12 @@ class _VerifyState extends State<Verify> {
                           TextSpan(
                             text: "Welcome",
                             style: TextStyle(
-                                color: Color.fromRGBO(18, 54, 105, 1),
+                                color: Color.fromRGBO(0, 0, 0, 1),
                                 fontSize: 28,
                                 fontWeight: FontWeight.w600),
                           ),
                         ],
                       ),
-                    ),
-                    IconButton(
-                      color: Colors.blueGrey,
-                      highlightColor: Colors.black54,
-                      iconSize: 30,
-                      icon: Icon(Icons.logout),
-                      onPressed: () {
-                        logout();
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => MyPhone(title: 'Phone')));
-                        box1.clear();
-                      },
                     ),
                   ],
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
