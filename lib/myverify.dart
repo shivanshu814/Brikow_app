@@ -182,7 +182,7 @@ class _VerifyState extends State<Verify> {
           },
         ),
         title: Text(
-          'Welcome',
+          'Add Project',
           style: TextStyle(
             color: Color.fromARGB(255, 0, 0, 0),
           ),
