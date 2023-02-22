@@ -47,7 +47,7 @@ class _MyVerifyState extends State<MyVerify> {
     request.body = json.encode({"phone_no": box1.get('phone'), "otp": '$code'});
     request.headers.addAll(headers);
 
-    print("phone no: " + "$MyPhone.phone");
+    print("Phone No: s" + "$MyPhone.phone");
     print("verify req:" + request.toString());
     print("verify body:" + request.body);
     print("verify head:" + request.headers.toString());
@@ -138,7 +138,7 @@ class _MyVerifyState extends State<MyVerify> {
                 height: 10,
               ),
               Text(
-                "We need to register your phone without getting started!",
+                "We need to register your phone without getting started! LOL",
                 style: TextStyle(
                   fontSize: 16,
                 ),

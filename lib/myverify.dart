@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:phone_otp_ui/fourth.dart';
 import 'package:phone_otp_ui/main.dart';
 import 'package:phone_otp_ui/phone.dart';
 import 'package:phone_otp_ui/third.dart';
@@ -371,7 +372,16 @@ class _VerifyState extends State<Verify> {
                           result["response"]
                               .length, //this is the total number of cards
                           (index) {
-                            return Container(
+                            return GestureDetector(
+                              onTap: (){
+
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => fourth(result["response"][index]["Location"], result["response"][index]["Name"], result["response"][index]["Date"].substring(0, 10)),
+                                  ),
+                                );
+                              },
+                                child: Container(
                               child: Card(
                                   color: Color.fromARGB(217, 151, 113, 227),
                                   child: Container(
@@ -508,7 +518,7 @@ class _VerifyState extends State<Verify> {
                                   )
                                   //Text(result["response"][index]["Name"]),
                                   ),
-                            );
+                            ));
                           },
                         ),
                 ),

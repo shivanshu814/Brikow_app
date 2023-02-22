@@ -24,6 +24,7 @@ dependencies:
   path_provider: ^2.0.1
   open_file: ^3.1.0
   intl: ^0.17.0
+  textfield_search: ^0.10.0
 
 dev_dependencies:
   flutter_test:

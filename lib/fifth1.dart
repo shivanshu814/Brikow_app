@@ -68,7 +68,7 @@ class FifthState extends State<Fifth> {
     List<Container> _conFields = [];
 
     final desc = TextEditingController();
-    final descField = _generateBriefTextField(desc, "Description");
+    final descField = _generateBriefTextFieldDesc(desc, "Description");
 
     final brief = TextEditingController();
     final briefField = _generateBriefTextField(brief, "Brief");
@@ -314,7 +314,12 @@ class FifthState extends State<Fifth> {
           Container(
             width: 355.0,
             height: 55,
-            color: Color.fromRGBO(255, 239, 244, 1),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: Color.fromRGBO(239, 239, 255, 1),
+              //
+            ),
+            //color: Color.fromRGBO(255, 239, 244, 1),
             child: Row(
               // mainAxisAlignment: MainAxisAlignment.center,
               // ignore: prefer_const_literals_to_create_immutables
@@ -347,9 +352,11 @@ class FifthState extends State<Fifth> {
             "Details                                                           ",
             style: TextStyle(
               fontSize: 18,
+              color: Colors.black54,
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.normal,
             ),
+            textAlign: TextAlign.left,
           ),
           SizedBox(
             height: 12,
@@ -477,10 +484,10 @@ class FifthState extends State<Fifth> {
   Widget _deleteBrief1(TextField tf, int i) {
     return IconButton(
       icon: Icon(
-        Icons.delete,
-        color: Colors.white,
+        Icons.cancel,size: 24,
+        color: Colors.black54,
       ),
-      style: IconButton.styleFrom(backgroundColor: Colors.red.shade300),
+      style: IconButton.styleFrom(backgroundColor: Colors.black54),
       onPressed: () {
         setState(
           () {
@@ -552,8 +559,8 @@ class FifthState extends State<Fifth> {
               style: TextButton.styleFrom(
                   foregroundColor: Colors.white,
                   elevation: 2,
-                  backgroundColor: Colors.red.shade300),
-              icon: Icon(Icons.delete),
+                  backgroundColor: Colors.black54),
+              icon: Icon(Icons.cancel),
               label: Text(''),
             ),
           )
@@ -581,7 +588,7 @@ class FifthState extends State<Fifth> {
             fixedSize: const Size(100, 50),
             foregroundColor: Colors.white,
             elevation: 2,
-            backgroundColor: Colors.blueGrey),
+            backgroundColor: Colors.grey),
         icon: Icon(Icons.remove),
         label: Text('Delete Detail'),
       ),
@@ -688,11 +695,11 @@ class FifthState extends State<Fifth> {
           //controllerMap[_descriptionControllers[0]] = [_briefControllers, _nosControllers,_hgtControllers, _lenControllers, _wthControllers, _qtyControllers];
         },
         style: TextButton.styleFrom(
-            fixedSize: const Size(100, 50),
-            foregroundColor: Colors.red,
-            elevation: 2,
-            backgroundColor: Colors.white),
-        icon: Icon(Icons.add),
+            fixedSize: const Size(60, 50),
+            foregroundColor: Colors.white,
+            elevation: 1,
+            backgroundColor: Color.fromRGBO(142, 101, 255, 0.6)),
+        icon: Icon(Icons.add,color: Colors.white,),
         label: Text('Add Brief'),
       ),
     );
@@ -728,7 +735,7 @@ class FifthState extends State<Fifth> {
                 List<Container> _conFields1 = [];
 
                 final desc = TextEditingController();
-                final descField = _generateBriefTextField(desc, "Description");
+                final descField = _generateBriefTextFieldDesc(desc, "Description");
 
                 final brief = TextEditingController();
                 final briefField = _generateBriefTextField(brief, "Brief");
@@ -789,13 +796,21 @@ class FifthState extends State<Fifth> {
                   _conFields
                 ];
               },
+              // style: TextButton.styleFrom(
+              //     fixedSize: const Size(100, 50),
+              //     foregroundColor: Colors.red,
+              //     elevation: 2,
+              //     backgroundColor: Colors.white),
+              // icon: Icon(Icons.add),
+              // label: Text('Add Details'),
+
               style: TextButton.styleFrom(
-                  fixedSize: const Size(100, 50),
-                  foregroundColor: Colors.red,
-                  elevation: 2,
-                  backgroundColor: Colors.white),
-              icon: Icon(Icons.add),
-              label: Text('Add Details'),
+                  fixedSize: const Size(60, 50),
+                  foregroundColor: Colors.white,
+                  elevation: 1,
+                  backgroundColor: Color.fromRGBO(142, 101, 255, 0.6)),
+              icon: Icon(Icons.add,color: Colors.white,),
+              label: Text('Add Detail'),
             ),
           )
         ],
@@ -825,14 +840,36 @@ class FifthState extends State<Fifth> {
         //  contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
         hintText: hint,
         filled: true,
-        fillColor: Colors.grey.shade300,
+        fillColor: Colors.white,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(0),
+          borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,
         ),
       ),
     );
   }
+
+
+  TextField _generateBriefTextFieldDesc(
+      TextEditingController controller, String hint) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        prefixIcon: Icon(Icons.contact_page_outlined),
+        prefixIconColor: Colors.black,
+        //  contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+        hintText: hint,
+        filled: true,
+        fillColor: Color.fromRGBO(223, 223, 255, 1),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide.none,
+        ),
+      ),
+    );
+  }
+
+
 
   TextField _generateTextFieldBr2(
       TextEditingController controller, String hint) {
@@ -840,8 +877,14 @@ class FifthState extends State<Fifth> {
       controller: controller,
       textAlign: TextAlign.center,
       decoration: InputDecoration(
-        border: OutlineInputBorder(),
+        //border: OutlineInputBorder(),
         hintText: hint,
+        filled: true,
+        fillColor: Colors.white70,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
+          borderSide: BorderSide.none,
+        ),
       ),
     );
   }
@@ -938,7 +981,14 @@ class FifthState extends State<Fifth> {
       (k, v) {
         list.add(
           Container(
-            margin: EdgeInsets.only(left: 25, right: 25),
+            padding: EdgeInsets.only(left: 10,right:10),
+
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: Color.fromRGBO(239, 239, 255, 1),
+              //
+            ),
+            margin: EdgeInsets.only(left: 25, right: 25,top: 10),
             child: InputDecorator(
               child: Column(
                 children: [
@@ -949,6 +999,7 @@ class FifthState extends State<Fifth> {
                   for (var i = 0; i < v[0].length; i++)
                     Column(
                       children: [
+                        SizedBox(height: 15,),
                         Row(
                           children: <Widget>[
                             Expanded(
@@ -956,7 +1007,7 @@ class FifthState extends State<Fifth> {
                             ),
                             Container(
                               decoration: BoxDecoration(
-                                  color: Colors.red.shade300,
+                                  //color: Colors.red.shade300,
                                   borderRadius: BorderRadius.only(
                                       topRight: Radius.circular(2),
                                       bottomRight: Radius.circular(2))),
@@ -970,6 +1021,7 @@ class FifthState extends State<Fifth> {
                   // _addBrief(k, v[0].length+1),
                   //   //_conFields[i]
                   // _deleteDetail(k),
+                  SizedBox(height: 15,),
 
                   Row(
                     children: <Widget>[
@@ -1133,15 +1185,15 @@ class FifthState extends State<Fifth> {
               );
             },
             icon: Icon(
-              Icons.format_align_justify_sharp,
-              color: Colors.redAccent,
+              Icons.check_circle_rounded,
+              color: Colors.orange,
             ), //icon data for elevated button
             label: Text(
               "Finish",
-              style: TextStyle(color: Colors.red, fontSize: 15),
+              style: TextStyle(color: Colors.black54, fontSize: 15),
             ), //label text
             style: ElevatedButton.styleFrom(
-                side: BorderSide(width: 2, color: Colors.redAccent),
+                side: BorderSide(width: 2, color: Color.fromRGBO(175, 146, 255, 1)),
                 primary: Colors.white //elevated btton background color
                 ),
           ),
@@ -1222,14 +1274,14 @@ class FifthState extends State<Fifth> {
             },
             icon: Icon(
               Icons.save,
-              color: Colors.redAccent,
+              color: Color.fromRGBO(142, 101, 255, 1),
             ), //icon data for elevated button
             label: Text(
               "Save and Create new Title",
-              style: TextStyle(color: Colors.red, fontSize: 15),
+              style: TextStyle(color: Colors.black54, fontSize: 15),
             ), //label text
             style: ElevatedButton.styleFrom(
-                side: BorderSide(width: 2, color: Colors.redAccent),
+                side: BorderSide(width: 2, color: Color.fromRGBO(175, 146, 255, 1)),
                 primary: Colors.white //elevated btton background color
                 ),
           ),
@@ -1363,7 +1415,7 @@ class FifthState extends State<Fifth> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.grey,
+          backgroundColor: Color.fromARGB(255, 109, 83, 255),
           title: Text('Generate Bill'),
         ),
         body: Column(
@@ -1386,7 +1438,7 @@ class FifthState extends State<Fifth> {
                 ],
               ),
             ),
-            _okButton1(context),
+            Container(child: _okButton1(context), color: Color.fromRGBO(218, 218, 218, 1),padding: EdgeInsets.all(10),),
           ],
         ),
       ),
