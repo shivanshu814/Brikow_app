@@ -21,9 +21,9 @@ class _LandingState extends State<Landing> {
     return (Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(217, 151, 113, 227),
+        backgroundColor: Color.fromARGB(210, 88, 40, 205),
         leading: IconButton(
-          color: Colors.black,
+          color: Color.fromARGB(255, 255, 255, 255),
           icon: const Icon(Icons.arrow_back),
           tooltip: 'Back',
           onPressed: () {
@@ -33,14 +33,14 @@ class _LandingState extends State<Landing> {
         title: Text(
           'Welcome',
           style: TextStyle(
-            color: Color.fromARGB(255, 0, 0, 0),
+            color: Color.fromARGB(255, 255, 255, 255),
           ),
         ),
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 8),
             child: IconButton(
-              color: Color.fromARGB(255, 0, 0, 0),
+              color: Color.fromARGB(255, 255, 255, 255),
               icon: const Icon(
                 Icons.logout,
                 size: 30,

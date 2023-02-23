@@ -169,9 +169,9 @@ class _VerifyState extends State<Verify> {
     return (Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(217, 151, 113, 227),
+        backgroundColor: Color.fromARGB(210, 88, 40, 205),
         leading: IconButton(
-          color: Colors.black,
+          color: Colors.white,
           icon: const Icon(Icons.arrow_back),
           tooltip: 'Home',
           onPressed: () {
@@ -185,7 +185,7 @@ class _VerifyState extends State<Verify> {
         title: Text(
           'Add Project',
           style: TextStyle(
-            color: Color.fromARGB(255, 0, 0, 0),
+            color: Color.fromARGB(255, 255, 255, 255),
           ),
         ),
       ),
@@ -271,7 +271,7 @@ class _VerifyState extends State<Verify> {
                         width: 1,
                         color: Color.fromARGB(21, 88, 40, 205),
                       ),
-                      primary: Color.fromARGB(210, 113, 64, 235),
+                      primary: Color.fromRGBO(89, 44, 204, 1),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ), //elevated btton background color
@@ -373,152 +373,167 @@ class _VerifyState extends State<Verify> {
                               .length, //this is the total number of cards
                           (index) {
                             return GestureDetector(
-                              onTap: (){
-
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                    builder: (context) => fourth(result["response"][index]["Location"], result["response"][index]["Name"], result["response"][index]["Date"].substring(0, 10)),
-                                  ),
-                                );
-                              },
+                                onTap: () {
+                                  Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                      builder: (context) => fourth(
+                                          result["response"][index]["Location"],
+                                          result["response"][index]["Name"],
+                                          result["response"][index]["Date"]
+                                              .substring(0, 10)),
+                                    ),
+                                  );
+                                },
                                 child: Container(
-                              child: Card(
-                                  color: Color.fromARGB(217, 151, 113, 227),
-                                  child: Container(
-                                    padding: EdgeInsets.all(10),
-                                    alignment: Alignment.centerLeft,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        RichText(
-                                          text: TextSpan(
-                                            children: <TextSpan>[
-                                              TextSpan(
-                                                text: "Date: " +
-                                                    result["response"][index]
-                                                            ["Date"]
-                                                        .substring(0, 10) +
-                                                    "\n",
-                                                style: TextStyle(
-                                                    color: Color.fromARGB(
-                                                            255, 0, 0, 0)
-                                                        .withOpacity(0.7),
-                                                    fontSize: 15),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Row(
+                                  child: Card(
+                                      color: Color.fromARGB(217, 151, 113, 227),
+                                      child: Container(
+                                        padding: EdgeInsets.all(10),
+                                        alignment: Alignment.centerLeft,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
-                                          //mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
-                                            Expanded(
-                                                flex: 1,
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment
-                                                          .stretch,
-                                                  children: [
-                                                    Icon(
-                                                      Icons.work,
-                                                      color: Color.fromARGB(
-                                                          255, 0, 0, 0),
-                                                      //size: 30,
-                                                    )
-                                                  ],
-                                                )),
-                                            Expanded(
-                                                flex: 2,
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    RichText(
-                                                      text: TextSpan(
-                                                        children: <TextSpan>[
-                                                          TextSpan(
-                                                            text: result["response"]
+                                            RichText(
+                                              text: TextSpan(
+                                                children: <TextSpan>[
+                                                  TextSpan(
+                                                    text: "Date: " +
+                                                        result["response"]
+                                                                [index]["Date"]
+                                                            .substring(0, 10) +
+                                                        "\n",
+                                                    style: TextStyle(
+                                                        color: Color.fromARGB(
+                                                                255,
+                                                                255,
+                                                                255,
+                                                                255)
+                                                            .withOpacity(0.7),
+                                                        fontSize: 15),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Row(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              //mainAxisAlignment: MainAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                    flex: 1,
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .stretch,
+                                                      children: [
+                                                        Icon(
+                                                          Icons.work,
+                                                          color: Color.fromARGB(
+                                                              255, 0, 0, 0),
+                                                          //size: 30,
+                                                        )
+                                                      ],
+                                                    )),
+                                                Expanded(
+                                                    flex: 2,
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        RichText(
+                                                          text: TextSpan(
+                                                            children: <
+                                                                TextSpan>[
+                                                              TextSpan(
+                                                                text: result["response"][index]
                                                                             [
-                                                                            index]
-                                                                        ["Name"]
-                                                                    .toUpperCase() +
-                                                                "\n",
-                                                            style: TextStyle(
-                                                                color: Color
-                                                                    .fromARGB(
-                                                                        255,
-                                                                        0,
-                                                                        0,
-                                                                        0),
-                                                                fontSize: 16),
+                                                                            "Name"]
+                                                                        .toUpperCase() +
+                                                                    "\n",
+                                                                style: TextStyle(
+                                                                    color: Color
+                                                                        .fromARGB(
+                                                                            255,
+                                                                            255,
+                                                                            255,
+                                                                            255),
+                                                                    fontSize:
+                                                                        16),
+                                                              ),
+                                                            ],
                                                           ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ))
+                                                        ),
+                                                      ],
+                                                    ))
+                                              ],
+                                            ),
+                                            RichText(
+                                              text: TextSpan(
+                                                children: <TextSpan>[
+                                                  TextSpan(
+                                                    text: "Location: ",
+                                                    style: TextStyle(
+                                                        color: Color.fromARGB(
+                                                                255,
+                                                                255,
+                                                                255,
+                                                                255)
+                                                            .withOpacity(0.5),
+                                                        fontSize: 15),
+                                                  ),
+                                                  TextSpan(
+                                                    text: result["response"]
+                                                        [index]["Location"],
+                                                    style: TextStyle(
+                                                        color: Color.fromARGB(
+                                                                255, 0, 0, 0)
+                                                            .withOpacity(0.8),
+                                                        fontSize: 15),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            RichText(
+                                              text: TextSpan(
+                                                children: <TextSpan>[
+                                                  TextSpan(
+                                                    text: "Material: ",
+                                                    style: TextStyle(
+                                                        color: Color.fromARGB(
+                                                                255,
+                                                                255,
+                                                                255,
+                                                                255)
+                                                            .withOpacity(0.5),
+                                                        fontSize: 15),
+                                                  ),
+                                                  TextSpan(
+                                                    text: result["response"]
+                                                                [index]
+                                                            ["withMaterial"] +
+                                                        "\n",
+                                                    style: TextStyle(
+                                                        color: Color.fromARGB(
+                                                                255, 0, 0, 0)
+                                                            .withOpacity(0.8),
+                                                        fontSize: 15),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                           ],
                                         ),
-                                        RichText(
-                                          text: TextSpan(
-                                            children: <TextSpan>[
-                                              TextSpan(
-                                                text: "Location: ",
-                                                style: TextStyle(
-                                                    color: Color.fromARGB(
-                                                            255, 0, 0, 0)
-                                                        .withOpacity(0.5),
-                                                    fontSize: 15),
-                                              ),
-                                              TextSpan(
-                                                text: result["response"][index]
-                                                    ["Location"],
-                                                style: TextStyle(
-                                                    color: Color.fromARGB(
-                                                            255, 0, 0, 0)
-                                                        .withOpacity(0.8),
-                                                    fontSize: 15),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        RichText(
-                                          text: TextSpan(
-                                            children: <TextSpan>[
-                                              TextSpan(
-                                                text: "Material: ",
-                                                style: TextStyle(
-                                                    color: Color.fromARGB(
-                                                            255, 0, 0, 0)
-                                                        .withOpacity(0.5),
-                                                    fontSize: 15),
-                                              ),
-                                              TextSpan(
-                                                text: result["response"][index]
-                                                        ["withMaterial"] +
-                                                    "\n",
-                                                style: TextStyle(
-                                                    color: Color.fromARGB(
-                                                            255, 0, 0, 0)
-                                                        .withOpacity(0.8),
-                                                    fontSize: 15),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                  //Text(result["response"][index]["Name"]),
-                                  ),
-                            ));
+                                      )
+                                      //Text(result["response"][index]["Name"]),
+                                      ),
+                                ));
                           },
                         ),
                 ),
@@ -578,8 +593,8 @@ class _VerifyState extends State<Verify> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Color.fromARGB(217, 151, 113, 227),
-          selectedItemColor: Color.fromARGB(210, 0, 0, 0),
+          backgroundColor: Color.fromARGB(210, 88, 40, 205),
+          selectedItemColor: Color.fromARGB(210, 255, 99, 3),
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined),

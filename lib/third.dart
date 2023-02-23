@@ -15,8 +15,6 @@ class third extends StatefulWidget {
 }
 
 class _thirdState extends State<third> {
-
-
   ////////////////////////////////////////////////
 
   Map<TextField, List> controllerMap = {};
@@ -78,7 +76,6 @@ class _thirdState extends State<third> {
   }
   ///////////////////////////////////////
 
-
   late Box box2;
   late Box box3;
   String token = "";
@@ -92,7 +89,6 @@ class _thirdState extends State<third> {
   void initState() {
     super.initState();
     createBox();
-
 
     ////////////
     List<TextEditingController> _descriptionControllers = [];
@@ -131,7 +127,6 @@ class _thirdState extends State<third> {
     final con = _generateBreifContainer(
         nosField, hgtField, lenField, wthField, qtyField);
 
-
     _briefControllers.add(brief);
     _nosControllers.add(nos);
     _hgtControllers.add(hgt);
@@ -148,8 +143,6 @@ class _thirdState extends State<third> {
     _qtyFields.add(qtyField);
 
     _conFields.add(con);
-
-
 
     // controllerMap[descField] = [
     //   desc,
@@ -170,16 +163,10 @@ class _thirdState extends State<third> {
     //   _conFields
     // ];
 
-    fieldMap1[briefField]=[
-      _nosFields,
-      _hgtFields,
-      _conFields
-    ];
-
+    fieldMap1[briefField] = [_nosFields, _hgtFields, _conFields];
 
     /////////////
   }
-
 
   ////////////////
   Widget _listViewfinal() {
@@ -187,7 +174,7 @@ class _thirdState extends State<third> {
 
     List<Widget> list = <Widget>[];
     fieldMap1.forEach(
-          (k, v) {
+      (k, v) {
         list.add(
           Container(
             margin: EdgeInsets.only(left: 25, right: 25),
@@ -196,32 +183,40 @@ class _thirdState extends State<third> {
                 children: [
                   //k,
                   for (var i = 0; i < v[0].length; i++)
-                    Column(children: [
-                      SizedBox(height: 10,),
-                    Container(
-                      padding: EdgeInsets.all(15),
-                      color: Color.fromRGBO(213, 212, 255, 0.39),
-                      child: Column(
+                    Column(
                       children: [
-                        SizedBox(height: 10,),
-                        Row(
-                          children: <Widget>[
-                            Expanded(
-                              child: k,
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                  //color: Colors.red.shade300,
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(2),
-                                      bottomRight: Radius.circular(2))),
-                              child: _deleteBrief1(k, i),
-                            )
-                          ],
+                        SizedBox(
+                          height: 10,
                         ),
-                        v[2][i],
+                        Container(
+                          padding: EdgeInsets.all(15),
+                          color: Color.fromRGBO(213, 212, 255, 0.39),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Expanded(
+                                    child: k,
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        //color: Colors.red.shade300,
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(2),
+                                            bottomRight: Radius.circular(2))),
+                                    child: _deleteBrief1(k, i),
+                                  )
+                                ],
+                              ),
+                              v[2][i],
+                            ],
+                          ),
+                        ),
                       ],
-                    ),),],),
+                    ),
                   // _addBrief(k, v[0].length+1),
                   //   //_conFields[i]
                   // _deleteDetail(k),
@@ -254,19 +249,19 @@ class _thirdState extends State<third> {
     );
   }
 
-
   Widget _deleteBrief1(TextField tf, int i) {
     return IconButton(
       icon: Icon(
         Icons.cancel_rounded,
         color: Colors.black54,
       ),
-      style: IconButton.styleFrom(backgroundColor: Color.fromRGBO(213, 212, 255, 0.39)),
+      style: IconButton.styleFrom(
+          backgroundColor: Color.fromRGBO(213, 212, 255, 0.39)),
       onPressed: () {
         setState(
-              () {
+          () {
             fieldMap1.forEach(
-                  (k, v) {
+              (k, v) {
                 if (k == tf) {
                   print("found");
                   print(v[0]);
@@ -282,7 +277,7 @@ class _thirdState extends State<third> {
             );
 
             controllerMap.forEach(
-                  (k, v) {
+              (k, v) {
                 if (k == tf) {
                   print("found");
                   print(v[0]);
@@ -300,7 +295,6 @@ class _thirdState extends State<third> {
       },
     );
   }
-
 
   Widget _addBrief(TextField tf, int i) {
     return Container(
@@ -343,13 +337,13 @@ class _thirdState extends State<third> {
               nosField, hgtField, lenField, wthField, qtyField);
 
           setState(
-                () {
+            () {
               fieldMap1.forEach(
-                    (k, v) {
+                (k, v) {
                   if (k == tf) {
                     print("found");
                     print(v[0]);
-                   // v[0].add(briefField);
+                    // v[0].add(briefField);
                     v[0].add(nosField);
                     v[1].add(hgtField);
                     // v[3].add(lenField);
@@ -361,7 +355,7 @@ class _thirdState extends State<third> {
               );
 
               controllerMap.forEach(
-                    (key, v) {
+                (key, v) {
                   if (key == tf) {
                     v[1].add(brief);
                     v[2].add(nos);
@@ -395,16 +389,13 @@ class _thirdState extends State<third> {
     );
   }
 
-
-
   Widget _addBrief1(TextField tf, int i) {
     return Container(
       alignment: Alignment.centerRight,
       width: 150,
-      margin: EdgeInsets.only(bottom: 10,top: 10),
+      margin: EdgeInsets.only(bottom: 10, top: 10),
       child: Ink(
         decoration: const ShapeDecoration(
-
           color: Color.fromRGBO(89, 44, 204, 1),
           shape: CircleBorder(),
         ),
@@ -413,7 +404,6 @@ class _thirdState extends State<third> {
           icon: const Icon(Icons.add),
           color: Colors.white,
           onPressed: () {
-
             List<TextEditingController> _briefControllers = [];
             List<TextField> _briefFields = [];
             List<TextEditingController> _nosControllers = [];
@@ -449,9 +439,9 @@ class _thirdState extends State<third> {
                 nosField, hgtField, lenField, wthField, qtyField);
 
             setState(
-                  () {
+              () {
                 fieldMap1.forEach(
-                      (k, v) {
+                  (k, v) {
                     if (k == tf) {
                       print("found");
                       print(v[0]);
@@ -467,7 +457,7 @@ class _thirdState extends State<third> {
                 );
 
                 controllerMap.forEach(
-                      (key, v) {
+                  (key, v) {
                     if (key == tf) {
                       v[1].add(brief);
                       v[2].add(nos);
@@ -489,14 +479,11 @@ class _thirdState extends State<third> {
             );
 
             print(fieldMap1[tf]);
-
           },
         ),
       ),
     );
   }
-
-
 
   TextField _generateBriefTextField(
       TextEditingController controller, String hint) {
@@ -514,6 +501,7 @@ class _thirdState extends State<third> {
       ),
     );
   }
+
   TextField _generateTextFieldBr2(
       TextEditingController controller, String hint) {
     return TextField(
@@ -531,14 +519,13 @@ class _thirdState extends State<third> {
     );
   }
 
-
   Container _generateBreifContainer(TextField Nos, TextField Hgt, TextField Len,
       TextField Wth, TextField Qty) {
     return Container(
       margin: EdgeInsets.only(top: 0),
       child: Row(
         mainAxisAlignment:
-        MainAxisAlignment.spaceEvenly, // use whichever suits your need
+            MainAxisAlignment.spaceEvenly, // use whichever suits your need
         children: <Widget>[
           Expanded(
               child: Padding(
@@ -672,7 +659,6 @@ class _thirdState extends State<third> {
         ),
       ),
       body: Center(
-
         child: ListView(
           children: [
             SizedBox(
@@ -681,31 +667,27 @@ class _thirdState extends State<third> {
 
             Container(
               margin: EdgeInsets.only(left: 15),
-              child: Text(
-                "Project Title",
-                textAlign: TextAlign.left,
-                style:  TextStyle(color: Color.fromRGBO(113, 63, 250, 1),fontSize: 14,fontWeight: FontWeight.w600)
-              ),
+              child: Text("Project Title",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      color: Color.fromRGBO(113, 63, 250, 1),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600)),
               padding: EdgeInsets.only(left: 5),
             ),
             SizedBox(
               height: 5,
             ),
             Container(
-
               padding: EdgeInsets.only(left: 6, top: 4, right: 6, bottom: 4),
               decoration: BoxDecoration(
-                  color:Color.fromRGBO(245, 245, 245, 1),
-                  border: Border.all(
-                      color: Color.fromRGBO(245, 245, 245, 1)
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(10))
-              ),
-              margin: EdgeInsets.only(top: 1,left: 15,right: 15),
+                  color: Color.fromRGBO(245, 245, 245, 1),
+                  border: Border.all(color: Color.fromRGBO(245, 245, 245, 1)),
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
+              margin: EdgeInsets.only(top: 1, left: 15, right: 15),
               child: TextField(
-                onChanged: (value){
-                  setState(() {
-                  });
+                onChanged: (value) {
+                  setState(() {});
                 },
                 controller: name,
                 textAlign: TextAlign.start,
@@ -715,9 +697,7 @@ class _thirdState extends State<third> {
                   //contentPadding: EdgeInsets.all(1),
                   hintText: "Enter Project Title",
                   prefixIcon: Icon(Icons.tips_and_updates_outlined),
-
                 ),
-
               ),
             ),
 
@@ -727,32 +707,27 @@ class _thirdState extends State<third> {
 
             Container(
               margin: EdgeInsets.only(left: 15),
-              child: Text(
-                  "Location",
+              child: Text("Location",
                   textAlign: TextAlign.left,
-                  style:  TextStyle(color: Color.fromRGBO(113, 63, 250, 1),fontSize: 14,fontWeight: FontWeight.w600)
-
-              ),
+                  style: TextStyle(
+                      color: Color.fromRGBO(113, 63, 250, 1),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600)),
               padding: EdgeInsets.only(left: 5),
             ),
             SizedBox(
               height: 5,
             ),
             Container(
-
               padding: EdgeInsets.only(left: 6, top: 4, right: 6, bottom: 4),
               decoration: BoxDecoration(
-                  color:Color.fromRGBO(245, 245, 245, 1),
-                  border: Border.all(
-                      color: Color.fromRGBO(245, 245, 245, 1)
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(10))
-              ),
-              margin: EdgeInsets.only(top: 1,left: 15,right: 15),
+                  color: Color.fromRGBO(245, 245, 245, 1),
+                  border: Border.all(color: Color.fromRGBO(245, 245, 245, 1)),
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
+              margin: EdgeInsets.only(top: 1, left: 15, right: 15),
               child: TextField(
-                onChanged: (value){
-                  setState(() {
-                  });
+                onChanged: (value) {
+                  setState(() {});
                 },
                 controller: location,
                 textAlign: TextAlign.start,
@@ -762,9 +737,7 @@ class _thirdState extends State<third> {
                   //contentPadding: EdgeInsets.all(1),
                   hintText: "Enter Location",
                   prefixIcon: Icon(Icons.location_on_outlined),
-
                 ),
-
               ),
             ),
 
@@ -774,12 +747,12 @@ class _thirdState extends State<third> {
 
             Container(
               margin: EdgeInsets.only(left: 15),
-              child: Text(
-                  "With Material",
+              child: Text("With Material",
                   textAlign: TextAlign.left,
-                  style:  TextStyle(color: Color.fromRGBO(113, 63, 250, 1),fontSize: 14,fontWeight: FontWeight.w600)
-
-              ),
+                  style: TextStyle(
+                      color: Color.fromRGBO(113, 63, 250, 1),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600)),
               padding: EdgeInsets.only(left: 5),
             ),
             SizedBox(
@@ -787,15 +760,12 @@ class _thirdState extends State<third> {
             ),
 
             Container(
-                margin: EdgeInsets.only(top: 1,left: 15,right: 15),
+                margin: EdgeInsets.only(top: 1, left: 15, right: 15),
                 padding: EdgeInsets.only(left: 6, top: 2, right: 6, bottom: 2),
                 decoration: BoxDecoration(
-                    color:Color.fromRGBO(245, 245, 245, 1),
-                    border: Border.all(
-                        color: Color.fromRGBO(245, 245, 245, 1)
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(10))
-                ),
+                    color: Color.fromRGBO(245, 245, 245, 1),
+                    border: Border.all(color: Color.fromRGBO(245, 245, 245, 1)),
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
                 //margin: EdgeInsets.only(top: 1),
                 child: DropdownButton(
                   isExpanded: true,
@@ -815,14 +785,17 @@ class _thirdState extends State<third> {
                       dropdownvalue8 = newValue!;
                     });
                   },
-                )
-            ),
+                )),
 
-            SizedBox(height: 15,),
+            SizedBox(
+              height: 15,
+            ),
 
             _listViewfinal(),
 
-            SizedBox(height: 15,),
+            SizedBox(
+              height: 15,
+            ),
 
             // Container(
             //   alignment: Alignment.centerRight,
@@ -1434,13 +1407,12 @@ class _thirdState extends State<third> {
                     ), //icon data for elevated button
                     label: Text(
                       "Save and Next",
-                      style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: 18),
+                      style: TextStyle(color: Colors.black54, fontSize: 18),
                     ), //label text
                     style: ElevatedButton.styleFrom(
                         side: BorderSide(
-                            width: 2, color: Color.fromARGB(210, 198, 177, 255)),
+                            width: 2,
+                            color: Color.fromARGB(210, 198, 177, 255)),
                         // ignore: deprecated_member_use
                         primary: Colors.white //elevated btton background color
                         ),
