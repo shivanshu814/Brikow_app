@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, must_be_immutable
 import 'dart:convert';
+import 'package:autocomplete_textfield/autocomplete_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:textfield_search/textfield_search.dart';
 import 'api.dart';
 import 'fourth.dart';
 import 'main.dart';
@@ -17,13 +19,18 @@ class third extends StatefulWidget {
 class _thirdState extends State<third> {
   ////////////////////////////////////////////////
 
+  final dummyList = ['Excavation','PCC','Reinorcement Wit Tools','Shuttering','RCC Casting','Brick Work'];
+  final dummList2 = ['SQM','SFY'];
+
   Map<TextField, List> controllerMap = {};
+  Map<SimpleAutoCompleteTextField, List> controllerMap1 = {};
   Map<String, List> controllerMapInvoice = {};
   Map<String, Map> titleMap = {};
   //Map<TextField, List> controllerMapInvoice = {};
   //Map<String, Map> titleMap = {};
   Map<TextField, List> fieldMap = {};
-  Map<TextField, List> fieldMap1 = {};
+  Map<SimpleAutoCompleteTextField, List> fieldMap1 = {};
+
 
   final TextEditingController _titleController = new TextEditingController();
 
@@ -109,40 +116,42 @@ class _thirdState extends State<third> {
 
     List<Container> _conFields = [];
 
-    final brief = TextEditingController();
-    final briefField = _generateBriefTextField(brief, "Description");
+    //final brief = new TextEditingController();
+    GlobalKey<AutoCompleteTextFieldState<String>> key = GlobalKey();
+    final TextEditingController brief = new TextEditingController();
+    final briefField = _generateBriefTextField(brief, "Description",key);
 
     final nos = TextEditingController();
     final hgt = TextEditingController();
-    final len = TextEditingController();
-    final wth = TextEditingController();
-    final qty = TextEditingController();
+    // final len = TextEditingController();
+    // final wth = TextEditingController();
+    // final qty = TextEditingController();
 
     final nosField = _generateTextFieldBr2(nos, 'Rate');
     final hgtField = _generateTextFieldBr2(hgt, 'SQM/SFY');
-    final lenField = _generateTextFieldBr2(len, 'Len');
-    final wthField = _generateTextFieldBr2(wth, 'Wth');
-    final qtyField = _generateTextFieldBr2(qty, 'Qty');
+   // final lenField = _generateTextFieldBr2(len, 'Len');
+    //final wthField = _generateTextFieldBr2(wth, 'Wth');
+    //final qtyField = _generateTextFieldBr2(qty, 'Qty');
 
     final con = _generateBreifContainer(
-        nosField, hgtField, lenField, wthField, qtyField);
+        nosField, hgtField);
 
     _briefControllers.add(brief);
     _nosControllers.add(nos);
     _hgtControllers.add(hgt);
-    _lenControllers.add(len);
-    _wthControllers.add(wth);
-    _qtyControllers.add(qty);
+    // _lenControllers.add(len);
+    // _wthControllers.add(wth);
+    // _qtyControllers.add(qty);
 
     //_descriptionFields.add(descField);
-    _briefFields.add(briefField);
-    _nosFields.add(nosField);
-    _hgtFields.add(hgtField);
-    _lenFields.add(lenField);
-    _wthFields.add(wthField);
-    _qtyFields.add(qtyField);
-
-    _conFields.add(con);
+    // _briefFields.add(briefField);
+    // _nosFields.add(nosField);
+    // _hgtFields.add(hgtField);
+    // // _lenFields.add(lenField);
+    // // _wthFields.add(wthField);
+    // // _qtyFields.add(qtyField);
+    //
+    // _conFields.add(con);
 
     // controllerMap[descField] = [
     //   desc,
@@ -163,14 +172,16 @@ class _thirdState extends State<third> {
     //   _conFields
     // ];
 
-    fieldMap1[briefField] = [_nosFields, _hgtFields, _conFields];
+    fieldMap1[briefField] = [nosField, hgtField, con];
+    controllerMap1[briefField] = [brief,nos,hgt];
 
     /////////////
   }
 
   ////////////////
   Widget _listViewfinal() {
-    fieldMap1.forEach((k, v) => print(v[0].length));
+    print(fieldMap1);
+    fieldMap1.forEach((k, v) => print(v[2]));
 
     List<Widget> list = <Widget>[];
     fieldMap1.forEach(
@@ -181,8 +192,8 @@ class _thirdState extends State<third> {
             child: InputDecorator(
               child: Column(
                 children: [
-                  //k,
-                  for (var i = 0; i < v[0].length; i++)
+                 // k,
+                  //for (var i = 0; i < fieldMap1.length; i++)
                     Column(
                       children: [
                         SizedBox(
@@ -207,11 +218,11 @@ class _thirdState extends State<third> {
                                         borderRadius: BorderRadius.only(
                                             topRight: Radius.circular(2),
                                             bottomRight: Radius.circular(2))),
-                                    child: _deleteBrief1(k, i),
+                                    child: _deleteBrief1(k),
                                   )
                                 ],
                               ),
-                              v[2][i],
+                              v[2]//[0],
                             ],
                           ),
                         ),
@@ -221,15 +232,7 @@ class _thirdState extends State<third> {
                   //   //_conFields[i]
                   // _deleteDetail(k),
 
-                  Row(
-                    children: <Widget>[
-                      Expanded(child: _addBrief1(k, v[0].length + 1)),
-                      SizedBox(
-                        width: 50,
-                      ),
-                      //Expanded(child: _deleteDetail(k)),
-                    ],
-                  ),
+
                 ],
               ),
               decoration: InputDecoration(
@@ -249,7 +252,7 @@ class _thirdState extends State<third> {
     );
   }
 
-  Widget _deleteBrief1(TextField tf, int i) {
+  Widget _deleteBrief1(SimpleAutoCompleteTextField tf) {
     return IconButton(
       icon: Icon(
         Icons.cancel_rounded,
@@ -260,36 +263,40 @@ class _thirdState extends State<third> {
       onPressed: () {
         setState(
           () {
-            fieldMap1.forEach(
-              (k, v) {
-                if (k == tf) {
-                  print("found");
-                  print(v[0]);
-                  v[0].removeAt(i);
-                  v[1].removeAt(i);
-                  v[2].removeAt(i);
-                  // v[3].removeAt(i);
-                  // v[4].removeAt(i);
-                  // v[5].removeAt(i);
-                  // v[6].removeAt(i);
-                }
-              },
-            );
 
-            controllerMap.forEach(
-              (k, v) {
-                if (k == tf) {
-                  print("found");
-                  print(v[0]);
-                  v[1].removeAt(i);
-                  v[2].removeAt(i);
-                  v[3].removeAt(i);
-                  v[4].removeAt(i);
-                  v[5].removeAt(i);
-                  v[6].removeAt(i);
-                }
-              },
-            );
+            fieldMap1.remove(tf);
+            controllerMap1.remove(tf);
+
+            // fieldMap1.forEach(
+            //   (k, v) {
+            //     if (k == tf) {
+            //       print("found");
+            //       print(v[0]);
+            //       v[0].removeAt(i);
+            //       v[1].removeAt(i);
+            //       v[2].removeAt(i);
+            //       // v[3].removeAt(i);
+            //       // v[4].removeAt(i);
+            //       // v[5].removeAt(i);
+            //       // v[6].removeAt(i);
+            //     }
+            //   },
+            // );
+
+            // controllerMap.forEach(
+            //   (k, v) {
+            //     if (k == tf) {
+            //       print("found");
+            //       print(v[0]);
+            //       v[1].removeAt(i);
+            //       v[2].removeAt(i);
+            //       v[3].removeAt(i);
+            //       v[4].removeAt(i);
+            //       v[5].removeAt(i);
+            //       v[6].removeAt(i);
+            //     }
+            //   },
+            // );
           },
         );
       },
@@ -318,8 +325,10 @@ class _thirdState extends State<third> {
           List<Container> _conFields = [];
           List<Container> _conFields1 = [];
 
-          final brief = new TextEditingController();
-          final briefField = _generateBriefTextField(brief, "Description");
+          //final brief = new TextEditingController();
+          GlobalKey<AutoCompleteTextFieldState<String>> key = GlobalKey();
+          final TextEditingController brief = new TextEditingController();
+          final briefField = _generateBriefTextField(brief, "Description",key);
 
           final nos = TextEditingController();
           final hgt = TextEditingController();
@@ -334,7 +343,7 @@ class _thirdState extends State<third> {
           final qtyField = _generateTextFieldBr2(qty, 'Qty');
 
           final con = _generateBreifContainer(
-              nosField, hgtField, lenField, wthField, qtyField);
+              nosField, hgtField);
 
           setState(
             () {
@@ -384,12 +393,12 @@ class _thirdState extends State<third> {
             elevation: 2,
             backgroundColor: Colors.white),
         icon: Icon(Icons.add),
-        label: Text('Add Brief'),
+        label: Text('Add Brieff'),
       ),
     );
   }
 
-  Widget _addBrief1(TextField tf, int i) {
+  Widget _addBrief1() {
     return Container(
       alignment: Alignment.centerRight,
       width: 150,
@@ -420,54 +429,60 @@ class _thirdState extends State<third> {
             List<Container> _conFields = [];
             List<Container> _conFields1 = [];
 
-            final brief = new TextEditingController();
-            final briefField = _generateBriefTextField(brief, "Description");
+            GlobalKey<AutoCompleteTextFieldState<String>> key = GlobalKey();
+            TextEditingController brief = new TextEditingController();
+            final briefField = _generateBriefTextField(brief, "Description",key);
 
             final nos = TextEditingController();
             final hgt = TextEditingController();
-            final len = TextEditingController();
-            final wth = TextEditingController();
-            final qty = TextEditingController();
+            // final len = TextEditingController();
+            // final wth = TextEditingController();
+            // final qty = TextEditingController();
 
             final nosField = _generateTextFieldBr2(nos, 'Rate');
             final hgtField = _generateTextFieldBr2(hgt, 'SQM/SFT');
-            final lenField = _generateTextFieldBr2(len, 'Len');
-            final wthField = _generateTextFieldBr2(wth, 'Wth');
-            final qtyField = _generateTextFieldBr2(qty, 'Qty');
+            // final lenField = _generateTextFieldBr2(len, 'Len');
+            // final wthField = _generateTextFieldBr2(wth, 'Wth');
+            // final qtyField = _generateTextFieldBr2(qty, 'Qty');
 
             final con = _generateBreifContainer(
-                nosField, hgtField, lenField, wthField, qtyField);
+                nosField, hgtField);
 
+            TextField tf1;
             setState(
               () {
-                fieldMap1.forEach(
-                  (k, v) {
-                    if (k == tf) {
-                      print("found");
-                      print(v[0]);
-                      // v[0].add(briefField);
-                      v[0].add(nosField);
-                      v[1].add(hgtField);
-                      // v[3].add(lenField);
-                      // v[4].add(wthField);
-                      // v[5].add(qtyField);
-                      v[2].add(con);
-                    }
-                  },
-                );
+                fieldMap1[briefField]=[nosField,hgtField,con];
+                controllerMap1[briefField]=[brief,nos,hgt];
 
-                controllerMap.forEach(
-                  (key, v) {
-                    if (key == tf) {
-                      v[1].add(brief);
-                      v[2].add(nos);
-                      v[3].add(hgt);
-                      v[4].add(len);
-                      v[5].add(wth);
-                      v[6].add(qty);
-                    }
-                  },
-                );
+
+                // fieldMap1.forEach(
+                //   (k, v) {
+                //     if (k == tf) {
+                //       print("found");
+                //       print(v[0]);
+                //       // v[0].add(briefField);
+                //       v[0].add(nosField);
+                //       v[1].add(hgtField);
+                //       // v[3].add(lenField);
+                //       // v[4].add(wthField);
+                //       // v[5].add(qtyField);
+                //       v[2].add(con);
+                //     }
+                //   },
+                // );
+                //
+                // controllerMap1.forEach(
+                //   (key, v) {
+                //     if (key == tf) {
+                //       v[1].add(brief);
+                //       v[2].add(nos);
+                //       v[3].add(hgt);
+                //       // v[4].add(len);
+                //       // v[5].add(wth);
+                //       // v[6].add(qty);
+                //     }
+                //   },
+                // );
 
                 print(briefField);
                 print(_briefFields);
@@ -478,16 +493,20 @@ class _thirdState extends State<third> {
               },
             );
 
-            print(fieldMap1[tf]);
+            print("euououou");
+            print(fieldMap1);
+            fieldMap1.forEach((key, value) {print(value);});
+            print("hat");
           },
         ),
       ),
     );
   }
 
-  TextField _generateBriefTextField(
-      TextEditingController controller, String hint) {
-    return TextField(
+
+  SimpleAutoCompleteTextField _generateBriefTextField(
+      TextEditingController controller, String hint,GlobalKey<AutoCompleteTextFieldState<String>> key) {
+    return SimpleAutoCompleteTextField(
       controller: controller,
       decoration: InputDecoration(
         //  contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
@@ -499,6 +518,7 @@ class _thirdState extends State<third> {
           borderSide: BorderSide.none,
         ),
       ),
+      suggestions:dummyList, key: key,
     );
   }
 
@@ -519,8 +539,7 @@ class _thirdState extends State<third> {
     );
   }
 
-  Container _generateBreifContainer(TextField Nos, TextField Hgt, TextField Len,
-      TextField Wth, TextField Qty) {
+  Container _generateBreifContainer(TextField Nos, TextField Hgt) {
     return Container(
       margin: EdgeInsets.only(top: 0),
       child: Row(
@@ -658,8 +677,9 @@ class _thirdState extends State<third> {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: Center(
+      body: Container(
         child: ListView(
+          shrinkWrap: true,
           children: [
             SizedBox(
               height: 25,
@@ -792,6 +812,16 @@ class _thirdState extends State<third> {
             ),
 
             _listViewfinal(),
+
+            Row(
+              children: <Widget>[
+                Expanded(child: _addBrief1()),
+                SizedBox(
+                  width: 50,
+                ),
+                //Expanded(child: _deleteDetail(k)),
+              ],
+            ),
 
             SizedBox(
               height: 15,
@@ -1425,7 +1455,7 @@ class _thirdState extends State<third> {
               ],
             ),
             SizedBox(
-              height: 14,
+              height: 44,
             ),
           ],
         ),

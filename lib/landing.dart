@@ -56,9 +56,11 @@ class _LandingState extends State<Landing> {
       body: SafeArea(
         child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
-                flex: 3,
+                flex: 2,
                 child: Stack(
                   children: [
                     Container(
@@ -69,21 +71,34 @@ class _LandingState extends State<Landing> {
                         ),
                       ),
                     ),
+                    // Container(
+                    //   decoration: BoxDecoration(
+                    //     image: DecorationImage(
+                    //         opacity: (20),
+                    //         image: AssetImage("images/8104.jpg"),
+                    //         fit: BoxFit.fill),
+                    //   ),
+                    // ),
                     Container(
-                      height: 420,
-                      width: 520,
+                      margin: EdgeInsets.only(right: 25,left: 25,top: 10),
+                      alignment: Alignment.center,
+                      height: 280.0,
+                      //width: 280.0,
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                            opacity: (20),
-                            image: AssetImage("images/8104.jpg"),
-                            fit: BoxFit.fill),
+                          opacity: (20),
+                          image: AssetImage(
+                              'images/8104.jpg'),
+                          fit: BoxFit.fill,
+                        ),
+                        //shape: BoxShape.circle,
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),
               SizedBox(
-                height: 11,
+                height: 20,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 35.0),
@@ -113,7 +128,7 @@ class _LandingState extends State<Landing> {
                         children: [
                           Padding(
                             padding: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 25),
+                                vertical: 10, horizontal: 15),
                             child: GestureDetector(
                               onTap: (() {
                                 Navigator.pushReplacementNamed(
@@ -143,7 +158,7 @@ class _LandingState extends State<Landing> {
                           ),
                           Padding(
                             padding: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 2),
+                                vertical: 1, horizontal: 1),
                             child: GestureDetector(
                               onTap: (() {
                                 Navigator.pushReplacementNamed(
@@ -172,12 +187,13 @@ class _LandingState extends State<Landing> {
                             ),
                           ),
                         ],
+                        mainAxisAlignment: MainAxisAlignment.center,
                       ),
                       Row(
                         children: [
                           Padding(
                             padding: EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 25),
+                                vertical: 10, horizontal: 15),
                             child: GestureDetector(
                               onTap: (() {
                                 Navigator.pushReplacementNamed(
@@ -236,6 +252,7 @@ class _LandingState extends State<Landing> {
                             ),
                           ),
                         ],
+                      mainAxisAlignment: MainAxisAlignment.center,
                       ),
                     ],
                   ),

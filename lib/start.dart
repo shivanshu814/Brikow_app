@@ -33,15 +33,19 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     return Timer(
       duration,
       () {
-        print("splashh" + box2.get('isLogged', defaultValue: false).toString());
+        print("splashh" + box2.get('isLogged').toString());
         print(box2.get("isLogged"));
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (_) =>
+                //Landing()
                 //box2.get('isLogged',defaultValue: false)?MyPhone(title: "phone"):Verify(),
-                box2.get('isLogged', defaultValue: false)
+                box2.get('isLogged')
                     ? MyPhone(title: "phone")
                     : Landing(),
+            // box2.get('isLogged')==null
+            //     ? MyPhone(title: "phone")
+            //     : Landing(),
           ),
         );
       },
