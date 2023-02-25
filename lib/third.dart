@@ -20,7 +20,16 @@ class _thirdState extends State<third> {
   ////////////////////////////////////////////////
 
   final dummyList = ['Excavation','PCC','Reinorcement Wit Tools','Shuttering','RCC Casting','Brick Work'];
-  final dummList2 = ['SQM','SFY'];
+  final dummList2 = ['Mumbai','Delhi','Bangalore','Hyderabad','Ahmedabad','Chennai','Kolkata','Surat','Vadodara','Pune','Jaipur',
+  'Lucknow','Kanpur','Nagpur','Indore','Thane','Bhopal','Visakhapatnam','Pimpri-Chinchwad','Patna','Ghaziabad','Ludhiana'
+    'Nashik','Faridabad','Meerut','Rajkot','Kalyan-Dombivli','Vasai-Virar','Varanasi','Srinagar','Aurangabad','Dhanbad','Amritsar'
+        ,'Navi Mumbai','Allahabad','Howrah','Ranchi','Gwalior','Jabalpur','Coimbatore','Vijayawada','Jodhpur','Madurai'
+    'Kota','Chandigarh','Guwahati','Solapur','Hubli–Dharwad','Bareilly','Mysore','Moradabad','Gurgaon','Aligarh','Jalandhar',
+        'Tiruchirappalli','Bhubaneswar','Salem','Mira-Bhayandar','Thiruvananthapuram','Bhiwandi','Saharanpur','Gorakhpur','Guntur',
+    'Amravati'];
+
+
+
 
   Map<TextField, List> controllerMap = {};
   Map<SimpleAutoCompleteTextField, List> controllerMap1 = {};
@@ -128,7 +137,17 @@ class _thirdState extends State<third> {
     // final qty = TextEditingController();
 
     final nosField = _generateTextFieldBr2(nos, 'Rate');
-    final hgtField = _generateTextFieldBr2(hgt, 'SQM/SFY');
+
+    var itemsVal = [
+      'SQM',
+      'SFY',
+    ];
+
+    String dropdownval = 'SQM';
+    final hgtField = _generateDropDown(hgt, 'SQM/SFY',dropdownval);
+    //final hgtField = _generateTextFieldBr2(hgt, 'SQM/SFY');
+
+
    // final lenField = _generateTextFieldBr2(len, 'Len');
     //final wthField = _generateTextFieldBr2(wth, 'Wth');
     //final qtyField = _generateTextFieldBr2(qty, 'Qty');
@@ -173,7 +192,7 @@ class _thirdState extends State<third> {
     // ];
 
     fieldMap1[briefField] = [nosField, hgtField, con];
-    controllerMap1[briefField] = [brief,nos,hgt];
+    controllerMap1[briefField] = [brief,nos,dropdownval];
 
     /////////////
   }
@@ -337,13 +356,17 @@ class _thirdState extends State<third> {
           final qty = TextEditingController();
 
           final nosField = _generateTextFieldBr2(nos, 'Rate');
+
+
+
           final hgtField = _generateTextFieldBr2(hgt, 'SQM/SFT');
           final lenField = _generateTextFieldBr2(len, 'Len');
           final wthField = _generateTextFieldBr2(wth, 'Wth');
           final qtyField = _generateTextFieldBr2(qty, 'Qty');
 
-          final con = _generateBreifContainer(
-              nosField, hgtField);
+          final con;
+          // = _generateBreifContainer(
+          //     nosField, hgtField);
 
           setState(
             () {
@@ -358,7 +381,7 @@ class _thirdState extends State<third> {
                     // v[3].add(lenField);
                     // v[4].add(wthField);
                     // v[5].add(qtyField);
-                    v[2].add(con);
+                   // v[2].add(con);
                   }
                 },
               );
@@ -381,7 +404,7 @@ class _thirdState extends State<third> {
               print("====");
               print(_briefFields);
 
-              _conFields.add(con);
+             // _conFields.add(con);
             },
           );
 
@@ -440,7 +463,15 @@ class _thirdState extends State<third> {
             // final qty = TextEditingController();
 
             final nosField = _generateTextFieldBr2(nos, 'Rate');
-            final hgtField = _generateTextFieldBr2(hgt, 'SQM/SFT');
+
+            String dropdownval = 'SQM';
+            List itemsVal = [
+              'SQM',
+              'SFY',
+            ];
+            final hgtField = _generateDropDown(hgt, 'SQM/SFY',dropdownval);
+
+            //final hgtField = _generateTextFieldBr2(hgt, 'SQM/SFT');
             // final lenField = _generateTextFieldBr2(len, 'Len');
             // final wthField = _generateTextFieldBr2(wth, 'Wth');
             // final qtyField = _generateTextFieldBr2(qty, 'Qty');
@@ -452,7 +483,7 @@ class _thirdState extends State<third> {
             setState(
               () {
                 fieldMap1[briefField]=[nosField,hgtField,con];
-                controllerMap1[briefField]=[brief,nos,hgt];
+                controllerMap1[briefField]=[brief,nos,dropdownval];
 
 
                 // fieldMap1.forEach(
@@ -539,7 +570,49 @@ class _thirdState extends State<third> {
     );
   }
 
-  Container _generateBreifContainer(TextField Nos, TextField Hgt) {
+  DropdownButton _generateDropDown(
+      TextEditingController controller, String hint, String dropdownval) {
+    var itemsVal = [
+      'SQM',
+      'SFY',
+    ];
+
+    return DropdownButton(
+      isExpanded: true,
+      // style: GoogleFonts.lato(
+      //   textStyle: TextStyle(
+      //       color: Colors.black54,
+      //       letterSpacing: .2,
+      //       fontSize: 16,
+      //       fontWeight: FontWeight.w600
+      //   ),
+      // ),
+      value: dropdownval,
+      icon: const Icon(Icons.keyboard_arrow_down),
+      items: itemsVal.map((String items) {
+        return DropdownMenuItem(
+          value: items,
+          child: Text(items),
+
+        );
+      }).toList(),
+      // After selecting the desired option,it will
+      // change button value to selected value
+      onChanged: (var newValue) {
+        print("ey");
+        setState(() {
+          print("Drop: "+dropdownval.toString());
+          print("new: "+newValue.toString());
+          dropdownval = newValue!;
+          print("Drop1: "+dropdownval.toString());
+        });
+        print("ey");
+        print("Drop2: "+dropdownval.toString());
+      },
+    );
+  }
+
+  Container _generateBreifContainer(TextField Nos, DropdownButton Hgt) {
     return Container(
       margin: EdgeInsets.only(top: 0),
       child: Row(
@@ -666,6 +739,8 @@ class _thirdState extends State<third> {
     print(response.statusCode);
   }
 
+  GlobalKey<AutoCompleteTextFieldState<String>> keyLoc = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -745,19 +820,19 @@ class _thirdState extends State<third> {
                   border: Border.all(color: Color.fromRGBO(245, 245, 245, 1)),
                   borderRadius: BorderRadius.all(Radius.circular(10))),
               margin: EdgeInsets.only(top: 1, left: 15, right: 15),
-              child: TextField(
-                onChanged: (value) {
-                  setState(() {});
-                },
+              child: SimpleAutoCompleteTextField(
+                // onChanged: (value) {
+                //   setState(() {});
+                // },
                 controller: location,
-                textAlign: TextAlign.start,
-                textAlignVertical: TextAlignVertical.center,
+                //textAlign: TextAlign.start,
+                //textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   //contentPadding: EdgeInsets.all(1),
                   hintText: "Enter Location",
                   prefixIcon: Icon(Icons.location_on_outlined),
-                ),
+                ), key: keyLoc, suggestions: dummList2,
               ),
             ),
 

@@ -38,11 +38,13 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (_) =>
+                MyPhone(title: "phone")
                 //Landing()
                 //box2.get('isLogged',defaultValue: false)?MyPhone(title: "phone"):Verify(),
-                box2.get('isLogged')
-                    ? MyPhone(title: "phone")
-                    : Landing(),
+                // box2.get('isLogged')
+                //     ? MyPhone(title: "phone")
+                //     : Landing(),
+
             // box2.get('isLogged')==null
             //     ? MyPhone(title: "phone")
             //     : Landing(),
