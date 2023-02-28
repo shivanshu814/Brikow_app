@@ -54,16 +54,20 @@ class _PdfPageState extends State<PdfPage> {
           (key, value) {
             keyab = key.toString();
 
-            list.add(InvoiceItem1(
-              description: key,
-              unit: "",
-              NOS: "",
-              L: "",
-              W: "",
-              H: "",
-              quantity: "",
-            ),);
-
+            list.add(
+              InvoiceItem1(
+                description: key,
+                unit: "",
+                NOS: "",
+                L: "",
+                W: "",
+                H: "",
+                quantity: "",
+              ),
+            );
+            SizedBox(
+              height: 15,
+            );
             value.forEach((key1, value1) {
               for (var i = 0; i < value1[1].length; i++) {
                 if (i == 0) {
@@ -111,29 +115,34 @@ class _PdfPageState extends State<PdfPage> {
             });
           },
         );
-
+        SizedBox(
+          height: 15,
+        );
         titleMap.forEach(
-              (key, value) {
+          (key, value) {
             keyab = key.toString();
 
-            list2.add(InvoiceItem2(
-              description: key,
-              unit: "",
-              NOS: "",
-              quantity: "",
-            ),);
-
+            list2.add(
+              InvoiceItem2(
+                description: key,
+                unit: "",
+                NOS: "",
+                quantity: "",
+              ),
+            );
+            SizedBox(
+              height: 15,
+            );
             value.forEach((key1, value1) {
               for (var i = 0; i < value1[1].length; i++) {
-
-                  list2.add(
-                    InvoiceItem2(
-                      description: value1[1][i],
-                      unit: "SQM",
-                      NOS: value1[2][i],
-                      quantity: value1[5][i],
-                    ),
-                  );
+                list2.add(
+                  InvoiceItem2(
+                    description: value1[1][i],
+                    unit: "SQM",
+                    NOS: value1[2][i],
+                    quantity: value1[5][i],
+                  ),
+                );
 
                 print(value1[1][i]);
                 print(value1[1][i]);
@@ -144,33 +153,37 @@ class _PdfPageState extends State<PdfPage> {
             });
           },
         );
-
-
+        SizedBox(
+          height: 15,
+        );
         titleMap.forEach(
-              (key, value) {
+          (key, value) {
             keyab = key.toString();
 
-            list3.add(InvoiceItem3(
-              description: key,
-              unit: "",
-              Rate: "",
-              quantity: "",
-              amount: ""
-            ),);
-
+            list3.add(
+              InvoiceItem3(
+                  description: key,
+                  unit: "",
+                  Rate: "",
+                  quantity: "",
+                  amount: ""),
+            );
+            SizedBox(
+              height: 15,
+            );
             value.forEach((key1, value1) {
               for (var i = 0; i < value1[1].length; i++) {
-
                 list3.add(
                   InvoiceItem3(
-                    description: value1[1][i],
-                    unit: "SQM",
-                    Rate: 2.toString(),
-                    quantity: value1[5][i],
-                    amount: (int.parse(value1[5][i]) * 2).toString()
-                  ),
+                      description: value1[1][i],
+                      unit: "SQM",
+                      Rate: 2.toString(),
+                      quantity: value1[5][i],
+                      amount: (int.parse(value1[5][i]) * 2).toString()),
                 );
-
+                SizedBox(
+                  height: 15,
+                );
                 print(value1[1][i]);
                 print(value1[1][i]);
                 print(value1[2][i]);
@@ -202,13 +215,16 @@ class _PdfPageState extends State<PdfPage> {
           centerTitle: true,
         ),
         body: Container(
-          padding: EdgeInsets.only(left: 20,right: 20,bottom: 20,top: 40),
+          padding: EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 40),
           child: Center(
             child: Column(
               //mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 //Icon(Icons.picture_as_pdf, size: 150, color: Colors.red),
-                Image.asset('images/invoice2.png',height: 200,),
+                Image.asset(
+                  'images/invoice2.png',
+                  height: 200,
+                ),
                 SizedBox(
                   height: 35,
                 ),
@@ -217,42 +233,53 @@ class _PdfPageState extends State<PdfPage> {
                   style: TextStyle(color: Colors.black, fontSize: 30),
                 ),
                 const SizedBox(height: 78),
-               ElevatedButton(
-                 // text: 'Measurement',
-                 style: ElevatedButton.styleFrom(
-                     minimumSize: const Size.fromHeight(50),
-                     primary: Color.fromRGBO(212, 212, 255, 1), //background color of button
-                     side: BorderSide(width:1, color:Color.fromRGBO(212, 212, 255, 1)), //border width and color
-                     elevation: 3, //elevation of button
-                     shape: RoundedRectangleBorder( //to set border radius to button
-                         borderRadius: BorderRadius.circular(10)
-                     ),
-                     padding: EdgeInsets.all(20) //content padding inside button
-                 ),
-                      child: Row(mainAxisAlignment: MainAxisAlignment.center,children: [
-                        Text("Measurement",style: TextStyle(color: Colors.black,fontSize: 17),)],),
+                ElevatedButton(
+                  // text: 'Measurement',
+                  style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(50),
+                      primary: Color.fromRGBO(
+                          212, 212, 255, 1), //background color of button
+                      side: BorderSide(
+                          width: 1,
+                          color: Color.fromRGBO(
+                              212, 212, 255, 1)), //border width and color
+                      elevation: 3, //elevation of button
+                      shape: RoundedRectangleBorder(
+                          //to set border radius to button
+                          borderRadius: BorderRadius.circular(10)),
+                      padding:
+                          EdgeInsets.all(20) //content padding inside button
+                      ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Measurement",
+                        style: TextStyle(color: Colors.black, fontSize: 17),
+                      )
+                    ],
+                  ),
 
-                 onPressed: () async {
+                  onPressed: () async {
                     final date = DateTime.now();
                     final dueDate = date.add(Duration(days: 7));
 
                     final invoice = Invoice(
-                      supplier: Supplier(
-                        name: box1?.get("name"),
-                        address: box1?.get("location"),
-                        paymentInfo: '',
-                      ),
-                      info: InvoiceInfo1(
-                        date: date,
-                        description: "Measurement",
+                        supplier: Supplier(
+                          name: box1?.get("name"),
+                          address: box1?.get("location"),
+                          paymentInfo: '',
+                        ),
+                        info: InvoiceInfo1(
+                          date: date,
+                          description: "Measurement",
 
-                        //number: box2?.get("phone")
-                      ),
-                      items1: list,
-                      items: [],
-                      items2: [],
-                      items3: []
-                    );
+                          //number: box2?.get("phone")
+                        ),
+                        items1: list,
+                        items: [],
+                        items2: [],
+                        items3: []);
 
                     final pdfFile = await PdfInvoiceApi1.generate(invoice);
 
@@ -266,16 +293,28 @@ class _PdfPageState extends State<PdfPage> {
                   // text: 'Measurement',
                   style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),
-                      primary: Color.fromRGBO(212, 212, 255, 1), //background color of button
-                      side: BorderSide(width:1, color:Color.fromRGBO(212, 212, 255, 1)), //border width and color
+                      primary: Color.fromRGBO(
+                          212, 212, 255, 1), //background color of button
+                      side: BorderSide(
+                          width: 1,
+                          color: Color.fromRGBO(
+                              212, 212, 255, 1)), //border width and color
                       elevation: 3, //elevation of button
-                      shape: RoundedRectangleBorder( //to set border radius to button
-                          borderRadius: BorderRadius.circular(10)
+                      shape: RoundedRectangleBorder(
+                          //to set border radius to button
+                          borderRadius: BorderRadius.circular(10)),
+                      padding:
+                          EdgeInsets.all(20) //content padding inside button
                       ),
-                      padding: EdgeInsets.all(20) //content padding inside button
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Summary",
+                        style: TextStyle(color: Colors.black, fontSize: 17),
+                      )
+                    ],
                   ),
-                  child: Row(mainAxisAlignment: MainAxisAlignment.center,children: [
-                    Text("Summary",style: TextStyle(color: Colors.black,fontSize: 17),)],),
                   onPressed: () async {
                     final date = DateTime.now();
                     final dueDate = date.add(Duration(days: 7));
@@ -290,13 +329,13 @@ class _PdfPageState extends State<PdfPage> {
                           date: date,
                           description: "Summary",
                         ),
-                      items: [],
-                      items1: [],
-                      items2: list2,
-                        items3: []
-                    );
+                        items: [],
+                        items1: [],
+                        items2: list2,
+                        items3: []);
 
-                    final pdfFile = await PdfInvoiceApi1.generateSummary(invoice);
+                    final pdfFile =
+                        await PdfInvoiceApi1.generateSummary(invoice);
 
                     PdfApi.openFile(pdfFile);
                   },
@@ -308,37 +347,49 @@ class _PdfPageState extends State<PdfPage> {
                   // text: 'Measurement',
                   style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),
-                      primary: Color.fromRGBO(212, 212, 255, 1), //background color of button
-                      side: BorderSide(width:1, color:Color.fromRGBO(212, 212, 255, 1)), //border width and color
+                      primary: Color.fromRGBO(
+                          212, 212, 255, 1), //background color of button
+                      side: BorderSide(
+                          width: 1,
+                          color: Color.fromRGBO(
+                              212, 212, 255, 1)), //border width and color
                       elevation: 3, //elevation of button
-                      shape: RoundedRectangleBorder( //to set border radius to button
-                          borderRadius: BorderRadius.circular(10)
+                      shape: RoundedRectangleBorder(
+                          //to set border radius to button
+                          borderRadius: BorderRadius.circular(10)),
+                      padding:
+                          EdgeInsets.all(20) //content padding inside button
                       ),
-                      padding: EdgeInsets.all(20) //content padding inside button
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Abstract",
+                        style: TextStyle(color: Colors.black, fontSize: 17),
+                      )
+                    ],
                   ),
-                  child: Row(mainAxisAlignment: MainAxisAlignment.center,children: [
-                    Text("Abstract",style: TextStyle(color: Colors.black,fontSize: 17),)],),
                   onPressed: () async {
                     final date = DateTime.now();
                     final dueDate = date.add(Duration(days: 7));
 
                     final invoice = Invoice(
-                      supplier: Supplier(
-                        name: box1?.get("name"),
-                        address: box1?.get("location"),
-                        paymentInfo: '',
-                      ),
-                      info: InvoiceInfo1(
-                        date: date,
-                        description: 'Abstract',
-                      ),
-                      items: [],
-                      items1: [],
-                      items2: [],
-                        items3: list3
-                    );
+                        supplier: Supplier(
+                          name: box1?.get("name"),
+                          address: box1?.get("location"),
+                          paymentInfo: '',
+                        ),
+                        info: InvoiceInfo1(
+                          date: date,
+                          description: 'Abstract',
+                        ),
+                        items: [],
+                        items1: [],
+                        items2: [],
+                        items3: list3);
 
-                    final pdfFile = await PdfInvoiceApi1.generateAbstract(invoice);
+                    final pdfFile =
+                        await PdfInvoiceApi1.generateAbstract(invoice);
 
                     PdfApi.openFile(pdfFile);
                   },

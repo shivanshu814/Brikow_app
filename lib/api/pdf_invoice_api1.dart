@@ -11,12 +11,10 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:pdf/widgets.dart';
 
 class PdfInvoiceApi1 {
-
   static int totalQty = 0;
   static int totalAmt = 0;
 
   static Future<File> generate(Invoice invoice) async {
-
     final pdf = Document();
     final ByteData bytes = await rootBundle.load('images/logo.png');
     final Uint8List byteList = bytes.buffer.asUint8List();
@@ -36,7 +34,6 @@ class PdfInvoiceApi1 {
   }
 
   static Future<File> generateSummary(Invoice invoice) async {
-
     final pdf = Document();
     final ByteData bytes = await rootBundle.load('images/logo.png');
     final Uint8List byteList = bytes.buffer.asUint8List();
@@ -56,7 +53,6 @@ class PdfInvoiceApi1 {
   }
 
   static Future<File> generateAbstract(Invoice invoice) async {
-
     final pdf = Document();
     final ByteData bytes = await rootBundle.load('images/logo.png');
     final Uint8List byteList = bytes.buffer.asUint8List();
@@ -132,7 +128,6 @@ class PdfInvoiceApi1 {
     final titles = <String>[
       'Description:',
       'Invoice Date:',
-
     ];
     final data = <String>[
       info.description,
@@ -153,8 +148,12 @@ class PdfInvoiceApi1 {
   static Widget buildSupplierAddress(Supplier supplier) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(supplier.name, style: TextStyle(fontWeight: FontWeight.bold)),
+          Text("Supplier Name: ",
+              style: TextStyle(fontWeight: FontWeight.bold)),
+          Text(supplier.name),
           SizedBox(height: 1 * PdfPageFormat.mm),
+          Text("Supplier Address: ",
+              style: TextStyle(fontWeight: FontWeight.bold)),
           Text(supplier.address),
         ],
       );
@@ -162,9 +161,9 @@ class PdfInvoiceApi1 {
   static Widget buildTitle(Invoice invoice) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 0.8 * PdfPageFormat.cm),
-          Text(invoice.info.description),
-          SizedBox(height: 0.8 * PdfPageFormat.cm),
+          // SizedBox(height: 0.8 * PdfPageFormat.cm),
+          // Text(invoice.info.description),
+          // SizedBox(height: 0.8 * PdfPageFormat.cm),
         ],
       );
 
@@ -185,7 +184,7 @@ class PdfInvoiceApi1 {
         final total = 100;
 
         print(item.quantity);
-        if(item.quantity!=""){
+        if (item.quantity != "") {
           qtyTotal = qtyTotal + int.parse(item.quantity);
         }
 
@@ -202,7 +201,6 @@ class PdfInvoiceApi1 {
     ).toList();
 
     totalQty = qtyTotal;
-
 
     return Table.fromTextArray(
       headers: headers,
@@ -223,25 +221,17 @@ class PdfInvoiceApi1 {
     );
   }
 
-
   static Widget buildInvoice1(Invoice invoice) {
-    final headers = [
-      'Description',
-      'Unit',
-      'NOS',
-      'Quantity'
-    ];
+    final headers = ['Description', 'Unit', 'NOS', 'Quantity'];
 
     int qtyTotal = 0;
     final data = invoice.items2.map(
-          (item) {
+      (item) {
         final total = 100;
 
-
         print(item.quantity);
-        if(item.quantity!=""){
+        if (item.quantity != "") {
           qtyTotal = qtyTotal + int.parse(item.quantity);
-
         }
 
         return [
@@ -275,28 +265,20 @@ class PdfInvoiceApi1 {
   }
 
   static Widget buildInvoice2(Invoice invoice) {
-    final headers = [
-      'Description',
-      'Unit',
-      'Rate',
-      'Quantity',
-      'Amount'
-    ];
+    final headers = ['Description', 'Unit', 'Rate', 'Quantity', 'Amount'];
 
     int qtyTotal = 0;
     int amtTotal = 0;
 
     final data = invoice.items3.map(
-          (item) {
+      (item) {
         final total = 100;
 
-
         print(item.quantity);
-        if(item.quantity!=""){
+        if (item.quantity != "") {
           qtyTotal = qtyTotal + int.parse(item.quantity);
 
           amtTotal = amtTotal + int.parse(item.amount);
-
         }
 
         return [
@@ -318,7 +300,7 @@ class PdfInvoiceApi1 {
       border: null,
       headerStyle: TextStyle(fontWeight: FontWeight.bold),
       headerDecoration: BoxDecoration(color: PdfColors.grey300),
-      cellHeight: 30,
+      cellHeight: 90,
       cellAlignments: {
         0: Alignment.centerLeft,
         1: Alignment.centerRight,
@@ -332,11 +314,7 @@ class PdfInvoiceApi1 {
   }
 
   static Widget buildTotal(Invoice invoice) {
-
-    final netTotal = invoice.items
-        .map((item) => item.quantity);
-
-    //final netTotal = 2.0;
+    final netTotal = invoice.items.map((item) => item.quantity);
     final vatPercent = 10;
     final vat = 20;
     final total = 20;
@@ -345,7 +323,7 @@ class PdfInvoiceApi1 {
       alignment: Alignment.centerRight,
       child: Row(
         children: [
-          Spacer(flex: 6),
+          Spacer(flex: 4),
           Expanded(
             flex: 4,
             child: Column(
@@ -356,7 +334,7 @@ class PdfInvoiceApi1 {
                 //   value: netTotal.toString(),
                 //   unite: true,
                 // ),
-                // Divider(),
+                Divider(),
                 buildText(
                   title: 'Total',
                   titleStyle: TextStyle(
@@ -379,9 +357,7 @@ class PdfInvoiceApi1 {
   }
 
   static Widget buildTotal1(Invoice invoice) {
-
-    final netTotal = invoice.items
-        .map((item) => item.quantity);
+    final netTotal = invoice.items.map((item) => item.quantity);
 
     //final netTotal = 2.0;
     final vatPercent = 10;
@@ -410,12 +386,14 @@ class PdfInvoiceApi1 {
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
-                  value: totalQty.toString() + "                       " + totalAmt.toString(),
+                  value: totalQty.toString() +
+                      "                       " +
+                      totalAmt.toString(),
                   unite: true,
                 ),
                 SizedBox(height: 2 * PdfPageFormat.mm),
                 Container(height: 1, color: PdfColors.grey400),
-                SizedBox(height: 0.5 * PdfPageFormat.mm),
+                SizedBox(height: 1.5 * PdfPageFormat.mm),
                 Container(height: 1, color: PdfColors.grey400),
               ],
             ),
