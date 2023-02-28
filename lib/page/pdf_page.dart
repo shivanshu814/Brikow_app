@@ -196,36 +196,50 @@ class _PdfPageState extends State<PdfPage> {
         appBar: AppBar(
           title: Text(
             'Invoice',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           ),
-          backgroundColor: Colors.blue.shade100,
+          backgroundColor: Color.fromARGB(210, 88, 40, 205),
           centerTitle: true,
         ),
         body: Container(
-          padding: EdgeInsets.all(32),
+          padding: EdgeInsets.only(left: 20,right: 20,bottom: 20,top: 40),
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              //mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Icon(Icons.picture_as_pdf, size: 150, color: Colors.red),
+                //Icon(Icons.picture_as_pdf, size: 150, color: Colors.red),
+                Image.asset('images/invoice2.png',height: 200,),
                 SizedBox(
-                  height: 5,
+                  height: 35,
                 ),
                 Text(
                   'Generate Invoice',
                   style: TextStyle(color: Colors.black, fontSize: 30),
                 ),
-                const SizedBox(height: 48),
-                ButtonWidget(
-                  text: 'Measurement',
-                  onClicked: () async {
+                const SizedBox(height: 78),
+               ElevatedButton(
+                 // text: 'Measurement',
+                 style: ElevatedButton.styleFrom(
+                     minimumSize: const Size.fromHeight(50),
+                     primary: Color.fromRGBO(212, 212, 255, 1), //background color of button
+                     side: BorderSide(width:1, color:Color.fromRGBO(212, 212, 255, 1)), //border width and color
+                     elevation: 3, //elevation of button
+                     shape: RoundedRectangleBorder( //to set border radius to button
+                         borderRadius: BorderRadius.circular(10)
+                     ),
+                     padding: EdgeInsets.all(20) //content padding inside button
+                 ),
+                      child: Row(mainAxisAlignment: MainAxisAlignment.center,children: [
+                        Text("Measurement",style: TextStyle(color: Colors.black,fontSize: 17),)],),
+
+                 onPressed: () async {
                     final date = DateTime.now();
                     final dueDate = date.add(Duration(days: 7));
 
                     final invoice = Invoice(
                       supplier: Supplier(
-                        name: box3?.get("name"),
-                        address: box3?.get("location"),
+                        name: box1?.get("name"),
+                        address: box1?.get("location"),
                         paymentInfo: '',
                       ),
                       info: InvoiceInfo1(
@@ -246,18 +260,30 @@ class _PdfPageState extends State<PdfPage> {
                   },
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
-                ButtonWidget(
-                  text: 'Summary',
-                  onClicked: () async {
+                ElevatedButton(
+                  // text: 'Measurement',
+                  style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(50),
+                      primary: Color.fromRGBO(212, 212, 255, 1), //background color of button
+                      side: BorderSide(width:1, color:Color.fromRGBO(212, 212, 255, 1)), //border width and color
+                      elevation: 3, //elevation of button
+                      shape: RoundedRectangleBorder( //to set border radius to button
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                      padding: EdgeInsets.all(20) //content padding inside button
+                  ),
+                  child: Row(mainAxisAlignment: MainAxisAlignment.center,children: [
+                    Text("Summary",style: TextStyle(color: Colors.black,fontSize: 17),)],),
+                  onPressed: () async {
                     final date = DateTime.now();
                     final dueDate = date.add(Duration(days: 7));
 
                     final invoice = Invoice(
                         supplier: Supplier(
-                          name: box3?.get("name"),
-                          address: box3?.get("location"),
+                          name: box1?.get("name"),
+                          address: box1?.get("location"),
                           paymentInfo: '',
                         ),
                         info: InvoiceInfo1(
@@ -276,18 +302,30 @@ class _PdfPageState extends State<PdfPage> {
                   },
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
-                ButtonWidget(
-                  text: 'Abstract',
-                  onClicked: () async {
+                ElevatedButton(
+                  // text: 'Measurement',
+                  style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(50),
+                      primary: Color.fromRGBO(212, 212, 255, 1), //background color of button
+                      side: BorderSide(width:1, color:Color.fromRGBO(212, 212, 255, 1)), //border width and color
+                      elevation: 3, //elevation of button
+                      shape: RoundedRectangleBorder( //to set border radius to button
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                      padding: EdgeInsets.all(20) //content padding inside button
+                  ),
+                  child: Row(mainAxisAlignment: MainAxisAlignment.center,children: [
+                    Text("Abstract",style: TextStyle(color: Colors.black,fontSize: 17),)],),
+                  onPressed: () async {
                     final date = DateTime.now();
                     final dueDate = date.add(Duration(days: 7));
 
                     final invoice = Invoice(
                       supplier: Supplier(
-                        name: box3?.get("name"),
-                        address: box3?.get("location"),
+                        name: box1?.get("name"),
+                        address: box1?.get("location"),
                         paymentInfo: '',
                       ),
                       info: InvoiceInfo1(

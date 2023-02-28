@@ -18,7 +18,7 @@ class PdfInvoiceApi1 {
   static Future<File> generate(Invoice invoice) async {
 
     final pdf = Document();
-    final ByteData bytes = await rootBundle.load('images/logo3.png');
+    final ByteData bytes = await rootBundle.load('images/logo.png');
     final Uint8List byteList = bytes.buffer.asUint8List();
     pdf.addPage(MultiPage(
       build: (context) => [
@@ -38,7 +38,7 @@ class PdfInvoiceApi1 {
   static Future<File> generateSummary(Invoice invoice) async {
 
     final pdf = Document();
-    final ByteData bytes = await rootBundle.load('images/logo3.png');
+    final ByteData bytes = await rootBundle.load('images/logo.png');
     final Uint8List byteList = bytes.buffer.asUint8List();
     pdf.addPage(MultiPage(
       build: (context) => [
@@ -58,7 +58,7 @@ class PdfInvoiceApi1 {
   static Future<File> generateAbstract(Invoice invoice) async {
 
     final pdf = Document();
-    final ByteData bytes = await rootBundle.load('images/logo3.png');
+    final ByteData bytes = await rootBundle.load('images/logo.png');
     final Uint8List byteList = bytes.buffer.asUint8List();
     pdf.addPage(MultiPage(
       build: (context) => [
