@@ -49,7 +49,7 @@ class PdfInvoiceApi1 {
       footer: (context) => buildFooter(invoice),
     ));
 
-    return PdfApi.saveDocument(name: 'my_invoice.pdf', pdf: pdf);
+    return PdfApi.saveDocument(name: 'Brikow_Invoice.pdf', pdf: pdf);
   }
 
   static Future<File> generateAbstract(Invoice invoice) async {
@@ -59,7 +59,7 @@ class PdfInvoiceApi1 {
     pdf.addPage(MultiPage(
       build: (context) => [
         buildHeader(invoice),
-        SizedBox(height: 3 * PdfPageFormat.cm),
+        SizedBox(height: 9 * PdfPageFormat.cm),
         buildTitle(invoice),
         buildInvoice2(invoice),
         Divider(),
@@ -68,7 +68,7 @@ class PdfInvoiceApi1 {
       footer: (context) => buildFooter(invoice),
     ));
 
-    return PdfApi.saveDocument(name: 'my_invoice.pdf', pdf: pdf);
+    return PdfApi.saveDocument(name: 'Brikow_Invoice.pdf', pdf: pdf);
   }
 
   static Widget buildHeader(Invoice invoice) => Column(
@@ -136,12 +136,15 @@ class PdfInvoiceApi1 {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: List.generate(titles.length, (index) {
-        final title = titles[index];
-        final value = data[index];
+      children: List.generate(
+        titles.length,
+        (index) {
+          final title = titles[index];
+          final value = data[index];
 
-        return buildText(title: title, value: value, width: 200);
-      }),
+          return buildText(title: title, value: value, width: 200);
+        },
+      ),
     );
   }
 
@@ -177,7 +180,6 @@ class PdfInvoiceApi1 {
       'Height',
       'Quantity'
     ];
-
     int qtyTotal = 0;
     final data = invoice.items1.map(
       (item) {
@@ -195,7 +197,7 @@ class PdfInvoiceApi1 {
           item.L,
           item.W,
           item.H,
-          item.quantity,
+          item.L,
         ];
       },
     ).toList();
@@ -233,7 +235,9 @@ class PdfInvoiceApi1 {
         if (item.quantity != "") {
           qtyTotal = qtyTotal + int.parse(item.quantity);
         }
-
+        SizedBox(
+          height: 15,
+        );
         return [
           item.description,
           item.unit,
@@ -244,7 +248,9 @@ class PdfInvoiceApi1 {
     ).toList();
 
     totalQty = qtyTotal;
-
+    SizedBox(
+      height: 15,
+    );
     return Table.fromTextArray(
       headers: headers,
       data: data,
@@ -389,6 +395,15 @@ class PdfInvoiceApi1 {
                   value: totalQty.toString() +
                       "                       " +
                       totalAmt.toString(),
+                  unite: true,
+                ),
+                buildText(
+                  title: 'Total',
+                  titleStyle: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  value: totalQty.toString(),
                   unite: true,
                 ),
                 SizedBox(height: 2 * PdfPageFormat.mm),

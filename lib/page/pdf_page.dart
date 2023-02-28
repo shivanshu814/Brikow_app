@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:phone_otp_ui/api/pdf_api.dart';
-import 'package:phone_otp_ui/api/pdf_invoice_api.dart';
 import 'package:phone_otp_ui/main.dart';
 import 'package:phone_otp_ui/model/customer.dart';
 import 'package:phone_otp_ui/model/invoice.dart';
