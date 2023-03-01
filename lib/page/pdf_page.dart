@@ -325,6 +325,8 @@ class _PdfPageState extends State<PdfPage> {
                     final invoice = Invoice(
                       supplier: Supplier(
                         name: box1?.get("name"),
+                        //name: box1?.get("name"),
+                        //address: box1?.get('location'),
                         address: box1?.get("location"),
                         paymentInfo: '',
                       ),
