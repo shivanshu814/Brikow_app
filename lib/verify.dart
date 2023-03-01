@@ -138,7 +138,7 @@ class _MyVerifyState extends State<MyVerify> {
                 height: 10,
               ),
               Text(
-                "We need to register your phone without getting started! LOL",
+                "We need to register your phone without getting started!",
                 style: TextStyle(
                   fontSize: 16,
                 ),
