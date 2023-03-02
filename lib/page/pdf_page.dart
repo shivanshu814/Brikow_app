@@ -73,12 +73,14 @@ class _PdfPageState extends State<PdfPage> {
                 print("VALUE1: "+val.toString());
                 print("VALUE2: "+value1[5][i]);
                 print("VALUE3: "+int.parse(value1[5][i]).toString());
-                val=val+int.parse(value1[5][i]);
+                int ab = int.parse(value1[2][i])*int.parse(value1[3][i])*int.parse(value1[4][i])*int.parse(value1[5][i]);
+                val=val+ab;
                 print("VAUE+ "+val.toString());
                 print(i.toString()+": "+value1[1].length.toString());
                 if (i == 0) {
                   print("inside 0");
                   if(i == value1[1].length-1){
+                    //int ab = int.parse(value1[2][i])*int.parse(value1[3][i])*int.parse(value1[4][i])*int.parse(value1[5][i]);
                     list.add(
                       InvoiceItem1(
                         description: value1[1][i],
@@ -87,7 +89,7 @@ class _PdfPageState extends State<PdfPage> {
                         L: value1[3][i],
                         W: value1[4][i],
                         H: value1[5][i],
-                        quantity: value1[5][i],
+                        quantity: ab.toString(),
                       ),
                     );
                     list.add(
@@ -121,7 +123,7 @@ class _PdfPageState extends State<PdfPage> {
                         L: value1[3][i],
                         W: value1[4][i],
                         H: value1[5][i],
-                        quantity: value1[5][i],
+                        quantity: ab.toString(),
                       ),
                     );
                   }
@@ -138,7 +140,7 @@ class _PdfPageState extends State<PdfPage> {
                       L: value1[3][i],
                       W: value1[4][i],
                       H: value1[5][i],
-                      quantity: value1[5][i],
+                      quantity: ab.toString(),
                     ),
                   );
                   list.add(
@@ -163,7 +165,7 @@ class _PdfPageState extends State<PdfPage> {
                       L: value1[3][i],
                       W: value1[4][i],
                       H: value1[5][i],
-                      quantity: value1[5][i],
+                      quantity: ab.toString(),
                     ),
                   );
                 }
