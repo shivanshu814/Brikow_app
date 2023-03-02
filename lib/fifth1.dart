@@ -874,6 +874,7 @@ class FifthState extends State<Fifth> {
   TextField _generateTextFieldBr2(
       TextEditingController controller, String hint) {
     return TextField(
+      keyboardType: TextInputType.number,
       controller: controller,
       textAlign: TextAlign.center,
       decoration: InputDecoration(
@@ -886,6 +887,7 @@ class FifthState extends State<Fifth> {
           borderSide: BorderSide.none,
         ),
       ),
+
     );
   }
 

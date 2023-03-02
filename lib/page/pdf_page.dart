@@ -68,19 +68,68 @@ class _PdfPageState extends State<PdfPage> {
               height: 15,
             );
             value.forEach((key1, value1) {
+              int val = 0;
               for (var i = 0; i < value1[1].length; i++) {
+                print("VALUE1: "+val.toString());
+                print("VALUE2: "+value1[5][i]);
+                print("VALUE3: "+int.parse(value1[5][i]).toString());
+                val=val+int.parse(value1[5][i]);
+                print("VAUE+ "+val.toString());
+                print(i.toString()+": "+value1[1].length.toString());
                 if (i == 0) {
-                  list.add(
-                    InvoiceItem1(
-                      description: value1[0],
-                      unit: "",
-                      NOS: "",
-                      L: "",
-                      W: "",
-                      H: "",
-                      quantity: "",
-                    ),
-                  );
+                  print("inside 0");
+                  if(i == value1[1].length-1){
+                    list.add(
+                      InvoiceItem1(
+                        description: value1[1][i],
+                        unit: "SQM",
+                        NOS: value1[2][i],
+                        L: value1[3][i],
+                        W: value1[4][i],
+                        H: value1[5][i],
+                        quantity: value1[5][i],
+                      ),
+                    );
+                    list.add(
+                      InvoiceItem1(
+                        description: "",
+                        unit: "",
+                        NOS: "",
+                        L: "",
+                        W: "",
+                        H: "",
+                        quantity: val.toString(),
+                      ),
+                    );
+                  }else{
+                    list.add(
+                      InvoiceItem1(
+                        description: value1[0],
+                        unit: "",
+                        NOS: "",
+                        L: "",
+                        W: "",
+                        H: "",
+                        quantity: "",
+                      ),
+                    );
+                    list.add(
+                      InvoiceItem1(
+                        description: value1[1][i],
+                        unit: "SQM",
+                        NOS: value1[2][i],
+                        L: value1[3][i],
+                        W: value1[4][i],
+                        H: value1[5][i],
+                        quantity: value1[5][i],
+                      ),
+                    );
+                  }
+
+                }
+                else if(i == value1[1].length-1) {
+                  print("inside last");
+                  print(val.toString());
                   list.add(
                     InvoiceItem1(
                       description: value1[1][i],
@@ -92,7 +141,20 @@ class _PdfPageState extends State<PdfPage> {
                       quantity: value1[5][i],
                     ),
                   );
-                } else {
+                  list.add(
+                    InvoiceItem1(
+                      description: "",
+                      unit: "",
+                      NOS: "",
+                      L: "",
+                      W: "",
+                      H: "",
+                      quantity: val.toString(),
+                    ),
+                  );
+                }
+                else {
+                  print("inside else");
                   list.add(
                     InvoiceItem1(
                       description: value1[1][i],
@@ -105,6 +167,7 @@ class _PdfPageState extends State<PdfPage> {
                     ),
                   );
                 }
+
                 print(value1[1][i]);
                 print(value1[1][i]);
                 print(value1[2][i]);

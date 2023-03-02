@@ -181,28 +181,46 @@ class PdfInvoiceApi1 {
       'Quantity'
     ];
     int qtyTotal = 0;
+    bool so = false;
     final data = invoice.items1.map(
       (item) {
         final total = 100;
 
         print(item.quantity);
-        if (item.quantity != "") {
+        // if (item.quantity != "") {
+        //   qtyTotal = qtyTotal + int.parse(item.quantity);
+        // }
+        if(item.description==""){
           qtyTotal = qtyTotal + int.parse(item.quantity);
+          so=true;
+          return [
+            item.description,
+            item.unit,
+            item.NOS,
+            item.L,
+            item.W,
+            item.H,
+            "Total Qty: "+item.quantity.toString(),
+          ];
+        }else{
+          return [
+            item.description,
+            item.unit,
+            item.NOS,
+            item.L,
+            item.W,
+            item.H,
+            item.quantity,
+          ];
         }
 
-        return [
-          item.description,
-          item.unit,
-          item.NOS,
-          item.L,
-          item.W,
-          item.H,
-          item.L,
-        ];
+
       },
     ).toList();
 
     totalQty = qtyTotal;
+
+
 
     return Table.fromTextArray(
       headers: headers,
@@ -211,6 +229,7 @@ class PdfInvoiceApi1 {
       headerStyle: TextStyle(fontWeight: FontWeight.bold),
       headerDecoration: BoxDecoration(color: PdfColors.grey300),
       cellHeight: 30,
+
       cellAlignments: {
         0: Alignment.centerLeft,
         1: Alignment.centerRight,
@@ -301,11 +320,12 @@ class PdfInvoiceApi1 {
     totalAmt = amtTotal;
 
     return Table.fromTextArray(
+
       headers: headers,
       data: data,
       border: null,
       headerStyle: TextStyle(fontWeight: FontWeight.bold),
-      headerDecoration: BoxDecoration(color: PdfColors.grey300),
+      headerDecoration: BoxDecoration(color: PdfColors.grey300,),
       cellHeight: 90,
       cellAlignments: {
         0: Alignment.centerLeft,
@@ -324,6 +344,14 @@ class PdfInvoiceApi1 {
     final vatPercent = 10;
     final vat = 20;
     final total = 20;
+
+    final netTotal1 = invoice.items.map((item) => item.quantity);
+    final vatPercent1 = 10;
+    final vat1 = 20;
+    final total1 = 20;
+    final totalDistributor = 28;
+    final createVirtualMeeting = 1;
+    final haveYouCheck = true;
 
     return Container(
       alignment: Alignment.centerRight,
