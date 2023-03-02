@@ -25,7 +25,7 @@ class PdfInvoiceApi1 {
         buildTitle(invoice),
         buildInvoice(invoice),
         Divider(),
-        buildTotal(invoice),
+        //buildTotal(invoice),
       ],
       footer: (context) => buildFooter(invoice),
     ));
@@ -83,7 +83,7 @@ class PdfInvoiceApi1 {
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.normal),
                 ),
                 Text(
-                  'Contractor Designing',
+                  'Construction Billing',
                   style: TextStyle(fontSize: 10),
                 ),
               ]),
