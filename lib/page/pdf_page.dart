@@ -37,6 +37,7 @@ class _PdfPageState extends State<PdfPage> {
     box1 = await Hive.openBox('bill');
     box2 = await Hive.openBox('logindata');
     box3 = await Hive.openBox('projectdata');
+
     print(" ==========");
 
     print("box1");
@@ -55,7 +56,7 @@ class _PdfPageState extends State<PdfPage> {
 
             list.add(
               InvoiceItem1(
-                description: key,
+                description: key.toUpperCase(),
                 unit: "",
                 NOS: "",
                 L: "",
@@ -64,9 +65,13 @@ class _PdfPageState extends State<PdfPage> {
                 quantity: "",
               ),
             );
+
             SizedBox(
               height: 15,
             );
+
+
+
             value.forEach((key1, value1) {
               int val = 0;
               for (var i = 0; i < value1[1].length; i++) {
@@ -194,6 +199,7 @@ class _PdfPageState extends State<PdfPage> {
                 quantity: "",
               ),
             );
+
             SizedBox(
               height: 15,
             );
@@ -213,6 +219,7 @@ class _PdfPageState extends State<PdfPage> {
                 print(value1[2][i]);
                 print(value1[3][i]);
                 print(value1[4][i]);
+
               }
             });
           },

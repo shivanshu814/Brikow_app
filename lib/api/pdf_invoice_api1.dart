@@ -59,7 +59,7 @@ class PdfInvoiceApi1 {
     pdf.addPage(MultiPage(
       build: (context) => [
         buildHeader(invoice),
-        SizedBox(height: 9 * PdfPageFormat.cm),
+        SizedBox(height: 2 * PdfPageFormat.cm),
         buildTitle(invoice),
         buildInvoice2(invoice),
         Divider(),
@@ -87,12 +87,12 @@ class PdfInvoiceApi1 {
                   style: TextStyle(fontSize: 10),
                 ),
               ]),
-              SizedBox(width: 15),
+              SizedBox(width: 35),
               Text(
                 'INVOICE',
                 style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 1 * PdfPageFormat.cm),
+              //SizedBox(height: 1 * PdfPageFormat.cm),
             ],
           ),
           SizedBox(
@@ -102,16 +102,17 @@ class PdfInvoiceApi1 {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               buildSupplierAddress(invoice.supplier),
-            ],
-          ),
-          SizedBox(height: 1 * PdfPageFormat.cm),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
               buildInvoiceInfo(invoice.info),
             ],
           ),
+          // SizedBox(height: 1 * PdfPageFormat.cm),
+          // Row(
+          //   crossAxisAlignment: CrossAxisAlignment.end,
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: [
+          //
+          //   ],
+          // ),
         ],
       );
 
@@ -151,11 +152,13 @@ class PdfInvoiceApi1 {
   static Widget buildSupplierAddress(Supplier supplier) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Supplier Name: ",
+          SizedBox(height: 15),
+          Text("Company Name: ",
               style: TextStyle(fontWeight: FontWeight.bold)),
           Text(supplier.name),
+          SizedBox(height: 10),
           SizedBox(height: 1 * PdfPageFormat.mm),
-          Text("Supplier Address: ",
+          Text("Company Address: ",
               style: TextStyle(fontWeight: FontWeight.bold)),
           Text(supplier.address),
         ],
@@ -219,8 +222,6 @@ class PdfInvoiceApi1 {
     ).toList();
 
     totalQty = qtyTotal;
-
-
 
     return Table.fromTextArray(
       headers: headers,
@@ -326,7 +327,7 @@ class PdfInvoiceApi1 {
       border: null,
       headerStyle: TextStyle(fontWeight: FontWeight.bold),
       headerDecoration: BoxDecoration(color: PdfColors.grey300,),
-      cellHeight: 90,
+      cellHeight: 30,
       cellAlignments: {
         0: Alignment.centerLeft,
         1: Alignment.centerRight,
@@ -451,7 +452,7 @@ class PdfInvoiceApi1 {
         children: [
           Divider(),
           SizedBox(height: 2 * PdfPageFormat.mm),
-          buildSimpleText(title: 'Address', value: invoice.supplier.address),
+         // buildSimpleText(title: 'Address', value: invoice.supplier.address),
           SizedBox(height: 1 * PdfPageFormat.mm),
           buildSimpleText(
               title: 'Thank you for Your Bussiness',
