@@ -2,8 +2,10 @@
 
 import 'dart:convert';
 import 'dart:io';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive/hive.dart';
 import 'package:pdf/widgets.dart';
 import 'package:phone_otp_ui/fifth.dart';
@@ -21,6 +23,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'landing.dart';
 
 late Box box1;
+//"client_id": "288464930430-s5rojssphtulpijl157esjpdo9mcsg8j.apps.googleusercontent.com",
 
 Future<void> main() async {
   const String title = 'Invoice';
@@ -30,11 +33,14 @@ Future<void> main() async {
     DeviceOrientation.portraitDown,
   ]);
   await Hive.initFlutter();
+  await Firebase.initializeApp();
+
   box1 = await Hive.openBox('logindata');
   apicall();
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
   runApp(
+
     MaterialApp(
       initialRoute: 'start',
       debugShowCheckedModeBanner: false,

@@ -9,12 +9,12 @@
       "client_info": {
         "mobilesdk_app_id": "1:288464930430:android:8f8c2af5791454ab18ba2f",
         "android_client_info": {
-          "package_name": "com.example.otp_verification_page"
+          "package_name": "com.brikow.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "288464930430-s5rojssphtulpijl157esjpdo9mcsg8j.apps.googleusercontent.com",
+          "client_id": "69368674333-i8r5nrhk5f5jt6imt3h4leulbsclib1h.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +27,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "288464930430-s5rojssphtulpijl157esjpdo9mcsg8j.apps.googleusercontent.com",
+              "client_id": "69368674333-i8r5nrhk5f5jt6imt3h4leulbsclib1h.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -37,3 +37,4 @@
   ],
   "configuration_version": "1"
 }
+

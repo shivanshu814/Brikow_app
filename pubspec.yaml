@@ -26,6 +26,7 @@ dependencies:
   intl: ^0.17.0
   textfield_search: ^0.9.0
   autocomplete_textfield: 2.0.1
+  google_sign_in: ^5.0.1
 
 dev_dependencies:
   flutter_test:

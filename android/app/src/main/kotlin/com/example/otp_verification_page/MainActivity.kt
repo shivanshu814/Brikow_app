@@ -1,4 +1,4 @@
-package com.example.otp_verification_page
+package com.brikow.app
 
 import io.flutter.embedding.android.FlutterActivity
 

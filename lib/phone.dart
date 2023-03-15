@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
 import 'package:phone_otp_ui/verify.dart';
@@ -37,6 +38,145 @@ class _MyPhoneState extends State<MyPhone> {
 
   void createBox() async {
     box1 = await Hive.openBox('logindata');
+  }
+
+  googleLogin() async{
+    print("Login with Google");
+
+    GoogleSignIn _googleSignIn = GoogleSignIn();
+    try{
+      var result = await _googleSignIn.signIn();
+      print("RES+"+result.toString());
+    }catch(error){
+      print(error);
+    }
+  }
+
+
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
+  Future<void> signingup(BuildContext context) async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+    final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+    if (googleSignInAccount != null) {
+      final GoogleSignInAuthentication googleSignInAuthentication =
+      await googleSignInAccount.authentication;
+      final AuthCredential authCredential = GoogleAuthProvider.credential(
+          idToken: googleSignInAuthentication.idToken,
+          accessToken: googleSignInAuthentication.accessToken);
+
+      // Getting users credential
+      UserCredential result = await auth.signInWithCredential(authCredential);
+      User? user = result.user;
+
+      if (result != null) {
+        // Navigator.pushReplacement(
+        //     context, MaterialPageRoute(builder: (context) => HomePage()));
+        Navigator.pushReplacementNamed(context, 'landing');
+      }  // if result not null we simply call the MaterialpageRoute,
+      // for go to the HomePage screen
+    }
+  }
+
+  GoogleSignInAccount? _googleUser;
+  Future<void> _signInGoogle() async {
+    try {
+      GoogleSignIn googleSignIn = GoogleSignIn(
+        scopes: [
+          ///TODO: put scopes app will use
+        ],
+      );
+      /// if previously signed in, it will signin silently
+      /// if not, the signin dialog/login page will pop up
+      _googleUser =
+          await googleSignIn.signInSilently() ?? await googleSignIn.signIn();
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  GoogleSignInAccount? _currentUser;
+  String _contactText = '';
+  Future<void> _handleSignIn() async {
+    GoogleSignIn googleSignIn = GoogleSignIn(
+        clientId:"69368674333-i8r5nrhk5f5jt6imt3h4leulbsclib1h.apps.googleusercontent.com");
+    try {
+      await googleSignIn.signIn();
+      //print("HERE:"+_currentUser.toString());
+      // _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount? account) {
+      //   setState(() {
+      //     _currentUser = account;
+      //     print("HERE:"+_currentUser.toString());
+      //   });
+      //   if (_currentUser != null) {
+      //     _handleGetContact(_currentUser!);
+      //   }
+      // });
+    } catch (error) {
+      print("err+"+error.toString());
+    }
+
+
+  }
+
+  GoogleSignIn _googleSignIn = GoogleSignIn(
+    // Optional clientId
+    clientId: '69368674333-i8r5nrhk5f5jt6imt3h4leulbsclib1h.apps.googleusercontent.com',
+    scopes: <String>[
+      'email',
+      'https://www.gooxgleapis.com/auth/contacts.readonly',
+    ],
+
+  );
+
+
+  Future<void> _handleGetContact(GoogleSignInAccount user) async {
+    setState(() {
+      _contactText = 'Loading contact info...';
+    });
+    final http.Response response = await http.get(
+      Uri.parse('https://people.googleapis.com/v1/people/me/connections'
+          '?requestMask.includeField=person.names'),
+      headers: await user.authHeaders,
+    );
+    if (response.statusCode != 200) {
+      setState(() {
+        _contactText = 'People API gave a ${response.statusCode} '
+            'response. Check logs for details.';
+      });
+      print('People API ${response.statusCode} response: ${response.body}');
+      return;
+    }
+    final Map<String, dynamic> data =
+    json.decode(response.body) as Map<String, dynamic>;
+    final String? namedContact = _pickFirstNamedContact(data);
+    setState(() {
+      if (namedContact != null) {
+        _contactText = 'I see you know $namedContact!';
+      } else {
+        _contactText = 'No contacts to display.';
+      }
+    });
+  }
+
+  String? _pickFirstNamedContact(Map<String, dynamic> data) {
+    final List<dynamic>? connections = data['connections'] as List<dynamic>?;
+    final Map<String, dynamic>? contact = connections?.firstWhere(
+          (dynamic contact) => (contact as Map<Object?, dynamic>)['names'] != null,
+      orElse: () => null,
+    ) as Map<String, dynamic>?;
+    if (contact != null) {
+      final List<dynamic> names = contact['names'] as List<dynamic>;
+      final Map<String, dynamic>? name = names.firstWhere(
+            (dynamic name) =>
+        (name as Map<Object?, dynamic>)['displayName'] != null,
+        orElse: () => null,
+      ) as Map<String, dynamic>?;
+      if (name != null) {
+        return name['displayName'] as String?;
+      }
+    }
+    return null;
   }
 
   // ignore: non_constant_identifier_names
@@ -212,6 +352,42 @@ class _MyPhoneState extends State<MyPhone> {
                           ),
                         ),
                       ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(left: 80, right: 80),
+                        child: MaterialButton(
+                          color: Colors.white70,
+                          elevation: 5,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 30.0,
+                                width: 30.0,
+                                padding: EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image:
+                                      AssetImage('images/google_icon.png'),
+                                      fit: BoxFit.cover),
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Text("Sign In with Google")
+                            ],
+                          ),
+
+                          // by onpressed we call the function signup function
+                          onPressed: (){
+                            //signup(context);
+                            //signingup(context);
+                            googleLogin();
+                          },
+                        ),
+                      )
                     ],
                   ),
                 ),
