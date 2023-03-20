@@ -40,6 +40,41 @@ class _MyPhoneState extends State<MyPhone> {
     box1 = await Hive.openBox('logindata');
   }
 
+
+  GoogleSignInAccount? _googleUser;
+  GoogleSignIn _googleSignIn11 = GoogleSignIn(scopes: ['profile', 'email']);
+  Future<void> _signInGoogle1() async {
+    try{
+      await _googleSignIn11.signIn();
+      print("NO ERRROR");
+    }catch(error){
+      print("ERROR");
+      print(error);
+    }
+  }
+
+  googleLogin1() async {
+    GoogleSignIn _googleSignIn = GoogleSignIn();
+    try{
+      var result = await _googleSignIn.signIn();
+      print("NO ERRROR");
+      print(result);
+    }catch(error){
+      print("ERROR1");
+      print(error);
+    }
+  }
+
+  ///sign out from google
+  Future<void> signOut() async {
+    GoogleSignIn googleSignIn = GoogleSignIn();
+    await googleSignIn.signOut();
+    _googleUser = null;
+  }
+
+
+
+
   googleLogin() async{
     print("Login with Google");
 
@@ -78,7 +113,7 @@ class _MyPhoneState extends State<MyPhone> {
     }
   }
 
-  GoogleSignInAccount? _googleUser;
+  //GoogleSignInAccount? _googleUser;
   Future<void> _signInGoogle() async {
     try {
       GoogleSignIn googleSignIn = GoogleSignIn(
@@ -88,8 +123,7 @@ class _MyPhoneState extends State<MyPhone> {
       );
       /// if previously signed in, it will signin silently
       /// if not, the signin dialog/login page will pop up
-      _googleUser =
-          await googleSignIn.signInSilently() ?? await googleSignIn.signIn();
+      _googleUser = await googleSignIn.signInSilently() ?? await googleSignIn.signIn();
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -384,7 +418,9 @@ class _MyPhoneState extends State<MyPhone> {
                           onPressed: (){
                             //signup(context);
                             //signingup(context);
-                            googleLogin();
+                            //googleLogin();
+                            //_signInGoogle1();
+                            googleLogin1();
                           },
                         ),
                       )

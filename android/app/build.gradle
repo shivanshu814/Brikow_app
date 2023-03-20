@@ -21,6 +21,12 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'com.android.internal.application'
 apply plugin: 'com.google.gms.google-services'
@@ -63,6 +69,31 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    signingConfigs {
+        debug {
+            keyAlias 'uploadkeystore1'
+            keyPassword 'android'
+            //storeFile file('D:\\Nitya\\GitHub\\Brikow_Flutter\\update1\\brikow_app_builder\\android\\app\\mykey.jks')
+            //storeFile file('D:\\Nitya\\GitHub\\Brikow_Flutter\\update1\\brikow_app_builder\\android\\app\\upload-keystore1.jks')
+            storeFile file('upload-keystore1.jks')
+            storePassword 'android'
+        }
+    }
+
+//    signingConfigs {
+//        release {
+//            keyAlias keystoreProperties['keyAlias']
+//            keyPassword keystoreProperties['keyPassword']
+//            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+//            storePassword keystoreProperties['storePassword']
+//        }
+//    }
+//    buildTypes {
+//        release {
+//            signingConfig signingConfigs.release
+//        }
+//    }
 }
 
 flutter {
